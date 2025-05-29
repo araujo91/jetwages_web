@@ -2,47 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Join the JetWages Beta Program</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JetWages Beta Program</title>
   <style>
     :root {
       --primary: #003366;
-      --accent: #4da6ff;
-      --bg: #f7f9fc;
+      --accent: #90caf9;
+      --background: #f0f4f8;
+      --card-bg: #ffffff;
     }
 
     body {
       margin: 0;
       padding: 0;
-      background-color: var(--bg);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
+      background-color: var(--background);
+      color: var(--primary);
     }
 
     .container {
       max-width: 500px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 2rem 1.2rem;
     }
 
     .card {
-      background: white;
+      background-color: var(--card-bg);
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     }
 
     h1 {
+      text-align: center;
       color: var(--primary);
       font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-      text-align: center;
+      margin-bottom: 1rem;
     }
 
     p {
-      text-align: center;
       font-size: 1rem;
-      margin-bottom: 1.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--primary);
     }
 
     label {
@@ -59,15 +61,16 @@
       border: 1px solid #ccc;
       border-radius: 6px;
       margin-bottom: 1rem;
+      background-color: #fff;
     }
 
     button {
       width: 100%;
       padding: 0.75rem;
-      background-color: var(--primary);
-      color: white;
       font-size: 1rem;
       font-weight: bold;
+      background-color: var(--accent);
+      color: var(--primary);
       border: none;
       border-radius: 6px;
       cursor: pointer;
@@ -75,16 +78,12 @@
     }
 
     button:hover {
-      background-color: var(--accent);
+      background-color: #6bb8f6;
     }
 
     @media (max-width: 480px) {
       h1 {
         font-size: 1.5rem;
-      }
-
-      .container {
-        padding: 1rem;
       }
 
       .card {
@@ -97,7 +96,10 @@
   <div class="container">
     <div class="card">
       <h1>JetWages Beta Program</h1>
-      <p>Be among the first to try JetWages – a smart app helping flight crew track their complex pay with ease.</p>
+      <p><strong>Be among the first to experience JetWages — a smart, intuitive app built by crew, for crew.</strong></p>
+      <p>JetWages simplifies the complex world of flight pay, helping you track earnings, duties, and deductions with ease.</p>
+      <p>We’re currently preparing for beta testing and are inviting early users to help shape the experience. Please enter your email and preferred platform below — this allows us to send your access link by <strong>June 6th</strong>.</p>
+      <p>Thank you for your interest in JetWages!</p>
       <form action="https://formspree.io/f/mblyrjda" method="POST">
         <label for="email">Email address</label>
         <input type="email" id="email" name="email" required placeholder="you@example.com" />
