@@ -6,58 +6,145 @@
   <meta name="color-scheme" content="light dark" />
   <title>Privacy Policy – JetWages</title>
   <style>
-    body {
-      font-family: sans-serif;
-      max-width: 800px;
-      margin: auto;
-      padding: 2em;
-      line-height: 1.6;
-      background-color: #f4f4f4;
-      color: #111;
+    :root {
+      /* Light Theme */
+      --bg-main: #f0f4f8;
+      --bg-secondary: #ffffff;
+      --bg-section: #dfe9f3;
+      --text-primary: #003366;
+      --text-secondary: #666;
+      --text-muted: #999;
+      --button-color: #90caf9;
+      --border-color: #ccc;
+      --divider-color: #cfd8dc;
+      --error-color: #F44336;
+      --success-color: #4caf50;
+      --warning-color: #ffb300;
     }
+
     @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #121212;
-        color: #eee;
+      :root {
+        /* Dark Theme */
+        --bg-main: #1c1c1c;
+        --bg-secondary: #333;
+        --bg-section: #2b2b2b;
+        --text-primary: #ffffff;
+        --text-secondary: #ccc;
+        --text-muted: #666;
+        --button-color: #b39ddb;
+        --border-color: #555;
+        --divider-color: #555;
+        --error-color: #E57373;
+        --success-color: #4caf50;
+        --warning-color: #ffb300;
       }
     }
-    h1, h2 {
-      color: #ff6600;
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2em auto;
+      background-color: var(--bg-secondary);
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--border-color);
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+      color: var(--button-color);
+    }
+
+    h2 {
+      font-size: 1.4em;
+      margin-top: 1.5em;
+      color: var(--button-color);
+    }
+
+    p, li {
+      line-height: 1.6;
+      font-size: 1em;
+      color: var(--text-secondary);
+    }
+
+    ul {
+      padding-left: 1.5em;
+    }
+
+    code {
+      background-color: var(--divider-color);
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      code {
+        background-color: #444;
+      }
+    }
+
+    em {
+      color: var(--text-muted);
+    }
+
+    strong {
+      color: var(--text-primary);
+    }
+
+    a {
+      color: var(--button-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1>Privacy Policy – JetWages</h1>
-  <p><em>Last updated: June 1, 2025</em></p>
+  <div class="container">
+    <h1>Privacy Policy – JetWages</h1>
+    <p><em>Last updated: June 1, 2025</em></p>
 
-  <h2>1. Local-Only Data Handling</h2>
-  <p>JetWages is built to work entirely offline. All personal data, including schedules, payslips, pay information, and settings, is stored <strong>locally</strong> on your device using secure local storage (AsyncStorage).</p>
+    <h2>1. Local-Only Data Handling</h2>
+    <p>JetWages is built to work entirely offline. All personal data — including schedules, payslips, pay information, and settings — is stored <strong>locally</strong> on your device using secure local storage (AsyncStorage).</p>
 
-  <h2>2. No External Data Transmission</h2>
-  <p>The app does <strong>not send any data to external servers</strong>. No cloud services, APIs, or third-party servers are involved in processing or storing your data.</p>
+    <h2>2. No External Data Transmission</h2>
+    <p>JetWages does <strong>not send any data to external servers</strong>. No cloud sync, analytics tracking, or third-party APIs are involved in processing or storing your data.</p>
 
-  <h2>3. File Processing</h2>
-  <p>JetWages allows you to import schedules and payslips in HTML and PDF format. These files are processed entirely on your device using local libraries like <code>expo-file-system</code>. No file contents are uploaded or transmitted externally.</p>
+    <h2>3. File Processing</h2>
+    <p>The app allows importing HTML and PDF files from eCrew and supplementary payslips. These are processed entirely on-device using <code>expo-file-system</code> and memory-only operations. <strong>No files or extracted data leave your device.</strong></p>
 
-  <h2>4. Analytics (Local & Optional)</h2>
-  <p>JetWages includes a lightweight local analytics system to help users track app usage (e.g., setup completion, uploaded files, and pay estimation history). This data is:</p>
-  <ul>
-    <li>Stored locally on your device</li>
-    <li>Anonymous and does not include personal information</li>
-    <li>Exportable by the user from the Settings screen</li>
-  </ul>
+    <h2>4. Local Analytics (Optional)</h2>
+    <p>JetWages tracks setup progress, file uploads, and historical pay analysis. These analytics:</p>
+    <ul>
+      <li>Are stored only on your device</li>
+      <li>Do not contain personal information</li>
+      <li>Can be exported via the Settings screen</li>
+    </ul>
 
-  <h2>5. Backup & Restore</h2>
-  <p>You can export a backup of your data or restore it from a file. These operations are handled locally via the device file system or sharing options. <strong>No data is shared with external servers</strong> during this process.</p>
+    <h2>5. Backup & Restore</h2>
+    <p>You may export or import your JetWages data for backup. These operations are handled locally via the device’s file system or sharing tools. No external services are involved.</p>
 
-  <h2>6. External Libraries</h2>
-  <p>We use a few open-source libraries (e.g., for PDF parsing or file handling) that are bundled within the app and run entirely on your device. These libraries do not collect or transmit any user data.</p>
+    <h2>6. External Libraries</h2>
+    <p>We use a few open-source libraries (e.g., for parsing PDF files) that are bundled inside the app and run locally. These libraries do <strong>not collect or transmit any user data</strong>.</p>
 
-  <h2>7. Your Control</h2>
-  <p>You retain full control over your data. You can delete the app at any time to remove all stored information. No data is ever synced or uploaded externally.</p>
+    <h2>7. User Control</h2>
+    <p>You have complete control over your data. Uninstalling the app permanently deletes all stored content. JetWages never stores or transmits any of your data to third parties.</p>
 
-  <h2>8. Contact</h2>
-  <p>For any questions or concerns about this privacy policy, please email: <strong>jetwages.app@gmail.com</strong></p>
+    <h2>8. Contact</h2>
+    <p>If you have questions about this policy, contact us at <strong>jetwages.app@gmail.com</strong></p>
+  </div>
 </body>
 </html>
 
