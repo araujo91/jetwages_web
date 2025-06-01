@@ -30,23 +30,34 @@
   <h1>Privacy Policy – JetWages</h1>
   <p><em>Last updated: June 1, 2025</em></p>
 
-  <h2>1. Data Collection</h2>
-  <p>We do not collect or transmit any personal data to our servers. All data (including schedules, payslips, and pay information) remains stored <strong>locally</strong> on your device.</p>
+  <h2>1. Local-Only Data Handling</h2>
+  <p>JetWages is built to work entirely offline. All personal data, including schedules, payslips, pay information, and settings, is stored <strong>locally</strong> on your device using secure local storage (AsyncStorage).</p>
 
-  <h2>2. Data Usage</h2>
-  <p>The data you provide is used solely to calculate leave entitlements and provide insights into your pay structure. We do not access, share, or store your data externally.</p>
+  <h2>2. No External Data Transmission</h2>
+  <p>The app does <strong>not send any data to external servers</strong>. No cloud services, APIs, or third-party servers are involved in processing or storing your data.</p>
 
-  <h2>3. Permissions</h2>
-  <p>JetWages may request access to your local file system to allow importing HTML schedules and PDF payslips.</p>
+  <h2>3. File Processing</h2>
+  <p>JetWages allows you to import schedules and payslips in HTML and PDF format. These files are processed entirely on your device using local libraries like <code>expo-file-system</code>. No file contents are uploaded or transmitted externally.</p>
 
-  <h2>4. Third Parties & External Libraries</h2>
-  <p>We do not use third-party services that collect or track personal data.
-We do use local third-party libraries (e.g., for file parsing or PDF rendering) which run entirely on your device. These libraries do not send any data externally.</p>
+  <h2>4. Analytics (Local & Optional)</h2>
+  <p>JetWages includes a lightweight local analytics system to help users track app usage (e.g., setup completion, uploaded files, and pay estimation history). This data is:</p>
+  <ul>
+    <li>Stored locally on your device</li>
+    <li>Anonymous and does not include personal information</li>
+    <li>Exportable by the user from the Settings screen</li>
+  </ul>
 
-  <h2>5. Your Rights</h2>
-  <p>Since your data never leaves your device, you have full control. You may delete the app at any time to remove all stored data.</p>
+  <h2>5. Backup & Restore</h2>
+  <p>You can export a backup of your data or restore it from a file. These operations are handled locally via the device file system or sharing options. <strong>No data is shared with external servers</strong> during this process.</p>
 
-  <h2>6. Contact</h2>
-  <p>For any questions or concerns, please email: <strong>jetwages.app@gmail.com</strong></p>
+  <h2>6. External Libraries</h2>
+  <p>We use a few open-source libraries (e.g., for PDF parsing or file handling) that are bundled within the app and run entirely on your device. These libraries do not collect or transmit any user data.</p>
+
+  <h2>7. Your Control</h2>
+  <p>You retain full control over your data. You can delete the app at any time to remove all stored information. No data is ever synced or uploaded externally.</p>
+
+  <h2>8. Contact</h2>
+  <p>For any questions or concerns about this privacy policy, please email: <strong>jetwages.app@gmail.com</strong></p>
 </body>
 </html>
+
