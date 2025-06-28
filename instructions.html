@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JetWages Instructions</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f4f7fb; color: #003366; max-width: 800px; margin: auto; padding: 20px; }
+  h1, h2, h3 { color: #003366; }
+  img { max-width: 300px; width: 100%; height: auto; border: 1px solid #ccc; }
+  .section { background: #fff; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+  .flex-row { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+  .flex-row img { flex: 1 1 40%; }
+  .flex-text { flex: 1 1 55%; }
+  .popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 1000;}
+  .popup-overlay img { max-width: 90%; max-height: 90%; border: 4px solid #fff; border-radius: 8px;}
+  .tab-buttons { text-align: center; margin-bottom: 20px; }
+  .tab-buttons button { margin: 5px; padding: 10px 20px; font-weight: bold; background: #90caf9; border: none; border-radius: 5px; cursor: pointer; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<h1>✈️ JetWages Setup & Instructions</h1>
+<p>Welcome to JetWages — your tool to track and understand your complex cabin crew wages. Follow these simple steps to set up the app and monitor your pay accurately.</p>
+
+<div class="tab-buttons">
+  <button onclick="showSection('setup')">Setup Instructions</button>
+  <button onclick="showSection('use')">How to Use</button>
+</div>
+
+<div id="setup-section">
+  <div class="section">
+    <h2>1️⃣ Preparation</h2>
+    <p>Before using JetWages, prepare:</p>
+    <ul>
+      <li>Your <strong>monthly roster files</strong> from eCrew (HTML format)</li>
+      <li>Your <strong>Supplementary Payslips</strong> (PDF format)</li>
+    </ul>
+
+    <h3>How to download your eCrew roster (HTML format)</h3>
+    <ol>
+      <li>Log in to eCrew</li>
+      <li>Open your schedule</li>
+      <li>Switch to <strong>Horizontal View</strong> in <strong>My Preferences</strong> settings</li>
+      <li>Save the page as an <strong>HTML file</strong> via the export options</li>
+    </ol>
+
+    <div class="flex-row">
+      <img src="graphics/ecrewSettings.jpg" alt="eCrew Orientation Settings" class="popup-target">
+      <div class="flex-text">
+        <h3>Orientation Settings</h3>
+        <p>Set your <strong>Orientation</strong> to <em>Horizontal</em> under Schedule Print Options. <br><strong style="color:red;">⚠️ Important:</strong> Some users report eCrew does the <em>opposite</em> of your selected setting — check your exported file to ensure it's in Horizontal layout!</p>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="graphics/ecrewPrint.jpg" alt="eCrew Export Menu" class="popup-target">
+      <div class="flex-text">
+        <h3>Export Your Roster</h3>
+        <p>Use the export icon and choose <strong>HTML</strong> format. Save the file to your device for use in JetWages.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2️⃣ App Setup</h2>
+
+    <div class="flex-row">
+      <img src="screenshots/welcome.png" alt="Welcome Screen">
+      <div class="flex-text">
+        <h3>Welcome Screen</h3>
+        <ul>
+          <li>Tap <strong>Get Started</strong> to begin</li>
+          <li>Returning users can use <strong>Upload Backup</strong> to restore your data</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/accountSetup.png" alt="Pay Information">
+      <div class="flex-text">
+        <h3>Pay Information</h3>
+        <p>Input your salary details:</p>
+        <ul>
+          <li>Yearly or Monthly Pay</li>
+          <li>Nominal Pay</li>
+          <li>Optional: Language Pay, Pension, Deductions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/historicalData.png" alt="Historical Pay Option">
+      <div class="flex-text">
+        <h3>Historical Pay Data (Optional)</h3>
+        <p>For precise data:</p>
+        <ul>
+          <li>Select <strong>Yes</strong> to provide historical pay</li>
+          <li>Select <strong>No</strong> to skip</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/historicalPayChanges.png" alt="Historical Pay Changes">
+      <div class="flex-text">
+        <h3>Enter Historical Pay Changes</h3>
+        <p>Add past pay changes with:</p>
+        <ul>
+          <li>Date ranges for different pay periods</li>
+          <li>Salary values for each period</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3️⃣ Leave Pay Accuracy</h2>
+
+    <div class="flex-row">
+      <img src="screenshots/LVE.png" alt="Leave Pay Accuracy">
+      <div class="flex-text">
+        <p>Upload <strong>12 months</strong> of schedules and PDFs for the most accurate Leave Pay. You can also enter estimates manually.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4️⃣ Upload Your Files</h2>
+
+  <div class="flex-row">
+    <img src="screenshots/uploadFiles.png" alt="Upload Files Screen">
+    <div class="flex-text">
+      <p>On the Upload Files screen:</p>
+      <ul>
+        <li>Tap <strong>Pick Files</strong></li>
+        <li>Select <strong>all your HTML schedules and PDF payslips at the same time</strong></li>
+        <li>Processing starts automatically after selection</li>
+      </ul>
+      <p><strong style="color: red;">⚠️ Important:</strong> You must select all files together in one go. Uploading files separately may cause missing data.</p>
+    </div>
+  </div>
+
+
+    <div class="flex-row">
+      <img src="screenshots/uploadFilesComplete.png" alt="Processing Files">
+      <div class="flex-text">
+        <h3>Processing Example</h3>
+        <p>When processing completes, all files show a ✅</p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="section">
+    <h2>5️⃣ Viewing Your Data</h2>
+
+    <div class="flex-row">
+      <img src="screenshots/homeScreen.png" alt="Calendar View">
+      <div class="flex-text">
+        <h3>Calendar View</h3>
+        <p>See duties and earnings in a clear monthly overview.</p>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/pieView.png" alt="Pie Chart Breakdown">
+      <div class="flex-text">
+        <h3>Pie Chart Breakdown</h3>
+        <ul>
+          <li>Basic Pay</li>
+          <li>Sector Pay</li>
+          <li>Commissions</li>
+          <li>Extras & Deductions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <p><strong>✅ You’re Ready to Go!</strong> Enjoy tracking your wages with JetWages — designed by crew, for crew.</p>
+</div>  
+
+<div id="use-section" class="hidden">
+  <div class="section">
+    <h2>🚀 Using JetWages</h2>
+    <div class="flex-row">
+      <img src="screenshots/menu.png" alt="Menu">
+      <div class="flex-text">
+        <h3>Navigation Menu</h3>
+        <p>Tap the top-right menu to access key areas such as Upload Calendar, Distance Calculator, Sales Comparison, and Settings.</p>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/homeScreenSelected.png" alt="Home Screen">
+      <div class="flex-text">
+        <h3>Home Calendar</h3>
+        <p>The calendar shows your duties for the month. Tap any day to view or edit flights, sales, and extras for that date.</p>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/editDay.png" alt="Edit Day">
+      <div class="flex-text">
+        <h3>Edit Flights & Duty</h3>
+        <p>Add, remove or change flights for the selected day. You can also add custom duties using the "Add Duty" option.</p>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/extras.png" alt="Add Extras">
+      <div class="flex-text">
+        <h3>Add Extras</h3>
+        <p>Input extra payments for the day, such as delay payments, DDO/WFDO, or Night Stop allowances.</p>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/sales.png" alt="Sales Input">
+      <div class="flex-text">
+        <h3>Add Sales</h3>
+        <p>Record your onboard sales for each day. The app will automatically calculate commission based on your input.</p>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/distanceCalc.png" alt="Distance Calculator">
+      <div class="flex-text">
+        <h3>Distance Calculator</h3>
+        <p>Quickly calculate the distance between two airports. Enter airport names or IATA codes to get the result.</p>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/salesComp.png" alt="Sales Comparison">
+      <div class="flex-text">
+        <h3>Sales Comparison</h3>
+        <p>Upload your official supplementary sales PDF to compare your reported commission with the app's calculation.</p>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/salesCompDone.png" alt="Sales Comparison Results">
+      <div class="flex-text">
+        <h3>Review Differences</h3>
+        <p>See a side-by-side comparison for each day. Positive or negative differences highlight potential discrepancies.</p>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="popup-overlay" id="popup">
+  <img src="" alt="Popup Image" id="popup-img">
+</div>
+
+<script>
+const popup = document.getElementById('popup');
+const popupImg = document.getElementById('popup-img');
+
+document.querySelectorAll('img.popup-target').forEach(img => {
+  img.addEventListener('click', () => {
+    popup.style.display = 'flex';
+    popupImg.src = img.src;
+    popupImg.alt = img.alt;
+  });
+});
+
+popup.addEventListener('click', () => {
+  popup.style.display = 'none';
+});
+
+function showSection(section) {
+  document.getElementById('setup-section').classList.add('hidden');
+  document.getElementById('use-section').classList.add('hidden');
+
+  if (section === 'setup') {
+    document.getElementById('setup-section').classList.remove('hidden');
+  } else {
+    document.getElementById('use-section').classList.remove('hidden');
+  }
+}
+</script>
+
+</body>
+</html>
