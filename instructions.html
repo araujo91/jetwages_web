@@ -17,6 +17,13 @@
   .tab-buttons { text-align: center; margin-bottom: 20px; }
   .tab-buttons button { margin: 5px; padding: 10px 20px; font-weight: bold; background: #90caf9; border: none; border-radius: 5px; cursor: pointer; }
   .hidden { display: none; }
+  .floating-button {position: fixed; bottom: 20px; right: 20px; background: #90caf9; color: #003366; padding: 10px 16px; border-radius: 5px; font-weight: bold; text-decoration: none; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); z-index: 1001; transition: background 0.3s ease;
+}
+
+.floating-button:hover {
+  background: #64b5f6;
+}
+
 </style>
 </head>
 <body>
@@ -25,14 +32,72 @@
 <p>Welcome to JetWages — your tool to track and understand your complex cabin crew wages. Follow these simple steps to set up the app and monitor your pay accurately.</p>
 
 <div class="tab-buttons">
-  <button onclick="showSection('setup')">Setup Instructions</button>
+  <button onclick="showSection('quick')">Quick Setup </button>
+  <button onclick="showSection('setup')">Full Set-up Instructions</button>
   <button onclick="showSection('use')">How to Use</button>
 </div>
 
-<div id="setup-section">
+<div id="quick-setup">
+  <div class="section">
+    <h2>1️⃣ Quick Setup</h2>
+
+    <div class="flex-row">
+      <img src="screenshots/welcome.png" alt="Welcome Screen">
+      <div class="flex-text">
+        <h3>Welcome Screen</h3>
+        <ul>
+          <li>Tap <strong>Get Started</strong> to begin</li>
+          <li>Returning users can use <strong>Upload Backup</strong> to restore your data</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/accountSetup.png" alt="Pay Information">
+      <div class="flex-text">
+        <h3>Pay Information</h3>
+        <p>Input your salary details:</p>
+        <ul>
+          <li>Yearly or Monthly Pay</li>
+          <li>Nominal Pay</li>
+          <li>Optional: Language Pay, Pension, Deductions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <img src="screenshots/historicalData.png" alt="Historical Pay Option">
+      <div class="flex-text">
+        <h3>Historical Pay Data</h3>
+        <p>Select <bold>no</bold> to skip</p>
+      </div>
+    </div>
+  </div>
+
+   <div class="section">
+    <h2>2️⃣ Leave Pay / Leave estimate </h2>
+
+    <div class="flex-row">
+      <img src="screenshots/LVE.png" alt="Leave Pay Accuracy">
+      <div class="flex-text">
+        <p>To proceed quickly, press <bold>"Enter estimate manually"</bold></p>
+      </div>
+    </div>
+     <div class="flex-row">
+      <img src="screenshots/lve_estimate.png" alt="Historical Pay Option">
+      <div class="flex-text">
+        <p>Enter a rough estimate to use for LVE (Leave) days.</p>
+        <p><strong style="color: red;">⚠️ Important:</strong>Don’t worry too much about the figure — as you continue using the app, JetWages will calculate your leave pay automatically and improve accuracy over time.</p>
+      </div>
+    </div>
+  </div>
+   <p><strong>✅ You’re Ready to Go!</strong> Enjoy tracking your wages with JetWages.</p>
+</div>
+
+<div id="setup-section" class="hidden">
   <div class="section">
     <h2>1️⃣ Preparation</h2>
-    <p>Before using JetWages, prepare:</p>
+    <p>Before using JetWages, please ensure you have:</p>
     <ul>
       <li>Your <strong>monthly roster files</strong> from eCrew (HTML format)</li>
       <li>Your <strong>Supplementary Payslips</strong> (PDF format)</li>
@@ -43,7 +108,7 @@
       <li>Log in to eCrew</li>
       <li>Open your schedule</li>
       <li>Switch to <strong>Horizontal View</strong> in <strong>My Preferences</strong> settings</li>
-      <li>Save the page as an <strong>HTML file</strong> via the export options</li>
+      <li>Use the export icon and choose the <strong>HTML</strong> format.</p>
     </ol>
 
     <div class="flex-row">
@@ -161,7 +226,7 @@
       <img src="screenshots/homeScreen.png" alt="Calendar View">
       <div class="flex-text">
         <h3>Calendar View</h3>
-        <p>See duties and earnings in a clear monthly overview.</p>
+        <p>View your duties and earnings in a clear monthly overview.</p>
       </div>
     </div>
 
@@ -274,16 +339,20 @@ popup.addEventListener('click', () => {
 });
 
 function showSection(section) {
+  document.getElementById('quick-setup').classList.add('hidden');
   document.getElementById('setup-section').classList.add('hidden');
   document.getElementById('use-section').classList.add('hidden');
 
-  if (section === 'setup') {
+  if (section === 'quick') {
+    document.getElementById('quick-setup').classList.remove('hidden');
+  } else if (section === 'setup') {
     document.getElementById('setup-section').classList.remove('hidden');
-  } else {
+  } else if (section === 'use') {
     document.getElementById('use-section').classList.remove('hidden');
   }
 }
 </script>
+<a href="araujo91.github.io/jetwages_web/landing.html" class="floating-button" title="Go back to the JetWages homepage">⬅ Return to Main Page</a>
 
 </body>
 </html>
