@@ -81,7 +81,7 @@ header {
 }
 .btn:hover { transform: translateY(-1px); text-decoration: none; background: var(--brand-2); }
 .btn:active { transform: translateY(0); }
-.btn-secondary { --bg-btn: #e9eff7; color: #0e2a47; }
+.btn-secondary { --bg-btn: #e9eff7; color: #0e2a47; display: inline-flex; align-items: center; gap: .55rem; }
 @media (prefers-color-scheme: dark) { .btn-secondary { --bg-btn: #2a3441; color: #e9eef6; } }
 .btn:focus-visible { outline: var(--ring); outline-offset: 2px; }
 
