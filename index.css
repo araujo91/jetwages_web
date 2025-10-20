@@ -153,16 +153,37 @@ figcaption { color: var(--muted); font-size: .9rem; margin-top: .4rem; text-alig
 /* Footer */
 footer { border-top: 1px solid color-mix(in oklab, var(--muted) 12%, transparent); padding: 1rem 0; color: var(--muted); font-size: .95rem; text-align: center; }
 
-/* Small-screen tweaks */
+/* Responsive navigation */
+@media (max-width: 800px) {
+  /* Hide less important nav items first */
+  .nav a.navlink[href="#screenshots"],
+  .nav a.navlink[href="#links"] {
+    display: none;
+  }
+}
+
 @media (max-width: 640px) {
+  /* Hide more nav items */
+  .nav a.navlink[href="#support"],
+  .nav a.navlink[href="#about"] {
+    display: none;
+  }
+  
+  /* Basic mobile tweaks */
   .container { width: 96vw; padding-left: 0.5rem; padding-right: 0.5rem; }
   header { padding-left: .25rem; padding-right: .25rem; }
   .nav { gap: .5rem; }
   .lead { max-width: 60ch; }
-  .brand span { display: none; } /* hide text brand to save space on very small screens */
+  .brand span { display: none; } /* hide text brand to save space */
   .hero { padding-top: 2rem; }
   .grid.features { gap: .85rem; }
   .shots { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  
+  /* Make remaining nav items more prominent */
+  .nav a.navlink {
+    font-size: 1.05rem;
+    padding: .7rem 1rem;
+  }
 }
 
 /* Motion reduce */
