@@ -16,9 +16,6 @@
       --button-color: #90caf9;
       --border-color: #ccc;
       --divider-color: #cfd8dc;
-      --error-color: #F44336;
-      --success-color: #4caf50;
-      --warning-color: #ffb300;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -28,12 +25,9 @@
         --text-primary: #ffffff;
         --text-secondary: #ccc;
         --text-muted: #666;
-        --button-color: #b39ddb;
+        --button-color: #7cc6ff;
         --border-color: #555;
         --divider-color: #555;
-        --error-color: #E57373;
-        --success-color: #4caf50;
-        --warning-color: #ffb300;
       }
     }
     body {
@@ -70,78 +64,72 @@
     ul {
       padding-left: 1.5em;
     }
-    code {
-      background-color: var(--divider-color);
-      padding: 2px 6px;
-      border-radius: 5px;
-      font-family: monospace;
-    }
-    @media (prefers-color-scheme: dark) {
-      code {
-        background-color: #444;
-      }
-    }
-    em {
-      color: var(--text-muted);
-    }
-    strong {
-      color: var(--text-primary);
-    }
-    a {
-      color: var(--button-color);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    em { color: var(--text-muted); }
+    strong { color: var(--text-primary); }
+    a { color: var(--button-color); text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Privacy & Data Policy – JetWages</h1>
-    <p><em>Last updated: June 28, 2025</em></p>
+    <p><em>Last updated: 18 October 2025</em></p>
 
-    <h2>1. Local-First Data Approach</h2>
-    <p>JetWages is designed to operate entirely offline whenever possible. All personal data — including schedules, payslips, pay details, and settings — is stored <strong>locally</strong> on your device using secure storage mechanisms (AsyncStorage).</p>
+    <h2>1. Overview</h2>
+    <p>JetWages is an independent project operated by <strong>João Araújo</strong> in the United Kingdom. This policy explains how JetWages handles your data in compliance with UK and EU data protection laws (UK GDPR / EU GDPR).</p>
 
-    <h2>2. No Routine Data Transmission</h2>
-    <p>JetWages does <strong>not send your data to external servers</strong> under normal app usage. There is no cloud sync, analytics tracking, or third-party data collection.</p>
+    <h2>2. Data Controller</h2>
+    <p><strong>Controller:</strong> João Araújo<br>
+      <strong>Email:</strong> <a data-const="email">jetwages@gmail.com</a><br>
+      <strong>Location:</strong> United Kingdom
+    </p>
 
-    <h2>3. File Processing & iOS Server Parsing</h2>
-    <p>JetWages allows importing HTML schedules and PDF payslips from eCrew and supplementary sources. For most users and platforms, files are processed entirely on-device using <code>expo-file-system</code> and temporary memory operations.</p>
-    <p><strong>Important for iOS Users:</strong> Due to technical limitations, PDF files imported on iOS devices are securely sent to our server for processing. The server extracts the relevant data and immediately returns it to your device. All uploaded files are permanently deleted from our server within minutes after processing. No personal information is stored beyond this temporary window.</p>
-
-    <h2>4. Data Collection for Beta Access & Feedback</h2>
-    <p>We may collect personal information such as your email address when you:</p>
+    <h2>3. Local-First Model</h2>
+    <p>JetWages follows a <strong>local-first and ephemeral-processing</strong> model:</p>
     <ul>
-      <li>Sign up for beta testing</li>
-      <li>Provide feedback via forms or surveys</li>
-      <li>Contact us directly</li>
-    </ul>
-    <p>This data is used exclusively to communicate app updates, collect feedback, and improve JetWages. Your personal information is never sold or shared with third parties.</p>
-
-    <h2>5. Feedback & User Submissions</h2>
-    <p>Any feedback you provide may be stored for improvement purposes. You can request the deletion of your feedback and associated personal information at any time by contacting us.</p>
-
-    <h2>6. Local Analytics (Optional)</h2>
-    <p>JetWages tracks setup steps, file uploads, and pay calculations strictly for your personal use. These analytics:</p>
-    <ul>
-      <li>Remain stored solely on your device</li>
-      <li>Do not contain sensitive personal details</li>
-      <li>Can be exported by you at any time via the Settings screen</li>
+      <li>All data (including payslips, rosters, and pay breakdowns) is processed locally on your device.</li>
+      <li>Files uploaded for parsing are temporarily sent via HTTPS to a secure UK-based server and <strong>deleted immediately after successful parsing</strong>.</li>
+      <li>No files, parsed data, or logs are retained on the server after the process completes.</li>
     </ul>
 
-    <h2>7. Backup & Restore</h2>
-    <p>You can export or import your JetWages data for backup purposes. These actions use your device's file system or sharing tools. No third-party services are involved in these operations.</p>
+    <h2>4. File Processing</h2>
+    <p>When you upload a payslip or supplementary file, JetWages processes it securely to extract pay data. The file is automatically deleted as soon as parsing finishes — usually within seconds — ensuring that no copy remains stored anywhere on the server.</p>
 
-    <h2>8. Use of External Libraries</h2>
-    <p>JetWages uses certain open-source libraries (e.g., for parsing PDF content) bundled within the app. These libraries operate fully offline and <strong>do not collect or transmit user data</strong>.</p>
+    <h2>5. Data Retention</h2>
+    <ul>
+      <li>No uploaded files or parsed content are stored on JetWages servers.</li>
+      <li>All pay and schedule data remain on your device and are deleted if you uninstall the app.</li>
+      <li>No analytics, cookies, or external databases track user activity.</li>
+    </ul>
 
-    <h2>9. Your Data, Your Control</h2>
-    <p>You maintain full control over your data. Uninstalling JetWages will permanently delete all app-related information from your device. You can request deletion of any email or feedback data by contacting us directly.</p>
+    <h2>6. Email Communications</h2>
+    <p>If you voluntarily provide your email (e.g., for beta access, feedback, or updates), it’s stored securely and used only for communication about JetWages. You can unsubscribe anytime, and your email will be deleted upon request or at the end of the beta phase.</p>
+
+    <h2>7. Legal Basis for Processing</h2>
+    <p>The lawful basis for processing your data (e.g., uploaded files and email contact) is your <strong>consent</strong>. You may withdraw this consent at any time by contacting <a data-const="email">jetwages@gmail.com</a>.</p>
+
+    <h2>8. Security Measures</h2>
+    <p>All transfers use HTTPS encryption. Uploaded files are deleted immediately after parsing. Local app data is stored using secure device-level storage. JetWages does not use tracking or third-party analytics.</p>
+
+    <h2>9. Your Rights</h2>
+    <ul>
+      <li>Access the limited data we hold (e.g., email, if provided)</li>
+      <li>Request correction or deletion of your contact data</li>
+      <li>Withdraw consent at any time</li>
+      <li>Lodge a complaint with your data protection authority</li>
+    </ul>
 
     <h2>10. Contact</h2>
-    <p>For questions, data requests, or concerns about this Privacy & Data Policy, please contact us at <strong>jetwages@gmail.com</strong>.</p>
+    <p>For questions or privacy concerns, contact:<br>
+      <strong><a data-const="email">jetwages@gmail.com</a></strong>
+    </p>
+
+    <h2>11. Complaints</h2>
+    <p>You may contact your local data authority. In the UK, this is the <a href="https://ico.org.uk/" target="_blank" rel="noopener">Information Commissioner’s Office (ICO)</a>.</p>
   </div>
+
+  <!-- Constants (centralized links) -->
+  <script src="constants.js"></script>
+  <script src="constants-init.js"></script>
 </body>
 </html>

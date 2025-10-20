@@ -1,100 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>JetWages Instructions</title>
-<style>
-  body { font-family: Arial, sans-serif; background: #f4f7fb; color: #003366; max-width: 800px; margin: auto; padding: 20px; }
-  h1, h2, h3 { color: #003366; }
-  img { max-width: 300px; width: 100%; height: auto; border: 1px solid #ccc; }
-  .section { background: #fff; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-  .flex-row { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
-  .flex-row img { flex: 1 1 40%; }
-  .flex-text { flex: 1 1 55%; }
-  .popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 1000;}
-  .popup-overlay img { max-width: 90%; max-height: 90%; border: 4px solid #fff; border-radius: 8px;}
-  .tab-buttons { text-align: center; margin-bottom: 20px; }
-  .tab-buttons button { margin: 5px; padding: 10px 20px; font-weight: bold; background: #90caf9; border: none; border-radius: 5px; cursor: pointer; }
-  .hidden { display: none; }
-  .floating-button {position: fixed; bottom: 20px; right: 20px; background: #90caf9; color: #003366; padding: 10px 16px; border-radius: 5px; font-weight: bold; text-decoration: none; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); z-index: 1001; transition: background 0.3s ease;
-}
-
-.floating-button:hover {
-  background: #64b5f6;
-}
-
-</style>
+<link rel="stylesheet" href="instructions.css">
 </head>
 <body>
 
 <h1>✈️ JetWages Setup & Instructions</h1>
 <p>Welcome to JetWages — your tool to track and understand your complex cabin crew wages. Follow these simple steps to set up the app and monitor your pay accurately.</p>
 
-<div class="tab-buttons">
-  <button onclick="showSection('quick')">Quick Setup </button>
-  <button onclick="showSection('setup')">Full Set-up Instructions</button>
-  <button onclick="showSection('use')">How to Use</button>
+<div class="tab-buttons" role="tablist" aria-label="Instruction Sections">
+  <button type="button" class="tab-btn active" data-target="quick-setup" role="tab" aria-selected="true">Quick Setup</button>
+  <button type="button" class="tab-btn" data-target="setup-section" role="tab" aria-selected="false">Full Set-up Instructions</button>
+  <button type="button" class="tab-btn" data-target="use-section" role="tab" aria-selected="false">How to Use</button>
 </div>
 
-<div id="quick-setup">
+<!-- QUICK SETUP -->
+<div id="quick-setup" role="tabpanel" aria-labelledby="Quick Setup">
   <div class="section">
     <h2>1️⃣ Quick Setup</h2>
 
-    <div class="flex-row">
-      <img src="screenshots/welcome.png" alt="Welcome Screen">
-      <div class="flex-text">
-        <h3>Welcome Screen</h3>
+    <div class="step">
+      <div class="step-media"><img src="screenshots/ios/1welcome.PNG" alt="Welcome Screen"></div>
+      <div class="step-text">
+        <h3>Page 1: Welcome Screen</h3>
+        <p><strong>What you see:</strong> Welcome message explaining the app's purpose.</p>
+        <p><strong>What to do:</strong></p>
         <ul>
-          <li>Tap <strong>Get Started</strong> to begin</li>
-          <li>Returning users can use <strong>Upload Backup</strong> to restore your data</li>
+          <li>Read the introduction about JetWages helping track cabin crew wages.</li>
+          <li>Tap <strong>Get Started</strong> to begin setup.</li>
+          <li><em>Optional:</em> Tap <strong>Upload Backup</strong> to restore previous data.</li>
         </ul>
       </div>
     </div>
 
-    <div class="flex-row">
-      <img src="screenshots/accountSetup.png" alt="Pay Information">
-      <div class="flex-text">
-        <h3>Pay Information</h3>
-        <p>Input your salary details:</p>
+    <div class="step">
+      <div class="step-media"><img src="screenshots/ios/2howSetup.PNG" alt="Setup Method Choice"></div>
+      <div class="step-text">
+        <h3>Page 2: Setup Method Choice</h3>
+        <p><strong>What you see:</strong> Two options for setting up your account.</p>
         <ul>
-          <li>Yearly or Monthly Pay</li>
-          <li>Nominal Pay</li>
-          <li>Optional: Language Pay, Pension, Deductions</li>
+          <li>Choose <strong>Manual Entry</strong> if you know your exact salary figures.</li>
+          <li>Choose <strong>Upload Payslips</strong> to extract information automatically from PDFs.</li>
+          <li>Tap <strong>⬅ Back</strong> to return to the welcome screen.</li>
         </ul>
       </div>
     </div>
 
-    <div class="flex-row">
-      <img src="screenshots/historicalData.png" alt="Historical Pay Option">
-      <div class="flex-text">
-        <h3>Historical Pay Data</h3>
-        <p>Select <bold>no</bold> to skip</p>
+    <div class="step">
+      <div class="step-media"><img src="screenshots/ios/3uploadPayslip.PNG" alt="PDF Upload"></div>
+      <div class="step-text">
+        <h3>Page 3: PDF Upload</h3>
+        <p><strong>What you see:</strong> File selection screen.</p>
+        <ul>
+          <li>Tap <strong>📄 Select PDF File</strong>.</li>
+          <li>Choose your payslip PDF from your device.</li>
+          <li>Wait for the app to process the file.</li>
+        </ul>
       </div>
     </div>
-  </div>
 
-   <div class="section">
-    <h2>2️⃣ Leave Pay / Leave estimate </h2>
+    <div class="step">
+      <div class="step-media"><img src="screenshots/ios/4processingPayslip.PNG" alt="Processing Screen"></div>
+      <div class="step-text">
+        <h3>Page 4: Processing Screen</h3>
+        <p><strong>What you see:</strong> “Processing PDF...” message.</p>
+        <p><strong>What to do:</strong> Wait while the app extracts salary info. Don’t close the app.</p>
+      </div>
+    </div>
 
-    <div class="flex-row">
-      <img src="screenshots/LVE.png" alt="Leave Pay Accuracy">
-      <div class="flex-text">
-        <p>To proceed quickly, press <bold>"Enter estimate manually"</bold></p>
+    <div class="step">
+      <div class="step-media"><img src="screenshots/ios/5reviewInfo.PNG" alt="Salary Confirmation"></div>
+      <div class="step-text">
+        <h3>Page 5: Salary Confirmation</h3>
+        <ul>
+          <li>Review the monthly basic pay amount.</li>
+          <li>Add language pay (optional).</li>
+          <li>Add pension % (optional).</li>
+          <li>Tap <strong>Next: Review Benefits</strong>.</li>
+        </ul>
       </div>
     </div>
-     <div class="flex-row">
-      <img src="screenshots/lve_estimate.png" alt="Historical Pay Option">
-      <div class="flex-text">
-        <p>Enter a rough estimate to use for LVE (Leave) days.</p>
-        <p><strong style="color: red;">⚠️ Important:</strong>Don’t worry too much about the figure — as you continue using the app, JetWages will calculate your leave pay automatically and improve accuracy over time.</p>
+
+    <div class="step">
+      <div class="step-media"><img src="screenshots/ios/6reveiwBenefits2.PNG" alt="Benefits Review"></div>
+      <div class="step-text">
+        <h3>Page 6: Benefits Review</h3>
+        <ul>
+          <li>Review each listed benefit.</li>
+          <li>Remove incorrect ones with <strong>✕</strong>.</li>
+          <li>Keep only pre-tax benefits.</li>
+          <li>Tap <strong>Next</strong>.</li>
+        </ul>
       </div>
     </div>
+
+    <div class="step">
+      <div class="step-media"><img src="screenshots/ios/7uploadSup.PNG" alt="Supplementary Payslip Upload"></div>
+      <div class="step-text">
+        <h3>Page 7: Supplementary Payslip Upload</h3>
+        <ul>
+          <li>Tap <strong>📄 Select Supplementary PDF</strong>.</li>
+          <li>Pick a supplementary payslip with flight pay data.</li>
+          <li>This helps calculate your nominal pay.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-media"><img src="screenshots/ios/4processingPayslip.PNG" alt="Flight Data Processing"></div>
+      <div class="step-text">
+        <h3>Page 8: Flight Data Processing</h3>
+        <p>Wait while the app analyses flight pay data; it finds the first valid flight chronologically.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-media"><img src="screenshots/ios/8confirmNominal.PNG" alt="Nominal Pay Confirmation"></div>
+      <div class="step-text">
+        <h3>Page 9: Nominal Pay Confirmation</h3>
+        <ul>
+          <li>Review the calculated nominal pay rate.</li>
+          <li>Edit if needed.</li>
+          <li>Tap <strong>Next: Company Tenure</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-media"><img src="screenshots/ios/9tenure.PNG" alt="Company Tenure"></div>
+      <div class="step-text">
+        <h3>Page 10: Company Tenure</h3>
+        <ul>
+          <li>Select <strong>12+ months</strong> if applicable.</li>
+          <li>Or select <strong>&lt;12 months</strong> and enter months.</li>
+          <li>Tap <strong>Next: LVE Estimation</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-media"><img src="screenshots/ios/10lveEstimate.PNG" alt="Leave Value Estimation (LVE)"></div>
+      <div class="step-text">
+        <h3>Page 11: Leave Value Estimation (LVE)</h3>
+        <ul>
+          <li>Choose <strong>Simple Estimate</strong> (e.g., £75/month), or</li>
+          <li>Select <strong>Historical Data</strong> to provide details.</li>
+          <li>Tap <strong>Complete Setup</strong> or <strong>Enter Historical Data</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-media"><img src="screenshots/ios/11setupComplete.PNG" alt="Setup Complete"></div>
+      <div class="step-text">
+        <h3>Page 12: Setup Complete</h3>
+        <ul>
+          <li>You’ll be taken to the Home screen.</li>
+          <li>Setup complete!</li>
+        </ul>
+        <p><em>Note:</em> If a PDF step errors, choose <strong>Enter Manually</strong> instead.</p>
+      </div>
+    </div>
+
+    <p><strong>✅ You’re Ready to Go!</strong> Enjoy tracking your wages with JetWages.</p>
   </div>
-   <p><strong>✅ You’re Ready to Go!</strong> Enjoy tracking your wages with JetWages.</p>
 </div>
 
-<div id="setup-section" class="hidden">
+<!-- FULL SET-UP -->
+<div id="setup-section" class="hidden" role="tabpanel" aria-labelledby="Full Set-up Instructions">
   <div class="section">
     <h2>1️⃣ Preparation</h2>
     <p>Before using JetWages, please ensure you have:</p>
@@ -107,15 +183,16 @@
     <ol>
       <li>Log in to eCrew</li>
       <li>Open your schedule</li>
-      <li>Switch to <strong>Horizontal View</strong> in <strong>My Preferences</strong> settings</li>
-      <li>Use the export icon and choose the <strong>HTML</strong> format.</p>
+      <li>Switch to <strong>Horizontal View</strong> in <strong>My Preferences</strong></li>
+      <li>Use the export icon and choose <strong>HTML</strong> format</li>
     </ol>
 
     <div class="flex-row">
       <img src="graphics/ecrewSettings.jpg" alt="eCrew Orientation Settings" class="popup-target">
       <div class="flex-text">
         <h3>Orientation Settings</h3>
-        <p>Set your <strong>Orientation</strong> to <em>Horizontal</em> under Schedule Print Options. <br><strong style="color:red;">⚠️ Important:</strong> Some users report eCrew does the <em>opposite</em> of your selected setting — check your exported file to ensure it's in Horizontal layout!</p>
+        <p>Set <strong>Orientation</strong> to <em>Horizontal</em> under Schedule Print Options.<br>
+        <strong style="color:red;">⚠️ Important:</strong> Some users report eCrew does the <em>opposite</em> of the selected setting — double-check your export!</p>
       </div>
     </div>
 
@@ -123,7 +200,7 @@
       <img src="graphics/ecrewPrint.jpg" alt="eCrew Export Menu" class="popup-target">
       <div class="flex-text">
         <h3>Export Your Roster</h3>
-        <p>Use the export icon and choose <strong>HTML</strong> format. Save the file to your device for use in JetWages.</p>
+        <p>Use the export icon and choose <strong>HTML</strong>. Save the file for import in JetWages.</p>
       </div>
     </div>
   </div>
@@ -132,18 +209,18 @@
     <h2>2️⃣ App Setup</h2>
 
     <div class="flex-row">
-      <img src="screenshots/welcome.png" alt="Welcome Screen">
+      <img src="screenshots/android/welcome.png" alt="Welcome Screen">
       <div class="flex-text">
         <h3>Welcome Screen</h3>
         <ul>
-          <li>Tap <strong>Get Started</strong> to begin</li>
-          <li>Returning users can use <strong>Upload Backup</strong> to restore your data</li>
+          <li>Tap <strong>Get Started</strong> to begin.</li>
+          <li>Or tap <strong>Upload Backup</strong> to restore data.</li>
         </ul>
       </div>
     </div>
 
     <div class="flex-row">
-      <img src="screenshots/accountSetup.png" alt="Pay Information">
+      <img src="screenshots/android/accountSetup.png" alt="Pay Information">
       <div class="flex-text">
         <h3>Pay Information</h3>
         <p>Input your salary details:</p>
@@ -156,22 +233,20 @@
     </div>
 
     <div class="flex-row">
-      <img src="screenshots/historicalData.png" alt="Historical Pay Option">
+      <img src="screenshots/android/historicalData.png" alt="Historical Pay Option">
       <div class="flex-text">
         <h3>Historical Pay Data (Optional)</h3>
-        <p>For precise data:</p>
         <ul>
           <li>Select <strong>Yes</strong> to provide historical pay</li>
-          <li>Select <strong>No</strong> to skip</li>
+          <li>Or <strong>No</strong> to skip</li>
         </ul>
       </div>
     </div>
 
     <div class="flex-row">
-      <img src="screenshots/historicalPayChanges.png" alt="Historical Pay Changes">
+      <img src="screenshots/android/historicalPayChanges.png" alt="Historical Pay Changes">
       <div class="flex-text">
         <h3>Enter Historical Pay Changes</h3>
-        <p>Add past pay changes with:</p>
         <ul>
           <li>Date ranges for different pay periods</li>
           <li>Salary values for each period</li>
@@ -182,48 +257,42 @@
 
   <div class="section">
     <h2>3️⃣ Leave Pay Accuracy</h2>
-
     <div class="flex-row">
-      <img src="screenshots/LVE.png" alt="Leave Pay Accuracy">
+      <img src="screenshots/android/LVE.png" alt="Leave Pay Accuracy">
       <div class="flex-text">
-        <p>Upload <strong>12 months</strong> of schedules and PDFs for the most accurate Leave Pay. You can also enter estimates manually.</p>
+        <p>Upload <strong>12 months</strong> of schedules and PDFs for the most accurate Leave Pay — or enter estimates manually.</p>
       </div>
     </div>
   </div>
 
   <div class="section">
     <h2>4️⃣ Upload Your Files</h2>
-
-  <div class="flex-row">
-    <img src="screenshots/uploadFiles.png" alt="Upload Files Screen">
-    <div class="flex-text">
-      <p>On the Upload Files screen:</p>
-      <ul>
-        <li>Tap <strong>Pick Files</strong></li>
-        <li>Select <strong>all your HTML schedules and PDF payslips at the same time</strong></li>
-        <li>Processing starts automatically after selection</li>
-      </ul>
-      <p><strong style="color: red;">⚠️ Important:</strong> You must select all files together in one go. Uploading files separately may cause missing data.</p>
+    <div class="flex-row">
+      <img src="screenshots/android/uploadFiles.png" alt="Upload Files Screen">
+      <div class="flex-text">
+        <p>On the Upload Files screen:</p>
+        <ul>
+          <li>Tap <strong>Pick Files</strong></li>
+          <li>Select <strong>all HTML schedules and PDF payslips at once</strong></li>
+          <li>Processing starts automatically</li>
+        </ul>
+        <p><strong style="color: red;">⚠️ Important:</strong> Selecting files in one go prevents missing data.</p>
+      </div>
     </div>
-  </div>
-
 
     <div class="flex-row">
-      <img src="screenshots/uploadFilesComplete.png" alt="Processing Files">
+      <img src="screenshots/android/uploadFilesComplete.png" alt="Processing Files">
       <div class="flex-text">
         <h3>Processing Example</h3>
-        <p>When processing completes, all files show a ✅</p>
+        <p>When processing completes, all files show a ✅.</p>
       </div>
     </div>
   </div>
 
-
-
   <div class="section">
     <h2>5️⃣ Viewing Your Data</h2>
-
     <div class="flex-row">
-      <img src="screenshots/homeScreen.png" alt="Calendar View">
+      <img src="screenshots/android/homeScreen.png" alt="Calendar View">
       <div class="flex-text">
         <h3>Calendar View</h3>
         <p>View your duties and earnings in a clear monthly overview.</p>
@@ -231,7 +300,7 @@
     </div>
 
     <div class="flex-row">
-      <img src="screenshots/pieView.png" alt="Pie Chart Breakdown">
+      <img src="screenshots/android/pieView.png" alt="Pie Chart Breakdown">
       <div class="flex-text">
         <h3>Pie Chart Breakdown</h3>
         <ul>
@@ -245,114 +314,133 @@
   </div>
 
   <p><strong>✅ You’re Ready to Go!</strong> Enjoy tracking your wages with JetWages.</p>
-</div>  
+</div>
 
-<div id="use-section" class="hidden">
+<!-- HOW TO USE -->
+<div id="use-section" class="hidden" role="tabpanel" aria-labelledby="How to Use">
   <div class="section">
     <h2>🚀 Using JetWages</h2>
+
     <div class="flex-row">
-      <img src="screenshots/menu.png" alt="Menu">
+      <img src="screenshots/android/menu.png" alt="Menu">
       <div class="flex-text">
         <h3>Navigation Menu</h3>
-        <p>Tap the top-right menu to access key areas such as Upload Calendar, Distance Calculator, Sales Comparison, and Settings.</p>
+        <p>Use the top-right menu to access Upload Calendar, Distance Calculator, Sales Comparison, and Settings.</p>
       </div>
     </div>
 
     <div class="flex-row">
-      <img src="screenshots/homeScreenSelected.png" alt="Home Screen">
+      <img src="screenshots/android/homeScreenSelected.png" alt="Home Screen">
       <div class="flex-text">
         <h3>Home Calendar</h3>
-        <p>The calendar shows your duties for the month. Tap any day to view or edit flights, sales, and extras for that date.</p>
+        <p>The calendar shows your duties for the month. Tap any day to view or edit flights, sales, and extras.</p>
       </div>
     </div>
 
     <div class="flex-row">
-      <img src="screenshots/editDay.png" alt="Edit Day">
+      <img src="screenshots/android/editDay.png" alt="Edit Day">
       <div class="flex-text">
         <h3>Edit Flights & Duty</h3>
-        <p>Add, remove or change flights for the selected day. You can also add custom duties using the "Add Duty" option.</p>
+        <p>Add, remove or change flights for the selected day. You can also add custom duties via “Add Duty”.</p>
       </div>
     </div>
 
     <div class="flex-row">
-      <img src="screenshots/extras.png" alt="Add Extras">
+      <img src="screenshots/android/extras.png" alt="Add Extras">
       <div class="flex-text">
         <h3>Add Extras</h3>
-        <p>Input extra payments for the day, such as delay payments, DDO/WFDO, or Night Stop allowances.</p>
+        <p>Input extra payments (delay payments, DDO/WFDO, Night Stop allowances, etc.).</p>
       </div>
     </div>
 
     <div class="flex-row">
-      <img src="screenshots/sales.png" alt="Sales Input">
+      <img src="screenshots/android/sales.png" alt="Sales Input">
       <div class="flex-text">
         <h3>Add Sales</h3>
-        <p>Record your onboard sales for each day. The app will automatically calculate commission based on your input.</p>
+        <p>Record onboard sales; the app calculates commission automatically.</p>
       </div>
     </div>
 
     <div class="flex-row">
-      <img src="screenshots/distanceCalc.png" alt="Distance Calculator">
+      <img src="screenshots/android/distanceCalc.png" alt="Distance Calculator">
       <div class="flex-text">
         <h3>Distance Calculator</h3>
-        <p>Quickly calculate the distance between two airports. Enter airport names or IATA codes to get the result.</p>
+        <p>Calculate distance between two airports by name or IATA code.</p>
       </div>
     </div>
 
     <div class="flex-row">
-      <img src="screenshots/salesComp.png" alt="Sales Comparison">
+      <img src="screenshots/android/salesComp.png" alt="Sales Comparison">
       <div class="flex-text">
         <h3>Sales Comparison</h3>
-        <p>Upload your official supplementary sales PDF to compare your reported commission with the app's calculation.</p>
+        <p>Upload your official supplementary sales PDF to compare commission with the app’s calculation.</p>
       </div>
     </div>
 
     <div class="flex-row">
-      <img src="screenshots/salesCompDone.png" alt="Sales Comparison Results">
+      <img src="screenshots/android/salesCompDone.png" alt="Sales Comparison Results">
       <div class="flex-text">
         <h3>Review Differences</h3>
-        <p>See a side-by-side comparison for each day. Positive or negative differences highlight potential discrepancies.</p>
+        <p>See a side-by-side comparison for each day. Positive/negative differences highlight discrepancies.</p>
       </div>
-    </div>
     </div>
   </div>
 </div>
 
+<!-- Image lightbox -->
+<div class="popup-overlay" id="popup" aria-hidden="true"><img src="" alt="" id="popup-img"></div>
 
-<div class="popup-overlay" id="popup">
-  <img src="" alt="Popup Image" id="popup-img">
-</div>
+<a data-const="website" data-path="landing.html" class="floating-button" title="Go back to the JetWages homepage">⬅ Return to Main Page</a>
 
 <script>
-const popup = document.getElementById('popup');
-const popupImg = document.getElementById('popup-img');
-
-document.querySelectorAll('img.popup-target').forEach(img => {
-  img.addEventListener('click', () => {
-    popup.style.display = 'flex';
-    popupImg.src = img.src;
-    popupImg.alt = img.alt;
+  // Lightbox
+  const popup = document.getElementById('popup');
+  const popupImg = document.getElementById('popup-img');
+  document.querySelectorAll('img.popup-target').forEach(img => {
+    img.addEventListener('click', () => {
+      popup.style.display = 'flex';
+      popupImg.src = img.src;
+      popupImg.alt = img.alt;
+      popup.setAttribute('aria-hidden','false');
+    });
   });
-});
+  popup.addEventListener('click', () => {
+    popup.style.display = 'none';
+    popup.setAttribute('aria-hidden','true');
+    popupImg.src = '';
+  });
 
-popup.addEventListener('click', () => {
-  popup.style.display = 'none';
-});
+  // Tabs
+  const buttons = document.querySelectorAll('.tab-btn');
+  const panels = ['quick-setup','setup-section','use-section'].map(id => document.getElementById(id));
 
-function showSection(section) {
-  document.getElementById('quick-setup').classList.add('hidden');
-  document.getElementById('setup-section').classList.add('hidden');
-  document.getElementById('use-section').classList.add('hidden');
+  function activate(targetId){
+    // hide all
+    panels.forEach(p => p.classList.add('hidden'));
+    // show target
+    const target = document.getElementById(targetId);
+    if (target) target.classList.remove('hidden');
 
-  if (section === 'quick') {
-    document.getElementById('quick-setup').classList.remove('hidden');
-  } else if (section === 'setup') {
-    document.getElementById('setup-section').classList.remove('hidden');
-  } else if (section === 'use') {
-    document.getElementById('use-section').classList.remove('hidden');
+    // update buttons a11y + active state
+    buttons.forEach(btn => {
+      const isActive = btn.dataset.target === targetId;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-selected', String(isActive));
+    });
   }
-}
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => activate(btn.dataset.target));
+  });
+
+  // Initial state
+  activate('quick-setup');
 </script>
-<a href="araujo91.github.io/jetwages_web/landing.html" class="floating-button" title="Go back to the JetWages homepage">⬅ Return to Main Page</a>
+</script>
+
+<!-- Constants (centralized links) -->
+<script src="constants.js"></script>
+<script src="constants-init.js"></script>
 
 </body>
 </html>
