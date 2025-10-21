@@ -71,11 +71,12 @@ header {
 .nav nav { display: flex; gap: .4rem; flex-wrap: wrap; }
 
 /* Hero */
-.hero { padding: 3rem 0 1.25rem; text-align: center; }
+.hero { padding: 3rem 0 1.25rem; text-align: center; margin-bottom: 1rem; }
 .hero h1 { font-size: clamp(1.6rem, 4vw + .6rem, 3rem); line-height: 1.12; margin: 0 0 .6rem; }
 .lead { color: var(--muted); font-size: clamp(1rem, 2.2vw, 1.15rem); margin: 0 auto 1rem; max-width: 56ch; padding: 0 1rem; }
+#tagline { margin-top: 10.8px; }
 
-.cta { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+.cta { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; margin-bottom: 1rem; }
 .btn {
   --bg-btn: var(--brand);
   background: var(--bg-btn);
@@ -107,12 +108,12 @@ header {
 
 /* Sections */
 section { padding: 3rem 0; }
-.grid { display: grid; gap: 1.2rem; }
+.grid { display: grid; gap: 2rem; }
 .features { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 .card {
   background: var(--panel);
   border-radius: var(--radius);
-  padding: 1rem;
+  padding: 1.5rem;
   box-shadow: var(--shadow);
 }
 .card h3 { margin: .2rem 0 .4rem; font-size: 1.15rem; }
@@ -122,7 +123,7 @@ section { padding: 3rem 0; }
 .shots { 
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   justify-items: center;
-  gap: 1rem;
+  gap: 2rem;
 }
 figure { margin: 0; }
 .shot {
@@ -176,8 +177,8 @@ footer { border-top: 1px solid color-mix(in oklab, var(--muted) 12%, transparent
   .lead { max-width: 60ch; }
   .brand span { display: none; } /* hide text brand to save space */
   .hero { padding-top: 2rem; }
-  .grid.features { gap: .85rem; }
-  .shots { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .grid.features { gap: 1.5rem; }
+  .shots { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; }
   
   /* Make remaining nav items more prominent */
   .nav a.navlink {
