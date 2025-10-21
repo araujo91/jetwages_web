@@ -71,8 +71,9 @@ header {
 .nav nav { display: flex; gap: .4rem; flex-wrap: wrap; }
 
 /* Hero */
-.hero { padding: 3rem 0 1.25rem; text-align: center; margin-bottom: 1rem; }
-.hero h1 { font-size: clamp(1.6rem, 4vw + .6rem, 3rem); line-height: 1.12; margin: 0 0 .6rem; }
+.hero-container{ margin-top: 1rem; }
+.hero { padding-top: 1rem; text-align: center; margin-bottom: 1rem; }
+.hero h1 { font-size: clamp(1.6rem, 4vw + .6rem, 1rem); line-height: 1.12; margin: 0 0 .6rem; }
 .lead { color: var(--muted); font-size: clamp(1rem, 2.2vw, 1.15rem); margin: 0 auto 1rem; max-width: 56ch; padding: 0 1rem; }
 #tagline { margin-top: 15.8px;margin-bottom: 15.8px; }
 
@@ -107,7 +108,7 @@ header {
 }
 
 /* Sections */
-section { padding: 3rem 0; }
+section { padding: 1rem 0; }
 .grid { display: grid; gap: 2rem; }
 .features { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 .card {
