@@ -42,12 +42,38 @@
       <div class="hero-container">
         <h1 id="tagline">Your pay, simplified.</h1>
         <p class="lead">Built by crew, for crew. Upload your schedules and payslips to get clear, accurate breakdowns of earnings, allowances and deductions — before payday.</p>
+        
         <div class="cta" role="group" aria-label="Primary actions">
           <a class="btn" data-const="subscribe" target="_blank" rel="noopener">✍️ Sign up</a>
           <a class="btn btn-secondary" href="#features">Explore features</a>
         </div> 
       </div>     
     </section>
+
+    <!--Drop down section-->
+    <section class="card" id="airline-checker">
+      <h3>Is your airline supported?</h3>
+      <p>Select or type your airline to see JetWages compatibility.</p>
+
+      <label for="airlineSelect" style="display:block; margin-bottom:0.4rem;">
+        Airline name or ICAO code:
+      </label>
+
+      <input list="airlines" id="airlineSelect" name="airlineSelect"
+       placeholder="e.g. easyJet or EZY">
+
+      <datalist id="airlines"></datalist>
+
+
+      <p id="airlineResult" ></p>
+      <p id="airlineRequest" class="muted" style="margin-top:0.3rem; display:none;">
+        If your airline isn’t supported yet, you can
+        <a data-const="airlineRequest" id="airlineRequestLink" target="_blank" rel="noopener">
+          request support for "<span id="airlineNamePlaceholder"></span>"
+        </a>.
+      </p>
+    </section>
+
 
     <section id="features" aria-labelledby="features-title">
       <h2 id="features-title">Features</h2>

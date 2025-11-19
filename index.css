@@ -107,6 +107,18 @@ header {
   display: block;
 }
 
+/*Drop down section*/
+#airlineSelect {
+  padding:0.6rem; 
+  width:100%; 
+  border-radius:8px; 
+  border:1px solid var(--muted);
+}
+#airlineResult {
+  margin-top:1rem; 
+  font-weight:700;
+}
+
 /* Sections */
 section { padding: 1rem 0; }
 .grid { display: grid; gap: 2rem; }
