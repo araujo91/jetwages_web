@@ -52,7 +52,19 @@
 
     <!--Drop down section-->
     <section class="card" id="airline-checker">
+      
       <h3>Is your airline supported?</h3>
+      
+      <label for="airlineCountry" style="display:block; margin-top:0.75rem; margin-bottom:0.4rem;">
+        Where are you based?
+      </label>
+      <select id="airlineCountry" name="airlineCountry">
+        <option value="">Select country / region</option>
+        <option value="UK">United Kingdom</option>
+        <option value="EU">European Union (non-UK)</option>
+        <option value="CH">Switzerland</option>
+        <option value="OTHER">Other</option>
+      </select>
       <p>Select or type your airline to see JetWages compatibility.</p>
 
       <label for="airlineSelect" style="display:block; margin-bottom:0.4rem;">

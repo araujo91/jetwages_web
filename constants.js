@@ -19,7 +19,6 @@ if (typeof window !== 'undefined') {
 
 const JW_CONSTANTS = {
 
-  // ... your other constants ...
 
   airlineGroups: {
     fully: [
@@ -76,5 +75,15 @@ const JW_CONSTANTS = {
       { name: "Wizz Air", codes: ["WZZ"] }
 
     ]
+  },
+  airlineCountrySupport : {
+      "easyJet": {
+    UK:   "fully",
+    EU:   "partial",
+    CH:   "none",
+    OTHER:"none"
+    }
   }
 };
+
+
