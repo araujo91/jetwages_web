@@ -115,9 +115,9 @@ header {
   max-width: 100%;
   border-radius: 8px;
   border: 1px solid var(--muted);
-  box-sizing: border-box;     /* 🔥 ensures identical width */
-  display: block;             /* 🔥 prevents inline quirks */
-  margin-bottom: 0.6rem;      /* optional for spacing */
+  box-sizing: border-box;    
+  display: block;             
+  margin-bottom: 0.6rem;      
 }
 
 #airlineResult {

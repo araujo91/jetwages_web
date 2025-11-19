@@ -115,8 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const result    = document.getElementById("airlineResult");
   const reqLine   = document.getElementById("airlineRequest");
   const nameSpan  = document.getElementById("airlineNamePlaceholder");
+  const checkBtn  = document.getElementById("airlineCheckBtn");
 
-  if (!input || !result) return;
+  if (!input || !result || !checkBtn) return;
 
   function recomputeAirlineStatus() {
     const airline = input.value.trim();
@@ -155,9 +156,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Listen to typing + country selection
-  input.addEventListener("input", recomputeAirlineStatus);
-  if (countryEl) countryEl.addEventListener("change", recomputeAirlineStatus);
+    // ✅ Main trigger: explicit button click (works everywhere)
+      checkBtn.addEventListener("click", recomputeAirlineStatus);
+
+      // Optional niceties:
+      // Recompute if country changes or user presses Enter in the box
+      if (countryEl) {
+        countryEl.addEventListener("change", recomputeAirlineStatus);
+      }
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          recomputeAirlineStatus();
+        }
+      });
+
 
   // Autogenerate datalist from constants.js
   (function buildAirlineDataList() {
