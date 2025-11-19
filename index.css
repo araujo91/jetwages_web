@@ -107,17 +107,24 @@ header {
   display: block;
 }
 
-/*Drop down section*/
-#airlineSelect, #airlineCountry {
-  padding:0.6rem; 
-  width:100%; 
-  border-radius:8px; 
-  border:1px solid var(--muted);
+/* Drop down section */
+#airlineSelect,
+#airlineCountry {
+  padding: 0.6rem;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--muted);
+  box-sizing: border-box;     /* 🔥 ensures identical width */
+  display: block;             /* 🔥 prevents inline quirks */
+  margin-bottom: 0.6rem;      /* optional for spacing */
 }
+
 #airlineResult {
-  margin-top:1rem; 
-  font-weight:700;
+  margin-top: 1rem;
+  font-weight: 700;
 }
+
 
 /* Sections */
 section { padding: 1rem 0; }
