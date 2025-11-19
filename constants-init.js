@@ -47,10 +47,10 @@
 /////////////////Drop down menu//////////////////////////
 
 // 1) Define airline groups by support level (from constants.js)
-const airlineGroups = JW_CONSTANTS.airlineGroups;
+const airlineGroups = window.JW_CONSTANTS?.airlineGroups || { fully: [], partial: [], none: [] };
 
 // 1.1) Per-country overrides (also from constants.js)
-const airlineCountrySupport = JW_CONSTANTS.airlineCountrySupport;
+const airlineCountrySupport = window.JW_CONSTANTS?.airlineCountrySupport || {};
 
 // 2) Messages per group
 const statusMessages = {
