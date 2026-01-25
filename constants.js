@@ -86,4 +86,9 @@ const JW_CONSTANTS = {
   }
 };
 
+// Expose for other scripts
+if (typeof window !== 'undefined') {
+  window.JW_CONSTANTS = JW_CONSTANTS;
+}
+
 
