@@ -1,0 +1,24 @@
+<!-- PDF ICON -->
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+  <!-- Document -->
+  <rect x="10" y="6" width="28" height="36" rx="3"
+        stroke="currentColor" stroke-width="2" fill="none"/>
+  <!-- Folded corner -->
+  <path d="M30 6v8h8" stroke="currentColor" stroke-width="2" fill="none"/>
+  <!-- "PDF" label box -->
+  <rect x="14" y="26" width="20" height="10" rx="2"
+        stroke="currentColor" stroke-width="2" fill="none"/>
+  <!-- P -->
+  <path d="M17 34v-6h2.5a2 2 0 1 1 0 4H17"
+        stroke="currentColor" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- D -->
+  <path d="M23 34v-6h2a3 3 0 0 1 0 6h-2"
+        stroke="currentColor" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- F -->
+  <path d="M30 28h3M30 31h2M30 34v-6"
+        stroke="currentColor" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
