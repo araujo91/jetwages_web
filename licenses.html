@@ -3,52 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
   <title>JetWages — Open source licences</title>
-  <style>
-    :root { color-scheme: light dark; }
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.45;
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 1.25rem 1rem 3rem;
-    }
-    h1 { font-size: 1.5rem; margin-bottom: 0.35rem; }
-    .lead { color: #555; max-width: 70ch; }
-    @media (prefers-color-scheme: dark) {
-      .lead { color: #bbb; }
-      a { color: #7ec8ff; }
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1.25rem;
-      font-size: 0.9rem;
-    }
-    th, td {
-      text-align: left;
-      padding: 0.55rem 0.5rem;
-      border-bottom: 1px solid #ccc;
-      vertical-align: top;
-    }
-    @media (prefers-color-scheme: dark) {
-      th, td { border-color: #444; }
-    }
-    th { font-weight: 600; background: #f4f4f4; }
-    @media (prefers-color-scheme: dark) {
-      th { background: #2a2a2a; }
-    }
-    code { font-size: 0.85em; }
-    .ver { font-size: 0.85em; opacity: 0.85; }
-    .footer { margin-top: 2rem; font-size: 0.85rem; opacity: 0.85; }
-  </style>
+  <link rel="stylesheet" href="licenses.css">
+  <script src="theme.js"></script>
 </head>
 <body>
+  <main class="licenses-page">
+  <div class="theme-bar">
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme">
+      <span data-theme-label>Auto</span>
+    </button>
+  </div>
+  <div class="licenses-panel">
   <h1>JetWages — Open source licences</h1>
   <p class="lead">The JetWages application includes third-party open source software.<br>
     Each component remains under its respective licence.<br>
     This page lists packages from the project dependency inventory plus vendored PDF.js. <br>
     It is provided for attribution; it does not replace the licence terms of each project.</p>
+  <div class="table-wrap">
   <table>
     <thead>
       <tr><th>Package</th><th>Licence</th><th>Licence / link</th><th>Source</th></tr>
@@ -380,6 +353,8 @@
     </tr>
     </tbody>
   </table>
-  
+  </div>
+  </div>
+  </main>
 </body>
 </html>

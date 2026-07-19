@@ -17,6 +17,7 @@
     <!-- Constants (centralized links) -->
   <script src="constants.js"></script>
   <script src="constants-init.js"></script>
+  <script src="theme.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -33,6 +34,9 @@
         <a class="navlink" href="#support">Support</a>
         <a class="navlink" href="#links">Links</a>
         <a class="navlink" href="#policy">Privacy</a>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme">
+          <span data-theme-label>Auto</span>
+        </button>
       </nav>
     </div>
   </header>
@@ -47,14 +51,14 @@
         <p class="lead">Built by crew, for crew. Upload your schedules and payslips to get clear, accurate breakdowns of earnings, allowances and deductions — before payday.</p>
         
         <div class="cta" role="group" aria-label="Primary actions">
-          <a class="btn" data-const="subscribe" target="_blank" rel="noopener">✍️ Sign up</a>
-          <a class="btn btn-secondary" href="#features">Explore features</a>
+          <a class="btn" data-const="subscribe" target="_blank" rel="noopener"><span>✍️ Sign up</span></a>
+          <a class="btn btn-grad" href="#features">Explore features</a>
         </div> 
       </div>     
     </section>
 
     <!-- Drop down section -->
-    <!--
+
     <section class="card" id="airline-checker">
       
       <h3>Is your airline supported?</h3>
@@ -90,7 +94,7 @@
           request support for "<span id="airlineNamePlaceholder"></span>"
         </a>.
       </p>
-    </section> -->
+    </section>
 
 
     <section id="features" aria-labelledby="features-title">
@@ -115,19 +119,19 @@
       <h2 id="shots-title">Screenshots</h2>
       <div class="grid shots">
         <figure>
-          <img class="shot" src="screenshots/android/welcome.png" alt="Welcome screen" loading="lazy" />
+          <img class="shot" src="screenshots/MainPage/onboardMainScreen.png" alt="Welcome screen" loading="lazy" />
           <figcaption>Welcome</figcaption>
         </figure>
         <figure>
-          <img class="shot" src="screenshots/android/uploadFiles.png" alt="Upload files screen" loading="lazy" />
-          <figcaption>Upload files</figcaption>
+          <img class="shot" src="screenshots/MainPage/HomePopulated.png" alt="Calendar Screen" loading="lazy" />
+          <figcaption>Calendar Screen</figcaption>
         </figure>
         <figure>
-          <img class="shot" src="screenshots/android/homeScreen.png" alt="Calendar overview" loading="lazy" />
-          <figcaption>Calendar</figcaption>
+          <img class="shot" src="screenshots/MainPage/StatsOverview.png" alt="Stats overview" loading="lazy" />
+          <figcaption>Stats Overview</figcaption>
         </figure>
         <figure>
-          <img class="shot" src="screenshots/android/pieView.png" alt="Earnings pie chart" loading="lazy" />
+          <img class="shot" src="screenshots/MainPage/PieView.png" alt="Earnings pie chart" loading="lazy" />
           <figcaption>Breakdown</figcaption>
         </figure>
       </div>
@@ -171,8 +175,8 @@
       <h2 id="policy-title">Privacy, Data & Licenses</h2>
       <p class="muted">I take privacy seriously. Your files are processed strictly for pay calculations and aren’t <b>shared</b> or <b>kept</b>. Read the full policy below.</p>
       <div class="policy-btn-row">
-        <a class="btn btn-secondary" data-const="website" data-path="privacy-policy.html" target="_blank" rel="noopener">Read our Privacy &amp; Data Policy</a>
-        <a class="btn btn-secondary" data-const="website" data-path="licenses.html" target="_blank" rel="noopener">Licenses</a>
+        <a class="btn btn-grad" data-const="website" data-path="privacy-policy.html" target="_blank" rel="noopener">Read our Privacy &amp; Data Policy</a>
+        <a class="btn btn-grad" data-const="website" data-path="licenses.html" target="_blank" rel="noopener">Licenses</a>
       </div>
     </section>
   </main>
