@@ -16,123 +16,111 @@
       </button>
     </div>
     <h1>Privacy & Data Policy – JetWages</h1>
-    <p><em>Last updated: 14 July 2026</em></p>
+    <p><em>Last updated: 20 July 2026</em></p>
 
     <h2>1. Overview</h2>
-    <p>JetWages is an independent project operated in the United Kingdom. This policy explains how JetWages handles your data in compliance with UK and EU data protection laws (UK GDPR / EU GDPR).</p>
-    <p>JetWages is designed so that your roster, pay history, sales, and settings stay on your device. There is no JetWages login and no JetWages backend that stores your pay data. The only times data leaves your device are described in the sections below (for example, optional PDF parsing, subscriptions, or forms you choose to submit).</p>
+    <p>JetWages is an independent app run from the United Kingdom. This page explains what happens to your data. We follow UK and EU privacy laws (UK GDPR / EU GDPR).</p>
+    <p>Your roster, pay history, sales, and settings stay on your phone or tablet. JetWages has no login and no cloud storage for your pay data. Data only leaves your device in the cases described below — for example, optional PDF parsing or forms you choose to send.</p>
 
-    <h2>2. Data Controller</h2>
+    <h2>2. Who is responsible</h2>
     <p><strong>Email:</strong> <a data-const="email">data@jetwages.com</a><br>
       <strong>Location:</strong> United Kingdom
     </p>
 
-    <h2>3. Local-First Model</h2>
-    <p>JetWages follows a <strong>local-first and ephemeral-processing</strong> model:</p>
+    <h2>3. Your data stays on your device</h2>
+    <p>JetWages is built so your data stays with you:</p>
     <ul>
-      <li>Roster, pay breakdowns, sales, commission, extras, and settings are stored <strong>only on your device</strong> (using the platform’s secure local storage).</li>
-      <li>There is <strong>no JetWages account</strong> and no cloud database for your pay or roster data.</li>
-      <li>When PDF parsing needs server assistance (see §5), only the <strong>PDF file</strong> is sent — not your name, email, or other personal details.</li>
-      <li>Files sent for parsing are processed over HTTPS and <strong>deleted immediately after successful parsing</strong>. No files, parsed content, or logs are retained on the parsing server after the process completes.</li>
+      <li>Your roster, pay breakdowns, sales, commission, extras, and settings are stored <strong>only on your device</strong>.</li>
+      <li>There is <strong>no JetWages account</strong> and no cloud database for your pay or roster.</li>
+      <li>If PDF parsing needs our server (see section 5), we only send the <strong>PDF file</strong> — not your name, email, or other personal details.</li>
+      <li>Files sent for parsing travel over a secure connection (HTTPS) and are <strong>deleted as soon as parsing finishes</strong>. We do not keep the file, the parsed text, or logs afterwards.</li>
     </ul>
 
-    <h2>4. On-Device Data</h2>
-    <p>The app stores data locally to power features such as your calendar view, pay history, sales reminders, theme preferences, and calendar-sync settings. This includes, for example:</p>
+    <h2>4. What the app stores on your device</h2>
+    <p>The app keeps data on your device so features work — for example your calendar view, pay history, sales reminders, theme, and calendar sync. This can include:</p>
     <ul>
-      <li>Monthly roster and per-day flight, duty, sales, commission, and extras data</li>
-      <li>Pay history (salary, benefits, pension, effective dates)</li>
-      <li>Country, currency, and active airline settings</li>
-      <li>Sales reminder schedules and notification preferences</li>
-      <li>Calendar sync preferences (which calendar you connected)</li>
-      <li>Local setup metrics (see §12) — stored on device only</li>
+      <li>Your monthly roster and day-by-day flight, duty, sales, commission, and extras</li>
+      <li>Pay history (salary, benefits, pension, and when they started)</li>
+      <li>Country, currency, and airline settings</li>
+      <li>Sales reminder times and notification choices</li>
+      <li>Which calendar you connected for sync</li>
+      <li>Simple setup notes (see section 11) — on your device only</li>
     </ul>
     <p>Uninstalling the app removes this data from your device. You can also clear roster data from the Debug screen in the app.</p>
 
-    <h2>5. PDF Processing</h2>
-    <p>When you upload a payslip, supplementary payslip, or schedule PDF, JetWages extracts text so pay data can be parsed. Behaviour depends on your platform:</p>
+    <h2>5. PDF processing</h2>
+    <p>When you upload a payslip, supplementary payslip, or schedule PDF, JetWages reads the text so it can work out your pay. What happens depends on your phone:</p>
     <ul>
-      <li><strong>iOS:</strong> PDFs are sent to a secure HTTPS parsing server operated for JetWages. The request contains only the PDF file and an authentication token — no user ID, account data, or device identifier. The server returns extracted text; the file is deleted from the server as soon as parsing finishes (usually within seconds).</li>
-      <li><strong>Android:</strong> The app first tries to extract text <strong>locally on your device</strong> using PDF.js (loaded from a CDN). If local extraction fails or the PDF has no text layer (for example, a scanned payslip), the app falls back to the same secure HTTPS parsing server used on iOS, under the same conditions.</li>
+      <li><strong>iOS:</strong> The PDF is sent to a secure JetWages parsing server over HTTPS. The request includes only the PDF and a security token — no user ID, account data, or device ID. The server sends back the extracted text, then deletes the file (usually within seconds).</li>
+      <li><strong>Android:</strong> The app first tries to read the PDF <strong>on your device</strong> using PDF.js (loaded from the internet). If that fails — for example with a scanned payslip — it uses the same secure parsing server as on iOS, with the same rules.</li>
     </ul>
-    <p>Extracted text is used only within the app on your device. JetWages does not send parsed pay data to any server.</p>
+    <p>The text that comes back is used only in the app on your device. JetWages does not send your parsed pay figures to any server.</p>
 
-    <h2>6. Device Permissions</h2>
-    <p>JetWages may request the following permissions. You can deny any optional permission; related features will be limited but the rest of the app remains usable.</p>
+    <h2>6. Device permissions</h2>
+    <p>JetWages may ask for the permissions below. You can say no to any optional one. Some features will not work, but the rest of the app still will.</p>
     <ul>
-      <li><strong>Calendar (read-only):</strong> If you enable calendar sync, the app reads events from calendars you explicitly select (for example, your eCrew roster). It reads event titles, dates, and notes (such as debrief times) to build your roster on device. The app does not create or edit calendar events, and no calendar content is sent to JetWages.</li>
-      <li><strong>Location:</strong> Used only to help determine your timezone when scheduling sales reminders at the correct local time. Coordinates are not stored or sent to JetWages.</li>
-      <li><strong>Notifications:</strong> Sales reminders are scheduled as <strong>local notifications</strong> on your device. There is no JetWages push server; the operating system delivers reminders at the scheduled time. Reminder data (date, debrief time, route) stays on your device.</li>
-    </ul>
-
-    <h2>7. Backup and Export</h2>
-    <p>You can export a JSON backup of your app data from Settings. The file is written to your device and shared via the system share sheet (for example, email or cloud storage). <strong>JetWages does not receive or store backup files.</strong></p>
-    <p>Backup files contain all of your app data (roster, pay, reminders, and settings). Treat them as sensitive and store them securely. Importing a backup is processed entirely on your device.</p>
-
-    <h2>8. Subscriptions (Jetwages Pro)</h2>
-    <p>JetWages offers an optional <strong>Jetwages Pro</strong> subscription (monthly or yearly) managed through <strong>RevenueCat</strong> and processed by the <strong>Apple App Store</strong> or <strong>Google Play Store</strong>.</p>
-    <ul>
-      <li>RevenueCat receives subscription-related data such as purchase status, store receipts, and an anonymous app user identifier used by the SDK.</li>
-      <li>JetWages does <strong>not</strong> send roster, pay, salary, or other in-app data to RevenueCat.</li>
-      <li>There is no JetWages login; subscription management is handled by the app store and RevenueCat.</li>
-      <li>RevenueCat’s privacy policy applies to their processing: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a>.</li>
+      <li><strong>Calendar (read-only):</strong> If you turn on calendar sync, the app reads events from calendars you choose (for example your eCrew roster). It uses titles, dates, and notes (such as debrief times) to build your roster on your device. It does not create or change calendar events, and nothing from your calendar is sent to JetWages.</li>
+      <li><strong>Location:</strong> Used only to work out your timezone so sales reminders fire at the right local time. Your location is not saved or sent to JetWages.</li>
+      <li><strong>Notifications:</strong> Sales reminders are <strong>local notifications</strong> on your device. There is no JetWages push server; your phone shows the reminder at the right time. Reminder details (date, debrief time, route) stay on your device.</li>
     </ul>
 
-    <h2>9. Third-Party Services</h2>
-    <p>In addition to the parsing server and RevenueCat (above), JetWages may interact with the following third parties:</p>
+    <h2>7. Backup and export</h2>
+    <p>You can export a JSON backup of your app data from Settings. The file is saved on your device and shared with the system share sheet (for example email or cloud storage). <strong>JetWages does not receive or store backup files.</strong></p>
+    <p>A backup includes all your app data (roster, pay, reminders, and settings). Keep it safe. Importing a backup happens entirely on your device.</p>
+
+    <h2>8. Other services we use</h2>
+    <p>As well as the parsing server (above), JetWages may use:</p>
     <ul>
-      <li><strong>Apple App Store / Google Play:</strong> Payment processing for subscriptions.</li>
-      <li><strong>Cloudflare CDN:</strong> On Android, the PDF.js library is loaded from cdnjs.cloudflare.com for local PDF text extraction. No payslip content is sent to the CDN.</li>
-      <li><strong>Google Forms / Google Sheets:</strong> Some optional forms (for example, feedback or wage-component research) are hosted using Google tools. Responses are stored in Google Sheets under our Google Workspace account and are <strong>not linked</strong> to your in-app data.</li>
+      <li><strong>Cloudflare CDN:</strong> On Android, the PDF.js library is loaded from cdnjs.cloudflare.com so PDFs can be read on your device. No payslip content is sent to the CDN.</li>
+      <li><strong>Google Forms / Google Sheets:</strong> Optional forms (for example feedback or wage research) may use Google tools. Answers are stored in Google Sheets under our Google account and are <strong>not linked</strong> to your data in the app.</li>
     </ul>
-    <p>JetWages does not use third-party advertising, tracking pixels, or behavioural analytics SDKs.</p>
+    <p>JetWages does not use advertising, tracking pixels, or behaviour-tracking tools.</p>
 
-    <h2>10. Data Retention and Deletion</h2>
+    <h2>9. How long we keep data</h2>
     <ul>
-      <li>No uploaded PDFs or parsed content are stored on JetWages parsing servers after processing completes.</li>
-      <li>All roster and pay data remain on your device until you delete it, clear data in the app, or uninstall.</li>
-      <li>Form responses (including any wage component details and, where provided, your email address) stored in Google Sheets are kept only for as long as needed for testing, support, or improving JetWages, or until you ask us to delete them.</li>
-      <li>Subscription records are retained by RevenueCat and the app store according to their own policies.</li>
-    </ul>
-
-    <h2>11. Email Communications</h2>
-    <p>If you voluntarily provide your email (for example, for beta access, feedback, updates, or as part of a wage component/setup form), it is stored securely and used only for communication about JetWages.</p>
-    <p>Some forms may ask whether you agree to be contacted. In those cases, your email is only collected and stored if you select “Yes” or otherwise clearly consent to being contacted.</p>
-    <p>You can unsubscribe at any time, and your email (and any associated form responses) will be deleted upon request or at the end of the relevant testing or feedback phase.</p>
-
-    <h2>12. Local Setup Metrics</h2>
-    <p>The app records a small amount of <strong>local-only</strong> setup information on your device (for example, whether you used a backup or manual setup, file counts, and setup duration). This is stored in device storage and is <strong>not sent automatically</strong> to JetWages or any third party. Export is user-initiated only (for example, via the debug/analytics export feature).</p>
-
-    <h2>13. Legal Basis for Processing</h2>
-    <ul>
-      <li><strong>Consent:</strong> Uploading PDFs for parsing, submitting forms, providing your email, and granting optional device permissions (calendar, location, notifications).</li>
-      <li><strong>Contract:</strong> Processing necessary to provide Jetwages Pro subscriptions you have purchased.</li>
-      <li><strong>Legitimate interests:</strong> Operating and securing the parsing server and app, and responding to support requests — balanced against your rights.</li>
-    </ul>
-    <p>You may withdraw consent at any time by contacting <a data-const="email">data@jetwages.com</a> or by disabling permissions in your device settings. Withdrawal does not affect processing that was lawful before withdrawal.</p>
-
-    <h2>14. Security Measures</h2>
-    <p>All transfers use HTTPS encryption. Uploaded PDFs are deleted immediately after parsing. Local app data is stored using secure device-level storage. Form responses in Google Sheets are protected by Google’s security measures and restricted to authorised access only.</p>
-
-    <h2>15. International Data Transfers</h2>
-    <p>Some third-party processors (for example, RevenueCat in the United States, Google for forms, and CDN providers) may process limited data outside the UK/EEA. Where required, appropriate safeguards (such as standard contractual clauses) apply under the processor’s terms and UK GDPR requirements.</p>
-
-    <h2>16. Your Rights</h2>
-    <ul>
-      <li>Access the limited data we hold (for example, your email and any form responses, if provided)</li>
-      <li>Request correction or deletion of your contact data and form responses</li>
-      <li>Withdraw consent at any time</li>
-      <li>Object to or restrict certain processing where applicable</li>
-      <li>Data portability for data you have provided to us directly</li>
-      <li>Lodge a complaint with your data protection authority</li>
+      <li>Uploaded PDFs and parsed content are not kept on JetWages servers after processing finishes.</li>
+      <li>Roster and pay data stay on your device until you delete them, clear data in the app, or uninstall.</li>
+      <li>Form answers (including any wage details and, if you gave it, your email) in Google Sheets are kept only as long as we need them for testing, support, or improving JetWages — or until you ask us to delete them.</li>
     </ul>
 
-    <h2>17. Contact</h2>
-    <p>For questions or privacy concerns, contact:<br>
+    <h2>10. Email</h2>
+    <p>If you choose to give us your email (for example for beta access, feedback, updates, or a wage setup form), we store it securely and use it only to contact you about JetWages.</p>
+    <p>Some forms ask if you want to be contacted. We only keep your email for that purpose if you say yes or clearly agree.</p>
+    <p>You can ask us to stop emailing you at any time. We will delete your email (and related form answers) when you ask, or when that testing or feedback stage ends.</p>
+
+    <h2>11. Setup notes on your device</h2>
+    <p>The app keeps a small amount of <strong>local-only</strong> setup information on your device (for example whether you used a backup or set up by hand, how many files you used, and how long setup took). This stays in your device storage and is <strong>not sent automatically</strong> to JetWages or anyone else. You only share it if you choose to export it (for example from the debug/analytics export).</p>
+
+    <h2>12. Why we process data (legal basis)</h2>
+    <ul>
+      <li><strong>Consent:</strong> You choose to upload PDFs, submit forms, share your email, or allow optional permissions (calendar, location, notifications).</li>
+      <li><strong>Legitimate interests:</strong> Running and securing the parsing server and app, and answering support requests — always balanced against your rights.</li>
+    </ul>
+    <p>You can withdraw consent at any time by emailing <a data-const="email">data@jetwages.com</a> or by turning off permissions in your device settings. That does not undo anything that was already done lawfully before you withdrew.</p>
+
+    <h2>13. Security</h2>
+    <p>All data we transfer uses HTTPS encryption. Uploaded PDFs are deleted right after parsing. App data on your device uses the phone’s secure storage. Form answers in Google Sheets are protected by Google’s security and only people we authorise can access them.</p>
+
+    <h2>14. Data outside the UK / Europe</h2>
+    <p>Some services we use (for example Google for forms, and CDN providers) may process a small amount of data outside the UK or EEA. Where the law requires it, they use approved safeguards (such as standard contractual clauses) under UK GDPR.</p>
+
+    <h2>15. Your rights</h2>
+    <ul>
+      <li>Ask what limited data we hold about you (for example your email and form answers, if you gave them)</li>
+      <li>Ask us to correct or delete your contact details and form answers</li>
+      <li>Withdraw your consent at any time</li>
+      <li>Object to or limit certain processing where the law allows</li>
+      <li>Receive a copy of data you gave us directly, in a usable format</li>
+      <li>Complain to a data protection authority</li>
+    </ul>
+
+    <h2>16. Contact</h2>
+    <p>For questions or privacy concerns, email:<br>
       <strong><a data-const="email">data@jetwages.com</a></strong>
     </p>
 
-    <h2>18. Complaints</h2>
-    <p>You may contact your local data authority. In the UK, this is the <a href="https://ico.org.uk/" target="_blank" rel="noopener">Information Commissioner’s Office (ICO)</a>.</p>
+    <h2>17. Complaints</h2>
+    <p>You can contact your local data authority. In the UK, that is the <a href="https://ico.org.uk/" target="_blank" rel="noopener">Information Commissioner’s Office (ICO)</a>.</p>
   </div>
 
   <!-- Constants (centralized links) -->

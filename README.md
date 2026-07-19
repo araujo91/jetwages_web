@@ -9,6 +9,7 @@ Static marketing and support pages for JetWages (GitHub Pages–style layout).
 - **`constants-init.js` / `constants.js`** — Site URLs and `data-const` link resolution.
 - **`theme.js`** — Colour theme: follows OS `prefers-color-scheme`, optional `data-theme` override via the **`.theme-toggle`** control (cycles Auto → Light → Dark), persisted in `localStorage` (`jw-theme`).
 - **`instructions.html`** / **`instructions.css`** — Setup guide with the same sticky header, container, cards, buttons, and theme toggle as the landing page; tabbed Quick Setup / Preparation / How to Use content. Screenshots live under **`graphics/Instructions/`** (`Setup/`, `calendarSync/`, `EditDay/`, plus root images for sales, extras, pie view, and dark mode).
+- **`screenshots/MainPage/`** — Four landing-page gallery images used by `index.html` (welcome, calendar, stats, pie). Unused legacy `screenshots/android/` and `screenshots/ios/` trees were removed.
 - **`privacy-policy.html`**, **`licenses.html`** — Supporting pages with their own CSS (`privacy-policy.css`, **`licenses.css`**) using the same design tokens.
 
 ## Design-system colour palette
@@ -30,7 +31,7 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 
 ## Latest change
 
-- **`index.html`** / **`index.css`**: airline checker remains commented out; replaced by a highlighted **`.airline-support-note`** callout (easyJet UK only for now) with a **Request your airline** button linked via `data-const="airlineRequest"`.
+- Rewrote **`privacy-policy.html`** in plain English and removed RevenueCat / JetWages Pro subscription sections (not live yet). Last updated **20 July 2026**.
 
 
 ### Day-to-day workflow
