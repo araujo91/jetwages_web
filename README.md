@@ -8,7 +8,7 @@ Static marketing and support pages for JetWages (GitHub Pages–style layout).
 - **`index.css`** — Shared styles for the landing page, including the policy button row and **`.btn-grad`** (teal→navy gradient CTA using `--grad-a` / `--grad-b`).
 - **`constants-init.js` / `constants.js`** — Site URLs and `data-const` link resolution.
 - **`theme.js`** — Colour theme: follows OS `prefers-color-scheme`, optional `data-theme` override via the **`.theme-toggle`** control (cycles Auto → Light → Dark), persisted in `localStorage` (`jw-theme`).
-- **`instructions.html`** / **`instructions.css`** — Setup guide with the same sticky header, container, cards, buttons, and theme toggle as the landing page; tabbed Quick Setup / Full Set-up / How to Use content.
+- **`instructions.html`** / **`instructions.css`** — Setup guide with the same sticky header, container, cards, buttons, and theme toggle as the landing page; tabbed Quick Setup / Preparation / How to Use content. Screenshots live under **`graphics/Instructions/`** (`Setup/`, `calendarSync/`, `EditDay/`, plus root images for sales, extras, pie view, and dark mode).
 - **`privacy-policy.html`**, **`licenses.html`** — Supporting pages with their own CSS (`privacy-policy.css`, **`licenses.css`**) using the same design tokens.
 
 ## Design-system colour palette
@@ -30,7 +30,7 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 
 ## Latest change
 
-- **`instructions.html` / `instructions.css`**: restyled to match the landing page — sticky header with brand + nav + theme toggle, shared system-ui typography / container / card / button tokens, centred page hero, gradient active tabs, footer with year, and a home CTA instead of the floating back button. Content tabs (Quick Setup / Full Set-up / How to Use) and lightbox behaviour are unchanged.
+- **`index.html`** / **`index.css`**: airline checker remains commented out; replaced by a highlighted **`.airline-support-note`** callout (easyJet UK only for now) with a **Request your airline** button linked via `data-const="airlineRequest"`.
 
 
 ### Day-to-day workflow

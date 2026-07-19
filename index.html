@@ -56,13 +56,20 @@
         </div> 
       </div>     
     </section>
+    <div class="airline-support-note card" role="status">
+      <div class="airline-support-note__text">
+        <h3>Airline support</h3>
+        <p>We currently only support <strong>easyJet UK</strong>, and are working to expand coverage to more airlines.</p>
+      </div>
+      <a class="btn btn-grad" data-const="airlineRequest" target="_blank" rel="noopener">
+        Request your airline
+      </a>
+    </div>
 
-    <!-- Drop down section -->
-
+    <!--
+    Drop down section (airline checker) — temporarily hidden; currently easyJet UK only.
     <section class="card" id="airline-checker">
-      
       <h3>Is your airline supported?</h3>
-      
       <label for="airlineCountry" style="display:block; margin-top:0.75rem; margin-bottom:0.4rem;">
         Where are you based?
       </label>
@@ -74,19 +81,15 @@
         <option value="OTHER">Other</option>
       </select>
       <p>Select or type your airline to see JetWages compatibility.</p>
-
       <label for="airlineSelect" style="display:block; margin-bottom:0.4rem;">
         Airline name or ICAO code:
       </label>
-
       <input list="airlines" id="airlineSelect" name="airlineSelect"
        placeholder="e.g. easyJet or EZY">
-
       <datalist id="airlines"></datalist>
       <button type="button" id="airlineCheckBtn" class="btn btn-secondary" style="margin-top:0.75rem;">
         Check compatibility
       </button>
-
       <p id="airlineResult" ></p>
       <p id="airlineRequest" class="muted" style="margin-top:0.3rem; display:none;">
         If your airline isn’t supported yet, you can
@@ -95,7 +98,7 @@
         </a>.
       </p>
     </section>
-
+    -->
 
     <section id="features" aria-labelledby="features-title">
       <h2 id="features-title">Features</h2>

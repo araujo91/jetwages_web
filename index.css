@@ -224,6 +224,42 @@ a.btn:hover:not(.btn-secondary):not(.btn-grad) > span {
   font-weight: 700;
 }
 
+.airline-support-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.25rem;
+  margin: 1rem 0 1.75rem;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid color-mix(in oklab, var(--brand) 45%, var(--border));
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--primary-muted) 55%, var(--panel)),
+      var(--panel)
+    );
+  box-shadow: var(--shadow), 0 0 0 1px color-mix(in oklab, var(--accent) 35%, transparent);
+}
+.airline-support-note__text {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+.airline-support-note h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+}
+.airline-support-note p {
+  margin: 0;
+  color: var(--muted);
+}
+.airline-support-note strong {
+  color: var(--text);
+}
+.airline-support-note .btn {
+  flex: 0 0 auto;
+}
+
 
 /* Sections */
 section { padding: 1rem 0; }
