@@ -31,6 +31,7 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 
 ## Latest change
 
+- Added a centred support card to the landing page, matching the airline-support card styling while keeping its heading, message, and coffee button vertically aligned.
 - Rewrote **`privacy-policy.html`** in plain English and removed RevenueCat / JetWages Pro subscription sections (not live yet). Last updated **20 July 2026**.
 
 
