@@ -4,12 +4,13 @@ Static marketing and support pages for JetWages (GitHub Pages–style layout).
 
 ## Main files
 
-- **`index.html`** — Landing page: hero, features, links, and a **Privacy, Data & Licenses** section. The privacy and licenses actions sit in a centered **`.policy-btn-row`**: two equal-width buttons side by side on wider viewports, stacked in one column under ~520px (`index.css`).
-- **`index.css`** — Shared styles for the landing page, including the policy button row and **`.btn-grad`** (teal→navy gradient CTA using `--grad-a` / `--grad-b`).
+- **`index.html`** — Current live landing page: hero, features, links, and a **Privacy, Data & Licenses** section. The privacy and licenses actions sit in a centered **`.policy-btn-row`**: two equal-width buttons side by side on wider viewports, stacked in one column under ~520px (`index.css`).
+- **`indexv2.html`** — Redesigned marketing landing (not yet the live home). Self-contained CSS/JS. Uses real app screenshots from **`screenshots/MainPage/`** and **`graphics/Instructions/`**, app terminology (Pie View, Basic / Sector / Commission / Extras / Deductions, Add Sales, Add Extras), and privacy copy aligned with **`privacy-policy.html`** (on-device storage; PDFs deleted after parse). Primary CTA is sign-up for updates (same form as `index.html`).
+- **`index.css`** — Shared styles for the live landing page, including the policy button row and **`.btn-grad`** (teal→navy gradient CTA using `--grad-a` / `--grad-b`).
 - **`constants-init.js` / `constants.js`** — Site URLs and `data-const` link resolution.
-- **`theme.js`** — Colour theme: follows OS `prefers-color-scheme`, optional `data-theme` override via the **`.theme-toggle`** control (cycles Auto → Light → Dark), persisted in `localStorage` (`jw-theme`).
+- **`theme.js`** — Colour theme: follows OS `prefers-color-scheme`, optional `data-theme` override via the **`.theme-toggle`** control (cycles Auto → Light → Dark), persisted in `localStorage` (`jw-theme`). `indexv2.html` embeds its own equivalent toggle.
 - **`instructions.html`** / **`instructions.css`** — Setup guide with the same sticky header, container, cards, buttons, and theme toggle as the landing page; tabbed Quick Setup / Preparation / How to Use content. Screenshots live under **`graphics/Instructions/`** (`Setup/`, `calendarSync/`, `EditDay/`, plus root images for sales, extras, pie view, and dark mode).
-- **`screenshots/MainPage/`** — Four landing-page gallery images used by `index.html` (welcome, calendar, stats, pie). Unused legacy `screenshots/android/` and `screenshots/ios/` trees were removed.
+- **`screenshots/MainPage/`** — Landing gallery images (welcome, calendar, stats, pie) used by `index.html` and `indexv2.html`.
 - **`privacy-policy.html`**, **`licenses.html`** — Supporting pages with their own CSS (`privacy-policy.css`, **`licenses.css`**) using the same design tokens.
 
 ## Design-system colour palette
@@ -31,8 +32,7 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 
 ## Latest change
 
-- Added a centred support card to the landing page, matching the airline-support card styling while keeping its heading, message, and coffee button vertically aligned.
-- Rewrote **`privacy-policy.html`** in plain English and removed RevenueCat / JetWages Pro subscription sections (not live yet). Last updated **20 July 2026**.
+- Updated **`indexv2.html`** to use real screenshots (`graphics/icon.png`, `screenshots/MainPage/*`, `graphics/Instructions/*`) instead of missing `app/` placeholders; replaced faux PDF mocks and invented pay figures with actual app screens; aligned marketing copy with app language and the privacy policy; CTAs point at the updates signup form and instructions rather than placeholder store links.
 
 
 ### Day-to-day workflow
