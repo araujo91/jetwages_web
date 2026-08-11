@@ -46,15 +46,15 @@
       <li>Which calendar you connected for sync</li>
       <li>Simple setup notes (see section 11) — on your device only</li>
     </ul>
-    <p>Uninstalling the app removes this data from your device. You can also clear roster data from the Debug screen in the app.</p>
+    <p>Uninstalling the app removes this data from your device.</p>
 
     <h2>5. PDF processing</h2>
     <p>When you upload a payslip, supplementary payslip, or schedule PDF, JetWages reads the text so it can work out your pay. What happens depends on your phone:</p>
     <ul>
       <li><strong>iOS:</strong> The PDF is sent to a secure JetWages parsing server over HTTPS. The request includes only the PDF and a security token — no user ID, account data, or device ID. The server sends back the extracted text, then deletes the file (usually within seconds).</li>
-      <li><strong>Android:</strong> The app first tries to read the PDF <strong>on your device</strong> using PDF.js (loaded from the internet). If that fails — for example with a scanned payslip — it uses the same secure parsing server as on iOS, with the same rules.</li>
+      <li><strong>Android:</strong> The app first tries to read the PDF <strong>on your device</strong> using PDF.js (loaded from the internet). If that fails, for example with a scanned payslip, it uses the same secure parsing server as on iOS, with the same rules.</li>
     </ul>
-    <p>The text that comes back is used only in the app on your device. JetWages does not send your parsed pay figures to any server.</p>
+    <p>The text that comes back is used only in the app on your device. JetWages does not send your parsed pay figures to any other server.</p>
 
     <h2>6. Device permissions</h2>
     <p>JetWages may ask for the permissions below. You can say no to any optional one. Some features will not work, but the rest of the app still will.</p>
