@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="JetWages helps airline crew decode complex pay structures with clear breakdowns, historical tracking and simple uploads." />
+  <title>JetWages – Simplifying Crew Pay</title>
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="JetWages – Simplifying Crew Pay" />
+  <meta property="og:description" content="Built by crew, for crew. Upload schedules & payslips to see accurate, transparent pay breakdowns." />
+  <meta property="og:image" content="../graphics/banner.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="index.css">
+    <!-- Constants (centralized links) -->
+  <script src="../constants.js"></script>
+  <script src="../constants-init.js"></script>
+  <script src="../theme.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <a class="brand" href="#" aria-label="JetWages home">
+        <img src="../graphics/icon.png" width="36" height="36" alt="JetWages logo" />
+        <span>JetWages</span>
+      </a>
+      <nav>
+        <a class="navlink" href="#features">Features</a>
+        <a class="navlink" href="#screenshots">Screenshots</a>
+        <a class="navlink" href="#about">About</a>
+        <a class="navlink" href="#support">Support</a>
+        <a class="navlink" href="#links">Links</a>
+        <a class="navlink" href="#policy">Privacy</a>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme">
+          <span data-theme-label>Auto</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container" tabindex="-1">
+    <section class="hero" aria-labelledby="tagline">
+      <div class="hero-media">
+        <img class="banner" src="../graphics/banner.png" width="1200" height="400" alt="Illustration of JetWages pay overview" loading="eager" />
+      </div>
+      <div class="hero-container">
+        <h1 id="tagline">Your pay, simplified.</h1>
+        <p class="lead">Built by crew, for crew. Upload your schedules and payslips to get clear, accurate breakdowns of earnings, allowances and deductions before payday.</p>
+        
+        <div class="cta" role="group" aria-label="Primary actions">
+          <a class="btn" data-const="subscribe" target="_blank" rel="noopener"><span>✍️ Sign up</span></a>
+          <a class="btn btn-grad" href="#features">Explore features</a>
+        </div> 
+      </div>     
+    </section>
+    <div class="airline-support-note card" role="status">
+      <div class="airline-support-note__text">
+        <h3>Airline support</h3>
+        <p>We currently only support <strong>easyJet UK</strong>, and are working to expand coverage to more airlines.</p>
+      </div>
+      <a class="btn btn-grad" data-const="airlineRequest" target="_blank" rel="noopener">
+        Request your airline
+      </a>
+    </div>
+
+    <!--
+    Drop down section (airline checker) — temporarily hidden; currently easyJet UK only.
+    <section class="card" id="airline-checker">
+      <h3>Is your airline supported?</h3>
+      <label for="airlineCountry" style="display:block; margin-top:0.75rem; margin-bottom:0.4rem;">
+        Where are you based?
+      </label>
+      <select id="airlineCountry" name="airlineCountry">
+        <option value="">Select country / region</option>
+        <option value="UK">United Kingdom</option>
+        <option value="EU">European Union (non-UK)</option>
+        <option value="CH">Switzerland</option>
+        <option value="OTHER">Other</option>
+      </select>
+      <p>Select or type your airline to see JetWages compatibility.</p>
+      <label for="airlineSelect" style="display:block; margin-bottom:0.4rem;">
+        Airline name or ICAO code:
+      </label>
+      <input list="airlines" id="airlineSelect" name="airlineSelect"
+       placeholder="e.g. easyJet or EZY">
+      <datalist id="airlines"></datalist>
+      <button type="button" id="airlineCheckBtn" class="btn btn-secondary" style="margin-top:0.75rem;">
+        Check compatibility
+      </button>
+      <p id="airlineResult" ></p>
+      <p id="airlineRequest" class="muted" style="margin-top:0.3rem; display:none;">
+        If your airline isn’t supported yet, you can
+        <a data-const="airlineRequest" id="airlineRequestLink" target="_blank" rel="noopener">
+          request support for "<span id="airlineNamePlaceholder"></span>"
+        </a>.
+      </p>
+    </section>
+    -->
+
+    <section id="features" aria-labelledby="features-title">
+      <h2 id="features-title">Features</h2>
+      <div class="grid features">
+        <article class="card">
+          <h3>Fast, simple uploads</h3>
+          <p>Drop in schedules and payslips — JetWages parses them automatically in seconds.</p>
+        </article>
+        <article class="card">
+          <h3>Accurate breakdowns</h3>
+          <p>See duties, allowances and deductions itemised so you know exactly how totals are calculated.</p>
+        </article>
+        <article class="card">
+          <h3>Historical tracking</h3>
+          <p>Compare pay periods at a glance to plan ahead and spot anomalies with confidence.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="screenshots" aria-labelledby="shots-title">
+      <h2 id="shots-title">Screenshots</h2>
+      <div class="grid shots">
+        <figure>
+          <img class="shot" src="../screenshots/MainPage/onboardMainScreen.png" alt="Welcome screen" loading="lazy" />
+          <figcaption>Welcome</figcaption>
+        </figure>
+        <figure>
+          <img class="shot" src="../screenshots/MainPage/HomePopulated.png" alt="Calendar Screen" loading="lazy" />
+          <figcaption>Calendar Screen</figcaption>
+        </figure>
+        <figure>
+          <img class="shot" src="../screenshots/MainPage/StatsOverview.png" alt="Stats overview" loading="lazy" />
+          <figcaption>Stats Overview</figcaption>
+        </figure>
+        <figure>
+          <img class="shot" src="../screenshots/MainPage/PieView.png" alt="Earnings pie chart" loading="lazy" />
+          <figcaption>Breakdown</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="about" class="about" aria-labelledby="about-title">
+      <h2 id="about-title">About us</h2>
+      <p>Hi! I'm a flight attendant, and like most crew, I never really knew what I'd be paid until the payslip landed.
+         Back around late 2016, early 2017, I started tracking everything myself on a spreadsheet. Flights, allowances, sales, the lot. It worked, but it took ages.</p>
+
+      <p>Eventually I thought: there has to be a better way. So I built one. That's how JetWages started.</p>
+
+      <p>Getting here took a lot of planning, a lot of redesigning, and a lot of feedback from crew along the way but it's been worth it.</p>
+
+      <p>Now it reads your payslips for you, and shows exactly where every pound comes from.</p>
+
+      <p>What began as a way to keep on top of my own pay has turned into something I hope helps other crew too.</p>
+    </section>
+
+    <!-- SUPPORT placed after About -->
+
+    <section id="support" aria-labelledby="support-title">
+      <div class="airline-support-note support-card card">
+        <h2 id="support-title">Support the project</h2>
+        <p class="support-note">If JetWages has helped you, a coffee goes a long way in keeping the project running and improving. Thank you for your support! ☕</p>
+        <p class="support-action">
+          <a class="coffee" href="https://www.buymeacoffee.com/jetwages" target="_blank" rel="noopener" aria-label="Buy me a coffee">☕ Buy me a coffee</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="links" aria-labelledby="links-title">
+      <h2 id="links-title">Useful links</h2>
+      <div class="grid link-grid">
+        <a class="card" data-const="subscribe" target="_blank" rel="noopener">
+          <h3>✍️ Sign up</h3>
+          <p>Register your interest and get early updates.</p>
+        </a>
+  <a class="card" data-const="website" data-path="../instructions.html" target="_blank" rel="noopener">
+          <h3>📖 Instructions</h3>
+          <p>How to upload files and get the most out of JetWages.</p>
+        </a>
+  <a class="card" data-const="feedback" target="_blank" rel="noopener">
+          <h3>💬 Feedback</h3>
+          <p>Found a bug or have an idea? Tell me about it.</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="policy" aria-labelledby="policy-title">
+      <h2 id="policy-title">Privacy, Data & Licenses</h2>
+      <p class="muted">I take privacy seriously. Your files are processed strictly for pay calculations and aren’t <b>shared</b> or <b>kept</b>. Read the full policy below.</p>
+      <div class="policy-btn-row">
+        <a class="btn btn-grad" data-const="website" data-path="../privacy-policy.html" target="_blank" rel="noopener">Read our Privacy &amp; Data Policy</a>
+        <a class="btn btn-grad" data-const="website" data-path="../licenses.html" target="_blank" rel="noopener">Licenses</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>© <span id="year"></span> JetWages. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script>
+    // keep the year current
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+
+
+  <!-- Optional structured data: tweak as needed -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "JetWages",
+    "operatingSystem": "Android, iOS",
+    "applicationCategory": "FinanceApplication",
+    "description": "JetWages helps airline crew decode complex pay structures with clear breakdowns and historical tracking.",
+    "url": "https://araujo91.github.io/jetwages_web/"
+  }
+  </script>
+</body>
+</html>

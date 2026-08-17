@@ -1,223 +1,411 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light dark" />
-  <meta name="description" content="JetWages helps airline crew decode complex pay structures with clear breakdowns, historical tracking and simple uploads." />
-  <title>JetWages – Simplifying Crew Pay</title>
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="JetWages – Simplifying Crew Pay" />
-  <meta property="og:description" content="Built by crew, for crew. Upload schedules & payslips to see accurate, transparent pay breakdowns." />
-  <meta property="og:image" content="graphics/banner.png" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="stylesheet" href="index.css">
-    <!-- Constants (centralized links) -->
-  <script src="constants.js"></script>
-  <script src="constants-init.js"></script>
-  <script src="theme.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light dark" />
+<meta name="description" content="JetWages helps cabin crew track complex wages. Upload payslips and schedules for clear breakdowns of basic, sector, commission, extras and deductions — stored on your device." />
+<title>JetWages — Your pay, simplified</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header>
-    <div class="container nav" role="navigation" aria-label="Primary">
-      <a class="brand" href="#" aria-label="JetWages home">
-        <img src="graphics/icon.png" width="36" height="36" alt="JetWages logo" />
-        <span>JetWages</span>
-      </a>
-      <nav>
-        <a class="navlink" href="#features">Features</a>
-        <a class="navlink" href="#screenshots">Screenshots</a>
-        <a class="navlink" href="#about">About</a>
-        <a class="navlink" href="#support">Support</a>
-        <a class="navlink" href="#links">Links</a>
-        <a class="navlink" href="#policy">Privacy</a>
-        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme">
-          <span data-theme-label>Auto</span>
-        </button>
-      </nav>
-    </div>
-  </header>
+<a class="skip" href="#main">Skip to content</a>
 
-  <main id="main" class="container" tabindex="-1">
-    <section class="hero" aria-labelledby="tagline">
-      <div class="hero-media">
-        <img class="banner" src="graphics/banner.png" width="1200" height="400" alt="Illustration of JetWages pay overview" loading="eager" />
-      </div>
-      <div class="hero-container">
-        <h1 id="tagline">Your pay, simplified.</h1>
-        <p class="lead">Built by crew, for crew. Upload your schedules and payslips to get clear, accurate breakdowns of earnings, allowances and deductions before payday.</p>
-        
-        <div class="cta" role="group" aria-label="Primary actions">
-          <a class="btn" data-const="subscribe" target="_blank" rel="noopener"><span>✍️ Sign up</span></a>
-          <a class="btn btn-grad" href="#features">Explore features</a>
-        </div> 
-      </div>     
-    </section>
-    <div class="airline-support-note card" role="status">
-      <div class="airline-support-note__text">
-        <h3>Airline support</h3>
-        <p>We currently only support <strong>easyJet UK</strong>, and are working to expand coverage to more airlines.</p>
-      </div>
-      <a class="btn btn-grad" data-const="airlineRequest" target="_blank" rel="noopener">
-        Request your airline
-      </a>
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#top"><img src="graphics/icon.png" alt="" width="34" height="34"> JetWages</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#screens">Screenshots</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav__act">
+      <button class="tgl" type="button" id="tgl" aria-label="Switch colour theme">Auto</button>
+      <a class="btn btn--primary btn--sm" href="#get">Get updates</a>
     </div>
+  </div>
+</header>
 
-    <!--
-    Drop down section (airline checker) — temporarily hidden; currently easyJet UK only.
-    <section class="card" id="airline-checker">
-      <h3>Is your airline supported?</h3>
-      <label for="airlineCountry" style="display:block; margin-top:0.75rem; margin-bottom:0.4rem;">
-        Where are you based?
-      </label>
-      <select id="airlineCountry" name="airlineCountry">
-        <option value="">Select country / region</option>
-        <option value="UK">United Kingdom</option>
-        <option value="EU">European Union (non-UK)</option>
-        <option value="CH">Switzerland</option>
-        <option value="OTHER">Other</option>
-      </select>
-      <p>Select or type your airline to see JetWages compatibility.</p>
-      <label for="airlineSelect" style="display:block; margin-bottom:0.4rem;">
-        Airline name or ICAO code:
-      </label>
-      <input list="airlines" id="airlineSelect" name="airlineSelect"
-       placeholder="e.g. easyJet or EZY">
-      <datalist id="airlines"></datalist>
-      <button type="button" id="airlineCheckBtn" class="btn btn-secondary" style="margin-top:0.75rem;">
-        Check compatibility
-      </button>
-      <p id="airlineResult" ></p>
-      <p id="airlineRequest" class="muted" style="margin-top:0.3rem; display:none;">
-        If your airline isn’t supported yet, you can
-        <a data-const="airlineRequest" id="airlineRequestLink" target="_blank" rel="noopener">
-          request support for "<span id="airlineNamePlaceholder"></span>"
-        </a>.
+<main id="main">
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow">Cabin crew pay tracker</p>
+      <h1>Your pay, <em>simplified.</em></h1>
+      <p class="hero__sub">
+        Built by crew, for crew. Upload your payslips and schedules to see clear breakdowns of
+        basic pay, sector pay, commission, extras and deductions before payday.
       </p>
-    </section>
-    -->
-
-    <section id="features" aria-labelledby="features-title">
-      <h2 id="features-title">Features</h2>
-      <div class="grid features">
-        <article class="card">
-          <h3>Fast, simple uploads</h3>
-          <p>Drop in schedules and payslips — JetWages parses them automatically in seconds.</p>
-        </article>
-        <article class="card">
-          <h3>Accurate breakdowns</h3>
-          <p>See duties, allowances and deductions itemised so you know exactly how totals are calculated.</p>
-        </article>
-        <article class="card">
-          <h3>Historical tracking</h3>
-          <p>Compare pay periods at a glance to plan ahead and spot anomalies with confidence.</p>
-        </article>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="https://forms.gle/ZkhTi6NesawTjP6Z8" target="_blank" rel="noopener">Sign up</a>
+        <a class="btn btn--onink" href="#how">See how it works</a>
       </div>
-    </section>
-
-    <section id="screenshots" aria-labelledby="shots-title">
-      <h2 id="shots-title">Screenshots</h2>
-      <div class="grid shots">
-        <figure>
-          <img class="shot" src="screenshots/MainPage/onboardMainScreen.png" alt="Welcome screen" loading="lazy" />
-          <figcaption>Welcome</figcaption>
-        </figure>
-        <figure>
-          <img class="shot" src="screenshots/MainPage/HomePopulated.png" alt="Calendar Screen" loading="lazy" />
-          <figcaption>Calendar Screen</figcaption>
-        </figure>
-        <figure>
-          <img class="shot" src="screenshots/MainPage/StatsOverview.png" alt="Stats overview" loading="lazy" />
-          <figcaption>Stats Overview</figcaption>
-        </figure>
-        <figure>
-          <img class="shot" src="screenshots/MainPage/PieView.png" alt="Earnings pie chart" loading="lazy" />
-          <figcaption>Breakdown</figcaption>
-        </figure>
+      <div class="hero__facts">
+        <span class="fact"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 14 4 10l1.4-1.4L8 11.2l6.6-6.6L16 6z"/></svg> easyJet UK supported</span>
+        <span class="fact"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 14 4 10l1.4-1.4L8 11.2l6.6-6.6L16 6z"/></svg> Data stays on your device</span>
+        <span class="fact"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 14 4 10l1.4-1.4L8 11.2l6.6-6.6L16 6z"/></svg> Built by a flight attendant</span>
       </div>
-    </section>
-
-    <section id="about" class="about" aria-labelledby="about-title">
-      <h2 id="about-title">About us</h2>
-      <p>Hi! I'm a flight attendant, and like most crew, I never really knew what I'd be paid until the payslip landed.
-         Back around late 2016, early 2017, I started tracking everything myself on a spreadsheet. Flights, allowances, sales, the lot. It worked, but it took ages.</p>
-
-      <p>Eventually I thought: there has to be a better way. So I built one. That's how JetWages started.</p>
-
-      <p>Getting here took a lot of planning, a lot of redesigning, and a lot of feedback from crew along the way but it's been worth it.</p>
-
-      <p>Now it reads your payslips for you, and shows exactly where every pound comes from.</p>
-
-      <p>What began as a way to keep on top of my own pay has turned into something I hope helps other crew too.</p>
-    </section>
-
-    <!-- SUPPORT placed after About -->
-
-    <section id="support" aria-labelledby="support-title">
-      <div class="airline-support-note support-card card">
-        <h2 id="support-title">Support the project</h2>
-        <p class="support-note">If JetWages has helped you, a coffee goes a long way in keeping the project running and improving. Thank you for your support! ☕</p>
-        <p class="support-action">
-          <a class="coffee" href="https://www.buymeacoffee.com/jetwages" target="_blank" rel="noopener" aria-label="Buy me a coffee">☕ Buy me a coffee</a>
-        </p>
-      </div>
-    </section>
-
-    <section id="links" aria-labelledby="links-title">
-      <h2 id="links-title">Useful links</h2>
-      <div class="grid link-grid">
-        <a class="card" data-const="subscribe" target="_blank" rel="noopener">
-          <h3>✍️ Sign up</h3>
-          <p>Register your interest and get early updates.</p>
-        </a>
-  <a class="card" data-const="website" data-path="instructions.html" target="_blank" rel="noopener">
-          <h3>📖 Instructions</h3>
-          <p>How to upload files and get the most out of JetWages.</p>
-        </a>
-  <a class="card" data-const="feedback" target="_blank" rel="noopener">
-          <h3>💬 Feedback</h3>
-          <p>Found a bug or have an idea? Tell me about it.</p>
-        </a>
-      </div>
-    </section>
-
-    <section id="policy" aria-labelledby="policy-title">
-      <h2 id="policy-title">Privacy, Data & Licenses</h2>
-      <p class="muted">I take privacy seriously. Your files are processed strictly for pay calculations and aren’t <b>shared</b> or <b>kept</b>. Read the full policy below.</p>
-      <div class="policy-btn-row">
-        <a class="btn btn-grad" data-const="website" data-path="privacy-policy.html" target="_blank" rel="noopener">Read our Privacy &amp; Data Policy</a>
-        <a class="btn btn-grad" data-const="website" data-path="licenses.html" target="_blank" rel="noopener">Licenses</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <small>© <span id="year"></span> JetWages. All rights reserved.</small>
     </div>
-  </footer>
 
-  <script>
-    // keep the year current
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <div class="stage">
+      <div class="phone phone--main">
+        <img src="screenshots/MainPage/HomePopulated.png" alt="JetWages home calendar for July 2026, with flights, days off, standby and leave marked on each day, and a Pie View button." width="1096" height="2560">
+      </div>
+      <div class="phone phone--float">
+        <img src="screenshots/MainPage/PieView.png" alt="Pie View for July 2026 showing Basic, Sector, Commission, Extras and Deductions, with net earnings of £3,241.78." width="1096" height="2560">
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ===================== PROOF STRIP ===================== -->
+<section class="strip">
+  <div><b>Pie View</b><span>See where the month’s money comes from</span></div>
+  <div><b>Calendar</b><span>Overview of your month adn add sales and Extras</span></div>
+  <div><b>Stats</b><span>Best days and month-by-month trends</span></div>
+  <div><b>On device</b><span>Pay data stored locally on your phone</span></div>
+</section>
 
+<!-- ===================== PROBLEM ===================== -->
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow rv">The problem</p>
+    <h2 class="h2 rv">Cabin crew pay is complicated. Payday shouldn’t be.</h2>
+    <p class="sub rv">
+      Basic, sectors, commission, extras and deductions all move every month and none of it is
+      obvious until the payslip lands. Working it out by hand means a spreadsheet, an old roster
+      and a lost afternoon.
+    </p>
+    <div class="qs rv">
+      <span class="q">Was that airport standby paid?</span>
+      <span class="q">Why is this month lower than last?</span>
+      <span class="q">Did my sales commission land?</span>
+      <span class="q">How many sectors did I actually fly?</span>
+      <span class="q">Is my nightstop allowance in there?</span>
+      <span class="q">Was that swap actually worth it?</span>
+      <span class="q">Am I better off picking up that day?</span>
+      <span class="q q--ok">JetWages answers all of these.</span>
+    </div>
+  </div>
+</section>
 
-  <!-- Optional structured data: tweak as needed -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "JetWages",
-    "operatingSystem": "Android, iOS",
-    "applicationCategory": "FinanceApplication",
-    "description": "JetWages helps airline crew decode complex pay structures with clear breakdowns and historical tracking.",
-    "url": "https://araujo91.github.io/jetwages_web/"
-  }
-  </script>
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="band band--panel" id="how">
+  <div class="wrap">
+    <p class="eyebrow rv">How it works</p>
+    <h2 class="h2 rv">Upload. Review. Track.</h2>
+    <p class="sub rv">Set up once with your payslips, then keep your roster and pay in sync as you fly.</p>
+
+    <div class="steps">
+      <div class="step rv">
+        <div>
+          <span class="step__no"><i>1</i> Upload</span>
+          <h3>Drop in your payslip PDF</h3>
+          <p>Save your payslip (and supplementary payslip), then tap <strong>Select PDF File</strong>. JetWages extracts your salary information automatically.</p>
+        </div>
+        <div class="step__art">
+          <div class="phone">
+            <img src="graphics/Instructions/Setup/05UploadSlip.png" alt="Upload Your Payslip screen with Select PDF File." loading="lazy" width="750" height="1334">
+          </div>
+        </div>
+      </div>
+
+      <div class="step rv">
+        <div>
+          <span class="step__no"><i>2</i> Review</span>
+          <h3>Confirm the figures</h3>
+          <p>Check the extracted basic pay, sector rates and deductions, then move on to your supplementary payslip and leave estimate. You’re in control of every value before it goes into your history.</p>
+        </div>
+        <div class="step__art">
+          <div class="phone">
+            <img src="graphics/Instructions/Setup/06ReviewSalary.png" alt="Review Core Salary Information form after payslip upload." loading="lazy" width="750" height="1334">
+          </div>
+        </div>
+      </div>
+
+      <div class="step rv">
+        <div>
+          <span class="step__no"><i>3</i> Track</span>
+          <h3>See it on your calendar</h3>
+          <p>Upload or sync your roster so each day shows flights, standby, leave or days off. Open a day to edit duties, log sales or add extras, then jump into Pie View for the month’s breakdown.</p>
+        </div>
+        <div class="step__art">
+          <div class="phone">
+            <img src="graphics/Instructions/calendarSync/04CalendarPopulated.png" alt="Home calendar populated with duty icons and a Pie View button." loading="lazy" width="750" height="1334">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTRAST ===================== -->
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow rv">Why I built it</p>
+    <h2 class="h2 rv">I tracked my pay on a spreadsheet for years.</h2>
+    <p class="sub rv">It worked. It also ate an evening every month. Here’s the difference.</p>
+    <div class="vs rv">
+      <div class="vs__col">
+        <h3>The spreadsheet</h3>
+        <ul>
+          <li><span class="tick tick--no">×</span><span><b>Typed by hand.</b> Every sector, every allowance, every month.</span></li>
+          <li><span class="tick tick--no">×</span><span><b>Out of date fast.</b> One roster change and the whole month is wrong.</span></li>
+          <li><span class="tick tick--no">×</span><span><b>No history worth having.</b> Comparing months means scrolling and squinting.</span></li>
+          <li><span class="tick tick--no">×</span><span><b>Errors are invisible.</b> A wrong formula quietly follows you all year.</span></li>
+          <li><span class="tick tick--no">×</span><span><b>Not on your phone.</b> Not much use at the crew room table.</span></li>
+        </ul>
+      </div>
+      <div class="vs__col vs__col--win">
+        <h3>JetWages</h3>
+        <ul>
+          <li><span class="tick tick--yes">✓</span><span><b>Reads the payslip for you.</b> Upload the PDF and review the figures.</span></li>
+          <li><span class="tick tick--yes">✓</span><span><b>Follows your roster.</b> Edit a day, log sales, add extras — pay stays in sync.</span></li>
+          <li><span class="tick tick--yes">✓</span><span><b>Months side by side.</b> Stats shows trends and odd months at a glance.</span></li>
+          <li><span class="tick tick--yes">✓</span><span><b>Shows the monthly earning.</b> Pie View breaks out Basic, Sector, Commission, Extras and Deductions.</span></li>
+          <li><span class="tick tick--yes">✓</span><span><b>Stays on your device.</b> No account, no cloud copy of your pay history.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SCREENSHOTS ===================== -->
+<section class="band band--panel" id="screens">
+  <div class="wrap">
+    <p class="eyebrow rv">In the app</p>
+    <h2 class="h2 rv">A look inside.</h2>
+    <p class="sub rv">Real screens from JetWages — calendar, Pie View, stats, sales and extras.</p>
+    <div class="gallery rv">
+      <figure class="shot">
+        <div class="phone"><img src="screenshots/MainPage/HomePopulated.png" alt="Home calendar for July 2026 with duty icons and Pie View." loading="lazy" width="1096" height="2560"></div>
+        <figcaption><b>Home calendar</b><span>Flights, standby, leave and days off — tap a day to edit, log sales or add extras.</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><img src="screenshots/MainPage/PieView.png" alt="Pie View pay breakdown for July 2026." loading="lazy" width="1096" height="2560"></div>
+        <figcaption><b>Pie View</b><span>Basic, Sector, Commission, Extras and Deductions — with net earnings for the period.</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><img src="screenshots/MainPage/StatsOverview.png" alt="Stats overview with highest and lowest days and a month-by-month chart." loading="lazy" width="1096" height="2560"></div>
+        <figcaption><b>Stats</b><span>Highest and lowest variable days, commission highs, and month-by-month totals.</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><img src="graphics/Instructions/Sales.png" alt="Add Sales dialogue with total sales, crew count and Comp toggle." loading="lazy" width="750" height="1334"></div>
+        <figcaption><b>Add Sales</b><span>Log onboard sales and crew count — commission works itself out, including AC swaps.</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><img src="graphics/Instructions/extras2.png" alt="Add Extras dialogue on the Per Flight tab with an Uprank." loading="lazy" width="750" height="1334"></div>
+        <figcaption><b>Add Extras</b><span>Upranks and other extras, per flight or for the whole day.</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><img src="graphics/Instructions/darkmode.png" alt="Home calendar in dark mode with a day selected showing Edit, Sales and Extras." loading="lazy" width="750" height="1334"></div>
+        <figcaption><b>Dark mode</b><span>Follows your phone — handy for early pickups.</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURES ===================== -->
+<section class="band" id="features">
+  <div class="wrap">
+    <p class="eyebrow rv">Features</p>
+    <h2 class="h2 rv">Built around how crew actually get paid.</h2>
+    <div class="cards rv">
+      <article class="card">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4m0 0L8 8m4-4 4 4M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2"/></svg></span>
+        <h3>Payslip uploads</h3>
+        <p>Select a PDF payslip and JetWages extracts salary details for you to review.</p>
+      </article>
+      <article class="card">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6l-8-3Z"/></svg></span>
+        <h3>Pie View</h3>
+        <p>See Basic, Sector, Commission, Extras and Deductions itemised, with net earnings for the period you choose.</p>
+      </article>
+      <article class="card">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M7 16V9m5 7V5m5 11v-4"/></svg></span>
+        <h3>Stats &amp; history</h3>
+        <p>Compare months, spot your best and worst variable days, and track commission trends over the year.</p>
+      </article>
+      <article class="card">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+        <h3>Roster calendar</h3>
+        <p>Upload HTML, PDF or connect calendar sync from eCrew. Each day can be edited; Sales and Extras sit one tap away.</p>
+      </article>
+      <article class="card">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></span>
+        <h3>Sales &amp; extras</h3>
+        <p>Log onboard sales with crew count (and Complementary), or add upranks and other extras per flight or per day.</p>
+      </article>
+      <article class="card">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></span>
+        <h3>Private by design</h3>
+        <p>Calculations and pay history stay on your device. PDF parsing files are deleted as soon as they’re read.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="band band--panel" id="about">
+  <div class="wrap about">
+    <div>
+      <p class="eyebrow rv">About</p>
+      <h2 class="h2 rv">Built by crew, for crew.</h2>
+    </div>
+    <div class="about__body rv">
+      <p>Hi, I’m a flight attendant. Like most crew, I never really knew what I’d be paid until the payslip landed.</p>
+      <p>Around late 2016 I started tracking it all myself on a spreadsheet: flights, sales, the lot. It worked, but it took ages.</p>
+      <p>Eventually I thought there had to be a better way, so I built one. That’s how JetWages started. It took a lot of planning, a lot of redesigning, and a lot of feedback from crew along the way, but it’s been worth it.</p>
+      <p>Now it reads your payslips for you and shows exactly where every pound comes from. What began as a way to stay on top of my own pay has turned into something I hope helps other crew too.</p>
+      <p class="sig">João<span>JetWages — built outside flying hours</span></p>
+      <p style="margin-top:1.4rem"><a class="coffee" href="https://www.buymeacoffee.com/jetwages" target="_blank" rel="noopener">Buy me a coffee</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AIRLINE ===================== -->
+<section class="band">
+  <div class="wrap">
+    <div class="callout rv">
+      <div>
+        <h3>Airline support</h3>
+        <p>JetWages currently supports <b>easyJet UK</b>. More airlines are on the way.  Tell me which one you fly for and help me add it and the tools you need.</p>
+      </div>
+      <a class="btn btn--primary" href="https://docs.google.com/forms/d/e/1FAIpQLScAcWgA_KKvXH2CI-DEN1z3xmbIHQARZOvBSw2sKX16zf7-PQ/viewform" target="_blank" rel="noopener">Request your airline</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRIVACY ===================== -->
+<section class="band band--ink" id="privacy">
+  <div class="wrap">
+    <p class="eyebrow">Privacy</p>
+    <h2 class="h2">Your payslip is yours.</h2>
+    <p class="sub">You’re uploading a document with your name and your pay on it. Here’s exactly what happens.</p>
+    <div class="privacy">
+      <div><h3>On your device</h3><p>Roster, pay history, sales and settings stay on your phone. There’s no JetWages account or cloud copy of your pay data.</p></div>
+      <div><h3>PDFs aren’t kept</h3><p>When a file needs parsing, it’s read over a secure connection and deleted as soon as parsing finishes.</p></div>
+      <div><h3>Not shared</h3><p>No advertising, no tracking pixels, no selling your data to third parties.</p></div>
+      <div><h3>Written down</h3><p>The full detail is in the privacy policy, in plain English.</p></div>
+    </div>
+    <p style="margin-top:2rem"><a class="btn btn--onink" href="privacy-policy.html">Read the privacy policy</a></p>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="band" id="faq">
+  <div class="wrap">
+    <p class="eyebrow rv">FAQ</p>
+    <h2 class="h2 rv">Questions crew usually ask.</h2>
+    <div class="faq rv">
+      <details><summary>Does it cost anything?</summary><p>JetWages is free to use. If it’s helped you, a coffee keeps the project going, there’s a link on this page and in the app.</p></details>
+      <details><summary>Which airlines are supported?</summary><p>easyJet UK for now. Support for other airlines depends on getting hold of their payslip and roster formats, so requests genuinely help.</p></details>
+      <details><summary>What do you do with my payslip?</summary><p>It’s read so the app can work out your pay figures. On iOS (and sometimes Android) the PDF is sent to a secure parsing server, then deleted. Your roster and pay history stay on your device. Full detail is in the privacy policy.</p></details>
+      <details><summary>Where is my data stored?</summary><p>On your device. JetWages has no login and no cloud database for your pay or roster. You can export a JSON backup from Settings if you want a copy.</p></details>
+      <details><summary>Do I have to upload every month?</summary><p>A new supplementary payslip easch month to ensure saes commission is paid correctly.</p></details>
+      <details><summary>Will it work if I’ve swapped or changed duties?</summary><p>Yes. Open the day and use Edit to fix duties, Sales for onboard sales (including crew-count changes from an AC swap), and Extras for things like upranks.</p></details>
+      <details><summary>Who’s behind it?</summary><p>Just me. I’m a flight attendant and I build JetWages outside flying hours, which is also why replies sometimes take a day or two.</p></details>
+      <details><summary>How do I get help?</summary><p>Send a message through the feedback form, or email support@jetwages.com. It comes straight to me.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="band band--ink" id="get">
+  <div class="wrap final">
+    <h2 class="h2">Stop guessing what payday looks like.</h2>
+    <p class="sub">Register your interest for updates, or dive into the setup guide if you’ve already got the app.</p>
+    <div class="badges">
+      <a href="https://forms.gle/ZkhTi6NesawTjP6Z8" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+        <span><b>Sign up</b><i>Get early updates</i></span>
+      </a>
+      <a href="instructions.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span><b>Instructions</b><i>Setup &amp; how to use</i></span>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="brand" href="#top"><img src="graphics/icon.png" alt="" width="34" height="34"> JetWages</a>
+        <p class="fnote">Pay tracking for cabin crew. A personal side project, built outside flying hours.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#screens">Screenshots</a></li>
+          <li><a href="instructions.html">Instructions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get involved</h4>
+        <ul>
+          <li><a href="https://forms.gle/ZkhTi6NesawTjP6Z8" target="_blank" rel="noopener">Sign up</a></li>
+          <li><a href="https://forms.gle/E4qjpJhyLT2PMPe8A" target="_blank" rel="noopener">Send feedback</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScAcWgA_KKvXH2CI-DEN1z3xmbIHQARZOvBSw2sKX16zf7-PQ/viewform" target="_blank" rel="noopener">Request your airline</a></li>
+          <li><a href="https://www.buymeacoffee.com/jetwages" target="_blank" rel="noopener">Buy me a coffee</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy &amp; data</a></li>
+          <li><a href="licenses.html">Licences</a></li>
+          <li><a href="mailto:data@jetwages.com">data@jetwages.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© <span id="yr"></span> JetWages. All rights reserved.</span>
+      <span>Not affiliated with easyJet or any airline.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* Theme toggle: auto → light → dark */
+  (function(){
+    var order = ['auto','light','dark'], i = 0, btn = document.getElementById('tgl'), root = document.documentElement;
+    try { var s = localStorage.getItem('jw-theme'); if (s) i = Math.max(0, order.indexOf(s)); } catch(e){}
+    function apply(){
+      var m = order[i];
+      if (m === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', m);
+      btn.textContent = m.charAt(0).toUpperCase() + m.slice(1);
+      try { localStorage.setItem('jw-theme', m); } catch(e){}
+    }
+    apply();
+    btn.addEventListener('click', function(){ i = (i+1) % order.length; apply(); });
+  })();
+
+  /* Scroll reveal */
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -80px 0px' });
+    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  })();
+</script>
 </body>
 </html>

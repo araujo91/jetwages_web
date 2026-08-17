@@ -4,18 +4,23 @@ Static marketing and support pages for JetWages (GitHub Pages–style layout).
 
 ## Main files
 
-- **`index.html`** — Current live landing page: hero, features, links, and a **Privacy, Data & Licenses** section. The privacy and licenses actions sit in a centered **`.policy-btn-row`**: two equal-width buttons side by side on wider viewports, stacked in one column under ~520px (`index.css`).
-- **`indexv2.html`** — Redesigned marketing landing (not yet the live home). Self-contained CSS/JS. Uses real app screenshots from **`screenshots/MainPage/`** and **`graphics/Instructions/`**, app terminology (Pie View, Basic / Sector / Commission / Extras / Deductions, Add Sales, Add Extras), and privacy copy aligned with **`privacy-policy.html`** (on-device storage; PDFs deleted after parse). Primary CTA is sign-up for updates (same form as `index.html`).
-- **`index.css`** — Shared styles for the live landing page, including the policy button row and **`.btn-grad`** (teal→navy gradient CTA using `--grad-a` / `--grad-b`).
-- **`constants-init.js` / `constants.js`** — Site URLs and `data-const` link resolution.
-- **`theme.js`** — Colour theme: follows OS `prefers-color-scheme`, optional `data-theme` override via the **`.theme-toggle`** control (cycles Auto → Light → Dark), persisted in `localStorage` (`jw-theme`). `indexv2.html` embeds its own equivalent toggle.
-- **`instructions.html`** / **`instructions.css`** — Setup guide with the same sticky header, container, cards, buttons, and theme toggle as the landing page; tabbed Quick Setup / Preparation / How to Use content. Screenshots live under **`graphics/Instructions/`** (`Setup/`, `calendarSync/`, `EditDay/`, plus root images for sales, extras, pie view, and dark mode).
-- **`screenshots/MainPage/`** — Landing gallery images (welcome, calendar, stats, pie) used by `index.html` and `indexv2.html`.
+- **`index.html`** — Live marketing landing: hero, how it works, features, screenshots, privacy, FAQ, and signup CTAs. Uses real app screenshots from **`screenshots/MainPage/`** and **`graphics/Instructions/`**, plus app terminology (Pie View, Basic / Sector / Commission / Extras / Deductions).
+- **`index.css`** — Stylesheet for the live landing page (extracted from the page; not inlined). Shares the site design tokens (light/dark).
+- **`constants-init.js` / `constants.js`** — Site URLs and `data-const` link resolution (used by supporting pages and archived copies).
+- **`theme.js`** — Colour theme helper for pages that use the shared `.theme-toggle` control. The live landing embeds its own Auto → Light → Dark toggle in-page.
+- **`instructions.html`** / **`instructions.css`** — Setup guide with sticky header, cards, and theme toggle; tabbed Quick Setup / Preparation / How to Use. Screenshots under **`graphics/Instructions/`**.
+- **`screenshots/MainPage/`** — Landing gallery images (welcome, calendar, stats, pie).
 - **`privacy-policy.html`**, **`licenses.html`** — Supporting pages with their own CSS (`privacy-policy.css`, **`licenses.css`**) using the same design tokens.
+
+## Archive (kept in git, not published)
+
+- **`_archive/`** — Previous landing and privacy pages (`index.html`, `index.css`, `privacy-policy.html`), kept for reference only.
+- On **GitHub Pages** (Jekyll), folders that start with `_` are **not published**, so these files stay in the repo but are not available online. Do **not** add a root `.nojekyll` file, or the archive would become public.
+- Archived HTML includes `noindex, nofollow` as a backup if the folder is ever served by a non-Jekyll host. Asset paths point at the live site root via `../`.
 
 ## Design-system colour palette
 
-All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-policy.css`) share the same CSS variables. Theme follows **`prefers-color-scheme`**, and can be forced with **`data-theme="light"`** or **`data-theme="dark"`** on `<html>` (set by `theme.js`).
+All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-policy.css`) share the same CSS variables. Theme follows **`prefers-color-scheme`**, and can be forced with **`data-theme="light"`** or **`data-theme="dark"`** on `<html>`.
 
 | Token | Role |
 | --- | --- |
@@ -32,7 +37,8 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 
 ## Latest change
 
-- Updated **`indexv2.html`** to use real screenshots (`graphics/icon.png`, `screenshots/MainPage/*`, `graphics/Instructions/*`) instead of missing `app/` placeholders; replaced faux PDF mocks and invented pay figures with actual app screens; aligned marketing copy with app language and the privacy policy; CTAs point at the updates signup form and instructions rather than placeholder store links.
+- Moved live landing styles out of an inline `<style>` block into **`index.css`**.
+- Relocated the previous landing (`indexarchived.html`) and archived privacy page into **`_archive/`** (with their stylesheet) so they remain in git but are excluded from GitHub Pages publishing.
 
 
 ### Day-to-day workflow
