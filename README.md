@@ -37,8 +37,7 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 
 ## Latest change
 
-- Moved live landing styles out of an inline `<style>` block into **`index.css`**.
-- Relocated the previous landing (`indexarchived.html`) and archived privacy page into **`_archive/`** (with their stylesheet) so they remain in git but are excluded from GitHub Pages publishing.
+- Header **Get updates** button on small screens: label stays on one line (`white-space: nowrap`) and the font/padding scale down with viewport width instead of wrapping and stretching the bar. Nav gaps also tighten once the desktop links hide.
 
 
 ### Day-to-day workflow

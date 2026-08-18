@@ -1,6 +1,4 @@
-/* ============================================================
-   TOKENS
-   ============================================================ */
+
 :root,
 [data-theme="light"]{
   color-scheme: light;
@@ -44,9 +42,7 @@
   --ink-text:#eef6f3; --ink-muted:#a8c4c2; --ink-line:rgba(255,255,255,.12);
 }
 
-/* ============================================================
-   BASE
-   ============================================================ */
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth; scroll-padding-top:78px}
 body{
@@ -76,9 +72,7 @@ h2.h2{font-size:clamp(1.7rem,3.4vw,2.6rem); font-weight:700; text-wrap:balance}
 .skip:focus{left:1rem; top:1rem; z-index:99; background:var(--panel); padding:.6rem .9rem; border-radius:10px}
 :focus-visible{outline:var(--ring); outline-offset:3px; border-radius:8px}
 
-/* ============================================================
-   BUTTONS
-   ============================================================ */
+
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
   min-height:46px; padding:.8rem 1.3rem; border:1px solid transparent; border-radius:12px;
@@ -96,9 +90,7 @@ h2.h2{font-size:clamp(1.7rem,3.4vw,2.6rem); font-weight:700; text-wrap:balance}
 .btn--onink:hover{background:rgba(255,255,255,.18); color:#fff}
 .btn--sm{min-height:40px; padding:.55rem 1rem; font-size:.9rem}
 
-/* ============================================================
-   NAV
-   ============================================================ */
+
 .nav{
   position:sticky; top:0; z-index:50;
   background:color-mix(in oklab,var(--panel) 86%,transparent);
@@ -106,22 +98,25 @@ h2.h2{font-size:clamp(1.7rem,3.4vw,2.6rem); font-weight:700; text-wrap:balance}
   border-bottom:1px solid var(--border-muted);
 }
 .nav__in{display:flex; align-items:center; gap:1.2rem; padding:.7rem 0}
-.brand{display:flex; align-items:center; gap:.6rem; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.1rem; color:var(--text)}
+.brand{display:flex; align-items:center; gap:.6rem; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.1rem; color:var(--text); flex:none}
 .brand:hover{text-decoration:none}
 .brand img{width:34px; height:34px; border-radius:9px; flex:none}
 .nav__links{display:flex; gap:.2rem; margin-left:auto}
 .nav__links a{color:var(--muted); font-size:.94rem; font-weight:500; padding:.5rem .75rem; border-radius:9px}
 .nav__links a:hover{color:var(--text); background:var(--surface-muted); text-decoration:none}
-.nav__act{display:flex; align-items:center; gap:.5rem; margin-left:.4rem}
+.nav__act{display:flex; align-items:center; gap:.5rem; margin-left:.4rem; min-width:0}
+.nav__act .btn--sm{
+  white-space:nowrap; flex:0 1 auto; min-width:0; line-height:1.2;
+  font-size:clamp(.68rem, .28rem + 2.2vw, .9rem);
+  padding-inline:clamp(.45rem, 1.6vw, 1rem);
+}
 .tgl{
   min-height:40px; padding:.45rem .75rem; border:1px solid var(--border); border-radius:10px;
   background:var(--surface-muted); color:var(--text); font:600 .85rem 'DM Sans',sans-serif; cursor:pointer;
 }
 .tgl:hover{border-color:var(--brand); color:var(--brand-2)}
 
-/* ============================================================
-   PHONE FRAME (shared)
-   ============================================================ */
+
 .phone{
   position:relative; border-radius:26px; overflow:hidden;
   background:#0b1c28; border:1px solid rgba(255,255,255,.14);
@@ -130,9 +125,7 @@ h2.h2{font-size:clamp(1.7rem,3.4vw,2.6rem); font-weight:700; text-wrap:balance}
 .phone img{width:100%; height:100%; object-fit:cover; object-position:top}
 .band--panel .phone,.band .phone{border-color:var(--border)}
 
-/* ============================================================
-   HERO
-   ============================================================ */
+
 .hero{
   background:linear-gradient(135deg,var(--ink-a) 0%,var(--ink-b) 62%,#0c2438 100%);
   color:var(--ink-text); position:relative; overflow:hidden;
@@ -166,17 +159,13 @@ h2.h2{font-size:clamp(1.7rem,3.4vw,2.6rem); font-weight:700; text-wrap:balance}
 }
 .stage .phone--float img{object-position:top center}
 
-/* ============================================================
-   PROOF STRIP
-   ============================================================ */
+
 .strip{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border-muted); border-block:1px solid var(--border-muted)}
 .strip>div{background:var(--panel); padding:1.6rem 1.3rem}
 .strip b{display:block; font-family:'Space Grotesk',sans-serif; font-size:1.5rem; font-weight:700; color:var(--text)}
 .strip span{font-size:.86rem; color:var(--muted)}
 
-/* ============================================================
-   PROBLEM
-   ============================================================ */
+
 .qs{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:.65rem; margin-top:2.2rem}
 .q{
   display:flex; align-items:center; gap:.7rem; padding:.85rem 1rem;
@@ -191,9 +180,7 @@ h2.h2{font-size:clamp(1.7rem,3.4vw,2.6rem); font-weight:700; text-wrap:balance}
 .q--ok{color:var(--text)}
 .q--ok::before{content:"✓"; background:color-mix(in oklab,var(--green) 16%,transparent); color:var(--green)}
 
-/* ============================================================
-   STEPS
-   ============================================================ */
+
 .steps{display:grid; gap:clamp(2.5rem,5vw,4.5rem); margin-top:3rem}
 .step{display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.8rem,4vw,3.5rem); align-items:center}
 .step:nth-child(even) .step__art{order:-1}
@@ -207,9 +194,7 @@ h2.h2{font-size:clamp(1.7rem,3.4vw,2.6rem); font-weight:700; text-wrap:balance}
 .step__art{display:flex; justify-content:center}
 .step__art .phone{width:min(268px,80%)}
 
-/* ============================================================
-   CONTRAST
-   ============================================================ */
+
 .vs{display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:2.5rem}
 .vs__col{padding:1.7rem; border-radius:var(--radius); border:1px solid var(--border-muted); background:var(--panel)}
 .vs__col--win{border-color:color-mix(in oklab,var(--brand) 45%,var(--border)); background:linear-gradient(150deg,color-mix(in oklab,var(--primary-muted) 42%,var(--panel)),var(--panel))}
@@ -221,9 +206,8 @@ h2.h2{font-size:clamp(1.7rem,3.4vw,2.6rem); font-weight:700; text-wrap:balance}
 .tick--no{background:color-mix(in oklab,var(--red) 14%,transparent); color:var(--red)}
 .tick--yes{background:color-mix(in oklab,var(--green) 18%,transparent); color:var(--green)}
 
-/* ============================================================
-   FEATURES / GALLERY
-   ============================================================ */
+
+
 .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.1rem; margin-top:2.4rem}
 .card{background:var(--panel); border:1px solid var(--border-muted); border-radius:var(--radius); padding:1.6rem; transition:border-color .15s ease, transform .15s ease}
 .card:hover{border-color:var(--brand); transform:translateY(-2px)}
@@ -238,9 +222,7 @@ h2.h2{font-size:clamp(1.7rem,3.4vw,2.6rem); font-weight:700; text-wrap:balance}
 .shot b{display:block; font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600}
 .shot span{font-size:.88rem; color:var(--muted)}
 
-/* ============================================================
-   CALLOUT / ABOUT / PRIVACY / FAQ / CTA / FOOTER
-   ============================================================ */
+
 .callout{
   display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.2rem;
   padding:1.5rem 1.7rem; border-radius:var(--radius);
@@ -290,9 +272,7 @@ footer{background:var(--panel); border-top:1px solid var(--border-muted); paddin
 .fnote{color:var(--muted); font-size:.9rem; margin-top:1rem; max-width:34ch}
 .fbot{margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--border-muted); display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; color:var(--muted); font-size:.85rem}
 
-/* ============================================================
-   REVEAL + RESPONSIVE + MOTION
-   ============================================================ */
+
 .rv{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease}
 .rv.in{opacity:1; transform:none}
 
@@ -303,6 +283,9 @@ footer{background:var(--panel); border-top:1px solid var(--border-muted); paddin
   .gallery{grid-template-columns:repeat(2,1fr)}
   .fgrid{grid-template-columns:1fr 1fr}
   .nav__links{display:none}
+  .nav__in{gap:.55rem}
+  .nav__act{margin-left:auto; gap:.35rem}
+  .tgl{flex:none; padding:.4rem .6rem}
   .stage{padding-bottom:0; display:grid; gap:1.4rem; justify-items:center; min-height:0}
   .stage .phone--main,.stage .phone--float{width:min(280px,68%); margin:0; position:static; transform:none}
   .stage .phone--float{order:-1}
