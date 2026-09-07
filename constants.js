@@ -1,12 +1,19 @@
 // Centralized link and contact constants for the site
 // Update values here and all pages will use the new values at runtime.
 const JETWAGES_CONSTANTS = {
-  email: 'data@jetwagess.com',
+  email: 'data@jetwages.com',
+  companyName: 'JetWages Ltd',
+  companyNumber: '12345678',
+  registeredOffice: '71-75 Shelton Street, Covent Garden, London, WC2H 9JQ',
   website: 'https://www.jetwages.com/',
   unsubscribe: 'https://forms.gle/hCsRM63qbmw8vkt77',
   subscribe: 'https://forms.gle/ZkhTi6NesawTjP6Z8',
   feedback: 'https://forms.gle/E4qjpJhyLT2PMPe8A',
   airlineRequest: 'https://docs.google.com/forms/d/e/1FAIpQLScAcWgA_KKvXH2CI-DEN1z3xmbIHQARZOvBSw2sKX16zf7-PQ/viewform', 
+  companyName: 'JetWages Ltd',
+  companyNumber: '12345678',
+  registeredOffice: '71-75 Shelton Street, Covent Garden, London, WC2H 9JQ',
+  // ...
 };
 
 // Expose for other scripts
