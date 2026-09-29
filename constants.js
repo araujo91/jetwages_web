@@ -3,7 +3,7 @@
 const JETWAGES_CONSTANTS = {
   email: 'data@jetwages.com',
   companyName: 'JetWages Ltd',
-  companyNumber: '12345678',
+  companyNumber: '16943035',
   registeredOffice: '71-75 Shelton Street, Covent Garden, London, WC2H 9JQ',
   website: 'https://www.jetwages.com/',
   unsubscribe: 'https://forms.gle/hCsRM63qbmw8vkt77',

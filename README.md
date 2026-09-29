@@ -10,7 +10,8 @@ Static marketing and support pages for JetWages (GitHub Pages–style layout).
 - **`theme.js`** — Colour theme helper for pages that use the shared `.theme-toggle` control. The live landing embeds its own Auto → Light → Dark toggle in-page.
 - **`instructions.html`** / **`instructions.css`** — Setup guide with sticky header, cards, and theme toggle; tabbed Quick Setup / Preparation / How to Use. Screenshots under **`graphics/Instructions/`**.
 - **`screenshots/MainPage/`** — Landing gallery images (welcome, calendar, stats, pie).
-- **`privacy-policy.html`**, **`licenses.html`** — Supporting pages with their own CSS (`privacy-policy.css`, **`licenses.css`**) using the same design tokens.
+- **`privacy-policy.html`**, **`terms.html`**, **`licenses.html`** — Supporting pages with their own CSS (`privacy-policy.css` is shared by privacy and terms; **`licenses.css`**) using the same design tokens.
+- **`privacy-policy.md`** — Markdown source of the privacy & data policy (keep in step with the HTML).
 
 ## Archive (kept in git, not published)
 
@@ -37,7 +38,11 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 
 ## Latest change
 
-- Header **Get updates** button on small screens: label stays on one line (`white-space: nowrap`) and the font/padding scale down with viewport width instead of wrapping and stretching the bar. Nav gaps also tighten once the desktop links hide.
+- **Privacy:** Encrypted and online backups include the tax code, student loan, and National Insurance category. A plain backup file still leaves them out. The sign-in token stays on the phone. Fingerprint or Face ID is optional in the app settings, for anyone, because pay stays on the phone. Last updated 29 September 2026.
+
+- **Privacy:** Tax code, student loan, and National Insurance category stay on the phone. Pie View can download public UK rate tables from `tax.jetwages.com`; that request sends no personal details and the service stores none.
+
+- **Terms of Use** (`terms.html`) and **Privacy & Data Policy** updated for the live app: optional JetWages account (staff number), Swap board, Friends (E2E clocks), PDF parsing, calendar/camera permissions, and store subscriptions. Creating or signing into an account means the user accepts the current terms and data policy; pay tracking still works without an account. Landing privacy cards, FAQ, and “on your device” copy no longer say there is no login.
 
 
 ### Day-to-day workflow
