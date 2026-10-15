@@ -83,12 +83,17 @@ const JW_CONSTANTS = {
 
     ]
   },
-  airlineCountrySupport : {
-      "easyJet": {
-    UK:   "fully",
-    EU:   "partial",
-    CH:   "none",
-    OTHER:"none"
+  // Per-airline base overrides. A value is "fully" | "partial" | "none",
+  // or { status, note }. note is the sentence shown for partial support.
+  airlineCountrySupport: {
+    easyJet: {
+      UK: "fully",
+      EU: {
+        status: "partial",
+        note: "easyJet in the EU is only partly supported. Supplementary payslips are read for France and Portugal."
+      },
+      CH: "none",
+      OTHER: "none"
     }
   }
 };

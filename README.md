@@ -6,7 +6,7 @@ Static marketing and support pages for JetWages (GitHub Pages–style layout).
 
 - **`index.html`** — Live marketing landing: hero, how it works, features, screenshots, privacy, FAQ, and signup CTAs. Uses real app screenshots from **`screenshots/MainPage/`** and **`graphics/Instructions/`**, plus app terminology (Pie View, Basic / Sector / Commission / Extras / Deductions).
 - **`index.css`** — Stylesheet for the live landing page (extracted from the page; not inlined). Shares the site design tokens (light/dark).
-- **`constants-init.js` / `constants.js`** — Site URLs and `data-const` link resolution (used by supporting pages and archived copies).
+- **`constants-init.js` / `constants.js`** — Site URLs, `data-const` link resolution, and the landing-page airline checker. Support levels live in `constants.js` (`airlineGroups`, `airlineCountrySupport`).
 - **`theme.js`** — Colour theme helper for pages that use the shared `.theme-toggle` control. The live landing embeds its own Auto → Light → Dark toggle in-page.
 - **`instructions.html`** / **`instructions.css`** — Setup guide with sticky header, cards, and theme toggle; tabbed Quick Setup / Preparation / How to Use. Screenshots under **`graphics/Instructions/`**.
 - **`screenshots/MainPage/`** — Landing gallery images (welcome, calendar, stats, pie).
@@ -37,6 +37,8 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 | `--on-primary` | Text on brand (or accent) fills — navy in light, `#0d2130` in dark |
 
 ## Latest change
+
+- **Airline checker:** The landing page asks for an airline, and for a base when that airline differs by country. It says whether support works, partly works, or is not available yet. An unsupported name opens the request form with the airline filled in. The list is in `constants.js`.
 
 - **Privacy:** Encrypted and online backups include the tax code, student loan, and National Insurance category. A plain backup file still leaves them out. The sign-in token stays on the phone. Fingerprint or Face ID is optional in the app settings, for anyone, because pay stays on the phone. Last updated 29 September 2026.
 

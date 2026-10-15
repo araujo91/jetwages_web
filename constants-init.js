@@ -44,152 +44,238 @@
   }
 })();
 
-/////////////////Drop down menu//////////////////////////
+///////////////// Airline checker //////////////////////////
 
-// 1) Define airline groups by support level (from constants.js)
 const airlineGroups = window.JW_CONSTANTS?.airlineGroups || { fully: [], partial: [], none: [] };
-
-// 1.1) Per-country overrides (also from constants.js)
 const airlineCountrySupport = window.JW_CONSTANTS?.airlineCountrySupport || {};
 
-// 2) Messages per group
-const statusMessages = {
-  fully:  "✅ Fully works",
-  partial:"🟡 Partially works",
-  none:   "🔴 Not available yet"
-};
-
-// 2.1) Google Form field ID – your “Airline name” entry ID
 const GOOGLE_FORM_AIRLINE_FIELD = "entry.1827504543";
 
-// 2.2) Helper: update the request link with a prefilled airline name
+const COUNTRY_LABELS = {
+  UK: "United Kingdom",
+  EU: "European Union (non-UK)",
+  CH: "Switzerland",
+  OTHER: "Other"
+};
+
+const PLACE_PHRASES = {
+  UK: "the UK",
+  EU: "the EU",
+  CH: "Switzerland",
+  OTHER: "other bases"
+};
+
+const COUNTRY_ORDER = ["UK", "EU", "CH", "OTHER"];
+
 function updateRequestLink(airlineName) {
   const link = document.getElementById("airlineRequestLink");
   if (!link || !airlineName) return;
 
   let baseHref = link.getAttribute("data-base-href");
   if (!baseHref) {
-    baseHref = link.href.split("?")[0]; // remove any tracking params e.g. ?usp=header
+    baseHref = link.href.split("?")[0];
     link.setAttribute("data-base-href", baseHref);
   }
 
-  const encoded = encodeURIComponent(airlineName);
-  link.href = `${baseHref}?${GOOGLE_FORM_AIRLINE_FIELD}=${encoded}`;
+  link.href = baseHref + "?" + GOOGLE_FORM_AIRLINE_FIELD + "=" + encodeURIComponent(airlineName);
 }
 
-// 3) Helper — match by name OR ICAO code
 function airlineMatches(entry, query) {
   const q = query.toLowerCase();
   if (entry.name && entry.name.toLowerCase() === q) return true;
-  if (entry.codes?.some(code => code.toLowerCase() === q)) return true;
+  if (entry.codes && entry.codes.some(function (code) { return code.toLowerCase() === q; })) return true;
   return false;
 }
 
-// 4) Helper — return status key (fully / partial / none / null)
-function getStatusKey(airlineName, countryCode) {
-  if (!airlineName) return null;
-  const name = airlineName.trim();
-
-  // 1) Per-country override, if it exists
-  const perCountry = airlineCountrySupport[name];
-  if (perCountry && countryCode) {
-    const statusForCountry = perCountry[countryCode];
-    if (statusForCountry) return statusForCountry;
-  }
-
-  // 2) Fallback to base airlineGroups
-  for (const [statusKey, list] of Object.entries(airlineGroups)) {
-    if (list.some(entry => airlineMatches(entry, name))) {
-      return statusKey;
+function findAirline(query) {
+  const name = String(query || "").trim();
+  if (!name) return null;
+  const groups = ["fully", "partial", "none"];
+  for (let i = 0; i < groups.length; i++) {
+    const statusKey = groups[i];
+    const list = airlineGroups[statusKey] || [];
+    for (let j = 0; j < list.length; j++) {
+      if (airlineMatches(list[j], name)) {
+        return { statusKey: statusKey, entry: list[j], query: name };
+      }
     }
   }
+  return { statusKey: null, entry: null, query: name };
+}
 
-  // 3) Unknown airline
+function normalizeStatus(value) {
+  if (typeof value === "string") return { status: value, note: "" };
+  if (value && typeof value.status === "string") {
+    return { status: value.status, note: typeof value.note === "string" ? value.note : "" };
+  }
   return null;
 }
 
-// Run after DOM is ready
-document.addEventListener("DOMContentLoaded", () => {
-  const input     = document.getElementById("airlineSelect");
-  const countryEl = document.getElementById("airlineCountry");
-  const result    = document.getElementById("airlineResult");
-  const reqLine   = document.getElementById("airlineRequest");
-  const nameSpan  = document.getElementById("airlineNamePlaceholder");
-  const checkBtn  = document.getElementById("airlineCheckBtn");
+function countryKeys(support) {
+  return Object.keys(support).sort(function (a, b) {
+    const ia = COUNTRY_ORDER.indexOf(a);
+    const ib = COUNTRY_ORDER.indexOf(b);
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+  });
+}
 
-  if (!input || !result || !checkBtn) return;
+function supportFor(airline) {
+  if (!airline || !airline.entry) return null;
+  return airlineCountrySupport[airline.entry.name] || null;
+}
+
+function statusFor(airline, countryCode) {
+  if (!airline || !airline.entry) return { status: null, note: "" };
+  const support = supportFor(airline);
+  if (support) {
+    if (!countryCode) return { status: "need-country", note: "" };
+    const parsed = normalizeStatus(support[countryCode]);
+    if (parsed) return parsed;
+    return { status: "none", note: "" };
+  }
+  return {
+    status: airline.statusKey,
+    note: typeof airline.entry.note === "string" ? airline.entry.note : ""
+  };
+}
+
+function messageFor(displayName, status, note, countryCode) {
+  if (status === "need-country") return "Choose where you are based.";
+  if (status === "partial") {
+    if (note) return note;
+    const place = PLACE_PHRASES[countryCode];
+    return place
+      ? displayName + " in " + place + " is only partly supported."
+      : displayName + " is only partly supported.";
+  }
+  if (status === "fully") {
+    const place = PLACE_PHRASES[countryCode];
+    return place
+      ? displayName + " in " + place + " is supported."
+      : displayName + " is supported.";
+  }
+  return "Not available yet.";
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const input = document.getElementById("airlineSelect");
+  const countryWrap = document.getElementById("airlineCountryWrap");
+  const countryEl = document.getElementById("airlineCountry");
+  const result = document.getElementById("airlineResult");
+  const reqLine = document.getElementById("airlineRequest");
+  const nameSpan = document.getElementById("airlineNamePlaceholder");
+  const form = document.getElementById("airlineCheckerForm");
+
+  if (!input || !result || !form) return;
+
+  function hideRequest() {
+    if (reqLine) reqLine.hidden = true;
+  }
+
+  function showRequest(airlineName) {
+    if (!reqLine || !nameSpan) return;
+    nameSpan.textContent = airlineName;
+    updateRequestLink(airlineName);
+    reqLine.hidden = false;
+  }
+
+  function syncCountryField(airline) {
+    if (!countryWrap || !countryEl) return false;
+    const support = supportFor(airline);
+    if (!support) {
+      countryWrap.hidden = true;
+      countryEl.value = "";
+      countryEl.dataset.keys = "";
+      return false;
+    }
+
+    const keys = countryKeys(support);
+    const keyList = keys.join(",");
+    if (countryEl.dataset.keys !== keyList) {
+      const previous = countryEl.value;
+      countryEl.replaceChildren();
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = "Select a base";
+      countryEl.appendChild(placeholder);
+      keys.forEach(function (key) {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = COUNTRY_LABELS[key] || key;
+        countryEl.appendChild(option);
+      });
+      countryEl.value = keys.indexOf(previous) !== -1 ? previous : "";
+      countryEl.dataset.keys = keyList;
+    }
+
+    countryWrap.hidden = false;
+    return true;
+  }
+
+  function clearResult() {
+    result.textContent = "";
+    result.removeAttribute("data-status");
+    hideRequest();
+  }
 
   function recomputeAirlineStatus() {
-    const airline = input.value.trim();
-    const country = countryEl ? countryEl.value : "";
+    const airline = findAirline(input.value);
+    syncCountryField(airline);
 
     if (!airline) {
-      result.textContent = "";
-      reqLine.style.display = "none";
+      clearResult();
       return;
     }
 
-    const statusKey = getStatusKey(airline, country);
+    const country = countryEl ? countryEl.value : "";
+    const outcome = statusFor(airline, country);
+    const displayName = airline.entry ? airline.entry.name : airline.query;
 
-    if (statusKey) {
-      // Known airline
-      result.textContent = statusMessages[statusKey];
-      result.style.color = "var(--text)";
-
-      if (statusKey === "none") {
-        // Unsupported → show nudge
-        nameSpan.textContent = airline;
-        updateRequestLink(airline);
-        reqLine.style.display = "block";
-      } else {
-        // fully or partial
-        reqLine.style.display = "none";
-      }
-
+    result.textContent = messageFor(displayName, outcome.status, outcome.note, country);
+    if (outcome.status === "fully" || outcome.status === "partial" || outcome.status === "none" || outcome.status == null) {
+      result.setAttribute("data-status", outcome.status || "none");
     } else {
-      // Unknown airline
-      result.textContent = "❓ Unknown airline or code — support not available yet";
-      result.style.color = "var(--muted)";
-      nameSpan.textContent = airline;
-      updateRequestLink(airline);
-      reqLine.style.display = "block";
+      result.removeAttribute("data-status");
+    }
+
+    if (outcome.status === "none" || outcome.status == null) {
+      showRequest(displayName);
+    } else {
+      hideRequest();
     }
   }
 
-    // ✅ Main trigger: explicit button click (works everywhere)
-      checkBtn.addEventListener("click", recomputeAirlineStatus);
+  input.addEventListener("input", function () {
+    syncCountryField(findAirline(input.value));
+    clearResult();
+  });
 
-      // Optional niceties:
-      // Recompute if country changes or user presses Enter in the box
-      if (countryEl) {
-        countryEl.addEventListener("change", recomputeAirlineStatus);
-      }
-      input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          recomputeAirlineStatus();
-        }
-      });
+  if (countryEl) {
+    countryEl.addEventListener("change", function () {
+      if (input.value.trim()) recomputeAirlineStatus();
+    });
+  }
 
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    recomputeAirlineStatus();
+  });
 
-  // Autogenerate datalist from constants.js
-  (function buildAirlineDataList() {
-    const datalist = document.getElementById("airlines");
-    if (!datalist) return;
+  syncCountryField(findAirline(input.value));
 
-    const airlines = [
-      ...airlineGroups.fully,
-      ...airlineGroups.partial,
-      ...airlineGroups.none
-    ];
-
-    airlines.forEach(a => {
+  const datalist = document.getElementById("airlineList");
+  if (datalist) {
+    const airlines = []
+      .concat(airlineGroups.fully || [])
+      .concat(airlineGroups.partial || [])
+      .concat(airlineGroups.none || []);
+    airlines.forEach(function (airline) {
       const option = document.createElement("option");
-      option.value = a.name;
-      if (a.codes?.[0]) option.textContent = `${a.name} (${a.codes[0]})`;
+      option.value = airline.name;
+      if (airline.codes && airline.codes[0]) option.label = airline.name + " (" + airline.codes[0] + ")";
       datalist.appendChild(option);
     });
-  })();
+  }
 });
 
-///////////////////////End of dropdown menu///////////////////////////////////
+/////////////////////// End of airline checker //////////////////////////

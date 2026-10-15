@@ -271,14 +271,33 @@
 </section>
 
 
-<section class="band">
+<section class="band" id="airline-support">
   <div class="wrap">
-    <div class="callout rv">
-      <div>
+    <div class="callout checker rv">
+      <div class="checker__copy">
         <h3>Airline support</h3>
-        <p>JetWages currently supports <b>easyJet UK</b>. More airlines are on the way.  Tell me which one you fly for and help me add it and the tools you need.</p>
+        <p>easyJet in the UK is supported. Type your airline to see if it works, and request it if it does not.</p>
       </div>
-      <a class="btn btn--primary" href="https://docs.google.com/forms/d/e/1FAIpQLScAcWgA_KKvXH2CI-DEN1z3xmbIHQARZOvBSw2sKX16zf7-PQ/viewform" target="_blank" rel="noopener">Request your airline</a>
+      <form class="checker__form" id="airlineCheckerForm">
+        <label for="airlineSelect">Airline name or code</label>
+        <input id="airlineSelect" name="airlineSelect" list="airlineList" placeholder="e.g. easyJet or EZY">
+        <datalist id="airlineList"></datalist>
+        <div class="checker__country" id="airlineCountryWrap" hidden>
+          <label for="airlineCountry">Where are you based?</label>
+          <select id="airlineCountry" name="airlineCountry">
+            <option value="">Select a base</option>
+            <option value="UK">United Kingdom</option>
+            <option value="EU">European Union (non-UK)</option>
+            <option value="CH">Switzerland</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </div>
+        <button type="submit" id="airlineCheckBtn" class="btn btn--primary">Check</button>
+        <p id="airlineResult" class="checker__result" role="status" aria-live="polite"></p>
+        <p id="airlineRequest" class="checker__request" hidden>
+          <a data-const="airlineRequest" id="airlineRequestLink" href="https://docs.google.com/forms/d/e/1FAIpQLScAcWgA_KKvXH2CI-DEN1z3xmbIHQARZOvBSw2sKX16zf7-PQ/viewform" target="_blank" rel="noopener">Request support for “<span id="airlineNamePlaceholder"></span>”</a>
+        </p>
+      </form>
     </div>
   </div>
 </section>
@@ -306,7 +325,7 @@
     <h2 class="h2 rv">Questions crew usually ask.</h2>
     <div class="faq rv">
       <details><summary>Does it cost anything?</summary><p>You can view pay already on your device without paying. Some write features, and Swap or Friends, may need a subscription through the App Store or Google Play. If it’s helped you, a coffee on this page is optional and separate.</p></details>
-      <details><summary>Which airlines are supported?</summary><p>easyJet UK for now. Support for other airlines depends on getting hold of their payslip and roster formats, so requests genuinely help.</p></details>
+      <details><summary>Which airlines are supported?</summary><p>easyJet in the UK is supported. <a href="#airline-support">Check your airline</a> to see if another one works. Support for other airlines depends on getting hold of their payslip and roster formats, so requests genuinely help.</p></details>
       <details><summary>What do you do with my payslip?</summary><p>It’s read so the app can work out your pay figures. On iOS (and sometimes Android) the PDF is sent to a secure parsing server, then deleted. Your roster and pay history stay on your device. Full detail is in the privacy policy.</p></details>
       <details><summary>Where is my data stored?</summary><p>Pay, roster, sales and settings stay on your device. Optional encrypted cloud backup is stored on backup.jetwages.com in a form we cannot read. Swap and Friends use an optional JetWages account (staff number). Creating that account means you accept the Terms of Use and Privacy &amp; Data Policy. You can also export a JSON backup from Settings as a plain file or an encrypted envelope.</p></details>
       <details><summary>Do I have to upload every month?</summary><p>A new supplementary payslip easch month to ensure saes commission is paid correctly.</p></details>
@@ -408,5 +427,7 @@
     document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
   })();
 </script>
+<script src="constants.js"></script>
+<script src="constants-init.js"></script>
 </body>
 </html>
