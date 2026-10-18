@@ -11,7 +11,7 @@ Static marketing and support pages for JetWages (GitHub Pages–style layout).
 - **`instructions.html`** / **`instructions.css`** — Setup guide with sticky header, cards, and theme toggle; tabbed Quick Setup / Preparation / How to Use. Screenshots under **`graphics/Instructions/`**.
 - **`screenshots/MainPage/`** — Landing gallery images (welcome, calendar, stats, pie).
 - **`privacy-policy.html`**, **`terms.html`**, **`licenses.html`** — Supporting pages with their own CSS (`privacy-policy.css` is shared by privacy and terms; **`licenses.css`**) using the same design tokens.
-- **`shares.html`** — Standalone Sharesave takeover calculator. One page, no site nav. Enter a monthly SAYE amount for SAYE24, SAYE25 and SAYE26, pick an expected Effective Date month, and compare Choice A (exercise on Court Sanction) with Choice B (exercise about 20 days later). Amounts stay in `localStorage` under `saye-calc-v3`. Figures are before tax and assume every contribution was paid.
+- **`shares.html`** — Standalone Sharesave takeover calculator. A JetWages banner at the top and bottom links to [jetwages.com](https://www.jetwages.com/), with **Click to join** opening the same signup form as the landing page. Enter a monthly SAYE amount for SAYE24, SAYE25 and SAYE26, pick an expected Effective Date month, and compare Choice A (exercise on Court Sanction) with Choice B (exercise about 20 days later). Amounts stay in `localStorage` under `saye-calc-v3`. Figures are before tax and assume every contribution was paid.
 - **`privacy-policy.md`** — Markdown source of the privacy & data policy (keep in step with the HTML).
 
 ## Archive (kept in git, not published)
@@ -39,7 +39,7 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 
 ## Latest change
 
-- **Sharesave calculator** (`shares.html`): plainer layout using the site colours and type. One short note, flat scheme rows, and the worked example tucked under “How to calculate it yourself”. The sums are unchanged.
+- **Sharesave calculator** (`shares.html`): the script uses ordinary names (`monthlySavings`, `paymentsAtSanction`, `compensationMonths`). The sums are unchanged. Each banner still has **Click to join**.
 
 - **Airline checker:** The landing page asks for an airline, and for a base when that airline differs by country. It says whether support works, partly works, or is not available yet. An unsupported name opens the request form with the airline filled in. The list is in `constants.js`.
 
