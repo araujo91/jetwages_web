@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Estimate what easyJet SAYE options could pay if the takeover completes.">
+<title>Sharesave Takeover Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f5f7fb; --panel:#fff; --text:#0e2a47; --muted:#5b6b7a;
+  --line:#d0d7e0; --brand:#1f8df2; --soft:#eef2f7;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0d2130; --panel:#123146; --text:#e9eef6; --muted:#aebccb;
+    --line:#1e3d54; --brand:#7cc6ff; --soft:#0a1e2c;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0d2130; --panel:#123146; --text:#e9eef6; --muted:#aebccb;
+  --line:#1e3d54; --brand:#7cc6ff; --soft:#0a1e2c;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.5 "DM Sans", system-ui, sans-serif;
+}
+h1,h2,h3{font-family:"Space Grotesk","DM Sans",sans-serif; letter-spacing:-.02em; line-height:1.2; margin:0}
+p{margin:0}
+a{color:var(--brand)}
+a[href^="tel:"]{white-space:nowrap}
+.wrap{
+  width:min(720px, 100% - 32px);
+  margin:0 auto;
+  padding:32px 0 64px;
+  display:flex; flex-direction:column; gap:28px;
+}
+.lede,.note,.hint{color:var(--muted)}
+.note{font-size:.92rem; max-width:62ch}
+h1{font-size:1.7rem}
+h2{font-size:1.05rem}
+.block{display:flex; flex-direction:column; gap:12px}
+.row{display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px}
+label{display:flex; flex-direction:column; gap:4px; font-size:.85rem; color:var(--muted)}
+fieldset{border:0; margin:0; padding:0; display:flex; flex-direction:column; gap:6px}
+legend{font-size:.85rem; color:var(--muted); padding:0}
+.radio{flex-direction:row; align-items:center; gap:8px; color:var(--text); font-size:.95rem; cursor:pointer}
+input,select{
+  font:inherit; color:var(--text); background:var(--panel);
+  border:1px solid var(--line); border-radius:8px; padding:8px 10px; width:100%;
+}
+input{font-variant-numeric:tabular-nums}
+.radio input{width:auto; accent-color:var(--brand)}
+:focus-visible{outline:2px solid var(--brand); outline-offset:2px}
+.hint{font-size:.85rem}
+.scheme{
+  display:grid; gap:8px;
+  padding:14px 0;
+  border-top:1px solid var(--line);
+}
+.scheme:first-child{border-top:0; padding-top:0}
+.scheme-name{font-weight:600}
+.scheme-meta{color:var(--muted); font-size:.85rem}
+.compare{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px}
+.choice{
+  background:var(--panel); border:1px solid var(--line); border-radius:12px;
+  padding:16px; display:flex; flex-direction:column; gap:8px; min-width:0;
+}
+.big{font-family:"Space Grotesk",sans-serif; font-size:1.8rem; font-weight:600; font-variant-numeric:tabular-nums}
+dl{margin:0; display:grid; grid-template-columns:1fr auto; gap:4px 12px; font-size:.9rem}
+dt{color:var(--muted)}
+dd{margin:0; text-align:right; font-variant-numeric:tabular-nums}
+dt.total,dd.total{border-top:1px solid var(--line); padding-top:6px; font-weight:600; color:var(--text)}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse; width:100%; font-size:.88rem; font-variant-numeric:tabular-nums}
+th,td{padding:7px 8px; border-bottom:1px solid var(--line); text-align:right; white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--muted); font-weight:600; font-size:.8rem}
+td:first-child{color:var(--muted); white-space:normal; min-width:180px}
+tr.sum td{border-top:2px solid var(--line); font-weight:600; color:var(--text)}
+h3.sub{margin-top:8px; font-size:.95rem}
+details{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px 16px}
+summary{cursor:pointer; font-weight:600}
+ol,ul{margin:12px 0 0; padding-left:1.2rem; display:flex; flex-direction:column; gap:8px}
+.example{margin-top:12px; background:var(--soft); border-radius:8px; padding:12px; display:flex; flex-direction:column; gap:4px; font-size:.92rem}
+code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9em}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="block">
+    <h1>Sharesave Takeover Calculator</h1>
+    <p class="lede">Estimate what your SAYE options could pay out.</p>
+    <p class="note">Independent tool, not provided by easyJet, Bidco or Equiniti. Figures are estimates, before tax and National Insurance, and assume every monthly contribution has been paid. Frozen payments make these figures too high. Check your own details on the ESP Portal, and call Equiniti on <a href="tel:+443713842796">+44 (0) 371 384 2796</a> before relying on them.</p>
+  </header>
+
+  <section class="block">
+    <h2>Deal dates</h2>
+    <p>Completion is expected by the end of the first quarter of 2027. No Court Sanction date has been set yet.</p>
+    <div class="row">
+      <label for="smonth">Expected month of the Effective Date
+        <select id="smonth">
+          <option value="2027-01">January 2027</option>
+          <option value="2027-02">February 2027</option>
+          <option value="2027-03" selected>March 2027</option>
+          <option value="2027-04">April 2027</option>
+        </select>
+      </label>
+      <fieldset>
+        <legend>Month-end contribution</legend>
+        <label class="radio" for="when-before"><input id="when-before" type="radio" name="when" value="before" checked> Extra contribution</label>
+        <label class="radio" for="when-after"><input id="when-after" type="radio" name="when" value="after"> No extra contribution</label>
+      </fieldset>
+    </div>
+    <p class="hint">Contributions are taken at the end of each month. Court Sanction is usually 1–2 working days before the Effective Date, and Choice B is exercised about 20 days after it. If that 20-day window runs past the end of the month, Choice B picks up that month’s contribution.</p>
+  </section>
+
+  <section class="block">
+    <h2>Your SAYE schemes</h2>
+    <p class="hint">Enter the amount you save each month. Put 0 for any scheme you did not join. Each scheme runs for 3 years (36 payments), from the end of August to the end of July three years later.</p>
+    <div id="grants"></div>
+  </section>
+
+  <section class="block">
+    <h2>Estimated outcome</h2>
+    <div class="compare">
+      <div class="choice" id="cardA"></div>
+      <div class="choice" id="cardB"></div>
+    </div>
+    <p id="diff"></p>
+  </section>
+
+  <section class="block">
+    <h2>Full calculation</h2>
+    <h3 class="sub">Choice A · exercise on Court Sanction</h3>
+    <div class="table-wrap"><table id="tblA"></table></div>
+    <h3 class="sub">Choice B · exercise at end of 20 days</h3>
+    <div class="table-wrap"><table id="tblB"></table></div>
+  </section>
+
+  <details>
+    <summary>How to calculate it yourself</summary>
+    <ol>
+      <li><strong>Count your payments.</strong> Count the monthly payments made before the Effective Date month. Payments start at the end of August of the scheme year and end at the end of July three years later.</li>
+      <li><strong>Work out the amount saved.</strong> Amount saved each month × number of payments.</li>
+      <li><strong>Work out your shares.</strong> Amount saved ÷ your option price (not the £7.15 offer price). Round down to a whole number.</li>
+      <li><strong>Work out what you are paid for your shares.</strong> Shares × £7.15.</li>
+      <li><strong>Work out the savings returned.</strong> Amount saved − (shares × option price).</li>
+      <li><strong>Work out the compensation.</strong> Add the payments left (up to 12) to your amount saved, and divide by your option price to get the shares you could have bought. Take away the shares from step 3, then multiply the extra shares by (£7.15 − option price).</li>
+    </ol>
+    <div class="example">
+      <strong>Example: SAYE24, £100 a month, Effective Date in March 2027</strong>
+      <span>1. Payments from August 2024 to February 2027: <code>31</code></span>
+      <span>2. Amount saved: <code>£100 × 31 = £3,100</code></span>
+      <span>3. Shares: <code>£3,100 ÷ £3.61 = 858</code> (round down)</span>
+      <span>4. Paid for your shares: <code>858 × £7.15 = £6,134.70</code></span>
+      <span>5. Savings left over and returned: <code>£3,100 − (858 × £3.61) = £2.62</code></span>
+      <span>6. Compensation: only 5 payments are left, so <code>£100 × 5 = £500</code> more. Shares with the full £3,600: <code>£3,600 ÷ £3.61 = 997</code>. Extra shares: <code>997 − 858 = 139</code>. Compensation: <code>139 × (£7.15 − £3.61) = £492.06</code></span>
+      <span><strong>Total paid to you: £6,134.70 + £2.62 + £492.06 = £6,629.38</strong></span>
+    </div>
+    <p class="hint" style="margin-top:12px">Any amount saved that is not used to buy shares comes back to you. Choice A must be elected on the ESP Portal by 5pm on 15 November 2026. If you do nothing, the options lapse.</p>
+  </details>
+</main>
+
+<script>
+(function(){
+  var KEY='saye-calc-v3';
+  var OFFER=715;
+  var schemes=[
+    {name:'SAYE24',price:361,start:'2024-08',monthly:0},
+    {name:'SAYE25',price:429,start:'2025-08',monthly:0},
+    {name:'SAYE26',price:400,start:'2026-08',monthly:0}
+  ];
+  try{ var s=JSON.parse(localStorage.getItem(KEY)||'null'); if(Array.isArray(s)) s.forEach(function(v,i){ if(schemes[i]&&typeof v==='number') schemes[i].monthly=v }) }catch(e){}
+
+  function save(){ try{ localStorage.setItem(KEY,JSON.stringify(schemes.map(function(g){return g.monthly}))) }catch(e){} }
+  var MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function monthLabel(v){ var p=v.split('-'); return MONTHS[+p[1]-1]+' '+p[0] }
+  function endLabel(v){ var n=ym(v)+35; return MONTHS[n%12]+' '+Math.floor(n/12) }
+  function $(id){ return document.getElementById(id) }
+  function gbp(n){ return '£'+n.toLocaleString('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2}) }
+  function ym(v){ var p=(v||'').split('-'); return p.length<2?null:(+p[0])*12+(+p[1]-1) }
+  function clamp(n,lo,hi){ return Math.max(lo,Math.min(hi,n)) }
+
+  function monthsAtSanction(start,sanction){
+    var s=ym(start), c=ym(sanction); if(s===null||c===null) return 0;
+    return clamp(c-s,0,36);
+  }
+  function calcScheme(g,mPaid,compMonths){
+    var saved=mPaid*g.monthly;
+    var under=g.price>=OFFER||g.price<=0||g.monthly<=0;
+    var sh=under?0:Math.floor(saved*100/g.price+1e-9);
+    var cash=sh*OFFER/100, cost=sh*g.price/100;
+    var compSaved=compMonths*g.monthly;
+    var compSh=under?0:Math.floor((saved+compSaved)*100/g.price+1e-9)-sh;
+    var comp=compSh*(OFFER-g.price)/100;
+    return {payments:mPaid,saved:saved,shares:sh,cash:cash,cost:cost,profit:cash-cost,returned:saved-cost,
+            compMonths:compMonths,compSaved:compSaved,compShares:compSh,comp:comp,
+            totalProfit:cash-cost+comp,totalPaid:cash+(saved-cost)+comp};
+  }
+  function n0(v){ return v.toLocaleString('en-GB') }
+  function buildTable(id,list){
+    var R=[
+      ['Payments made','payments','n',false],
+      ['Amount saved','saved','£',true],
+      ['Shares bought (amount saved ÷ option price)','shares','n',true],
+      ['Cash for shares (shares × £7.15)','cash','£',true],
+      ['Cost of shares (shares × option price)','cost','£',true],
+      ['Profit on shares (cash − cost)','profit','£',true],
+      ['Amount saved returned (not used)','returned','£',true],
+      ['Compensation months (payments left, max 12)','compMonths','n',false],
+      ['Compensation amount saved (months × monthly)','compSaved','£',true],
+      ['Compensation shares (that amount ÷ option price)','compShares','n',true],
+      ['Compensation (shares × (£7.15 − option price))','comp','£',true],
+      ['Total profit (profit on shares + compensation)','totalProfit','£',true,'sum'],
+      ['Total paid to you (scheme + compensation)','totalPaid','£',true,'sum']
+    ];
+    var cols=[];
+    list.forEach(function(c,i){ if(schemes[i].monthly>0) cols.push(i) });
+    if(!cols.length){ $(id).innerHTML='<tr><td>Enter an amount saved each month for at least one SAYE scheme.</td></tr>'; return }
+    var rows=R.filter(function(r){ return cols.some(function(i){ return Math.abs(list[i][r[1]])>0.0001 }) });
+    var head='<tr><th></th>'+cols.map(function(i){var g=schemes[i];return '<th>'+g.name+'<br>£'+(g.price/100).toFixed(2)+'</th>'}).join('')+'<th>Total</th></tr>';
+    var body=rows.map(function(r){
+      var tot=0;
+      var cells=cols.map(function(i){ var v=list[i][r[1]]; tot+=v; return '<td>'+(r[2]==='£'?gbp(v):n0(v))+'</td>' }).join('');
+      var t=r[3]?(r[2]==='£'?gbp(tot):n0(tot)):'—';
+      return '<tr'+(r[4]?' class="sum"':'')+'><td>'+r[0]+'</td>'+cells+'<td><strong>'+t+'</strong></td></tr>';
+    }).join('');
+    $(id).innerHTML=head+body;
+  }
+
+  function renderSchemes(){
+    var box=$('grants'); box.innerHTML='';
+    schemes.forEach(function(g,i){
+      var id='s'+i;
+      var el=document.createElement('div');
+      el.className='scheme';
+      el.innerHTML=
+        '<div class="scheme-name">'+g.name+'</div>'+
+        '<div class="scheme-meta">Option price £'+(g.price/100).toFixed(2)+' · end of '+monthLabel(g.start)+' to end of '+endLabel(g.start)+'</div>'+
+        '<label for="'+id+'m">Amount saved each month (£)<input id="'+id+'m" type="number" min="0" step="1" value="'+g.monthly+'" data-k="monthly" data-i="'+i+'"></label>'+
+        '<p class="hint" id="'+id+'saved"></p>';
+      box.appendChild(el);
+    });
+  }
+
+  function update(){
+    var sanction=$('smonth').value;
+    var after=$('when-after').checked;
+    var A=[],B=[],notes={under:0};
+    schemes.forEach(function(g,i){
+      var mA=monthsAtSanction(g.start,sanction);
+      var remaining=36-mA;
+      var cA=Math.min(12,remaining);
+      var mB=Math.min(36,mA+(after?0:1));
+      var cB=remaining<12?Math.max(0,36-mB):cA;
+      var a=calcScheme(g,mA,cA), b=calcScheme(g,mB,cB);
+      A.push(a); B.push(b);
+      if(g.price>=OFFER) notes.under++;
+      var sv=$('s'+i+'saved');
+      if(sv) sv.textContent= g.monthly>0
+        ? 'Amount saved by Court Sanction: '+gbp(a.saved)+' ('+mA+' of 36 payments). Full 3-year total would be '+gbp(36*g.monthly)+'.'
+        : 'Not joined.';
+    });
+    buildTable('tblA',A); buildTable('tblB',B);
+    function sum(L,k){ return L.reduce(function(s,c){return s+c[k]},0) }
+    function card(L){
+      return '<dl><dt>Amount saved</dt><dd>'+gbp(sum(L,'saved'))+'</dd>'+
+        '<dt>Cash for shares</dt><dd>'+gbp(sum(L,'cash'))+'</dd>'+
+        '<dt>Cost of shares</dt><dd>−'+gbp(sum(L,'cost'))+'</dd>'+
+        '<dt>Profit on shares</dt><dd>'+gbp(sum(L,'profit'))+'</dd>'+
+        '<dt>Compensation</dt><dd>'+gbp(sum(L,'comp'))+'</dd>'+
+        '<dt class="total">Total profit</dt><dd class="total">'+gbp(sum(L,'totalProfit'))+'</dd>'+
+        '<dt class="total">Total paid to you</dt><dd class="total">'+gbp(sum(L,'totalPaid'))+'</dd></dl>';
+    }
+    var aTotal=sum(A,'totalProfit'), bTotal=sum(B,'totalProfit');
+    $('cardA').innerHTML='<h3>Choice A · Court Sanction</h3>'+
+      '<div class="big">'+gbp(sum(A,'totalPaid'))+'</div><span class="hint">Total paid to you</span>'+card(A)+
+      '<span class="hint">Elect by 5pm, 15 Nov 2026. Paid in the next payroll after the Effective Date.</span>';
+    $('cardB').innerHTML='<h3>Choice B · end of 20 days</h3>'+
+      '<div class="big">'+gbp(sum(B,'totalPaid'))+'</div><span class="hint">Total paid to you</span>'+card(B)+
+      '<span class="hint">You exercise in the window. Paid in the next payroll after you exercise. If you miss the deadline the options lapse and you only get your amount saved back.</span>';
+
+    var diff=bTotal-aTotal, msg;
+    if(after){ msg='With an Effective Date early in the month, the 20-day window closes before the end-of-month contribution, so Choice B picks up no extra contribution. Both choices give the same profit, and Choice A pays sooner.' }
+    else if(diff>0.005){ msg='Choice B adds '+gbp(diff)+', from one extra contribution on SAYE schemes with 12 or more months left at Court Sanction. That is paid later, and you have to exercise yourself before the window closes.' }
+    else { msg='The extra contribution under Choice B comes off your compensation, because your SAYE schemes have less than 12 months left at Court Sanction. Both choices give the same profit, and Choice A pays sooner.' }
+    if(notes.under) msg+=' At least one SAYE scheme has an option price at or above £7.15, so it has no gain.';
+    $('diff').textContent=msg;
+  }
+
+  document.addEventListener('input',function(e){
+    var t=e.target;
+    if(t.dataset&&t.dataset.k){
+      var i=+t.dataset.i, k=t.dataset.k;
+      schemes[i][k]=Math.max(0,parseFloat(t.value)||0);
+      save();
+    }
+    update();
+  });
+  document.addEventListener('change',update);
+  renderSchemes(); update();
+})();
+</script>
+</body>
+</html>
