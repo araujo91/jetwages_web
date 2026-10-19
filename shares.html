@@ -138,13 +138,24 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
           <option value="2027-04">April 2027</option>
         </select>
       </label>
+      <label for="extra-months">Extra months you wish to save under Choice B
+        <select id="extra-months">
+          <option value="0">0 months</option>
+          <option value="1" selected>1 month</option>
+          <option value="2">2 months</option>
+          <option value="3">3 months</option>
+          <option value="4">4 months</option>
+          <option value="5">5 months</option>
+          <option value="6">6 months</option>
+        </select>
+      </label>
       <fieldset>
-        <legend>Month-end contribution</legend>
-        <label class="radio" for="when-before"><input id="when-before" type="radio" name="when" value="before" checked> Extra contribution</label>
-        <label class="radio" for="when-after"><input id="when-after" type="radio" name="when" value="after"> No extra contribution</label>
+        <legend>Compensation under Choice B</legend>
+        <label class="radio" for="compensation-not-reduced"><input id="compensation-not-reduced" type="radio" name="compensation-rule" value="not-reduced" checked> Not reduced by extra months</label>
+        <label class="radio" for="compensation-reduced"><input id="compensation-reduced" type="radio" name="compensation-rule" value="reduced"> Reduced by extra months</label>
       </fieldset>
     </div>
-    <p class="hint">Contributions are taken at the end of each month. Court Sanction is usually 1–2 working days before the Effective Date, and Choice B is exercised about 20 days after it. If that 20-day window runs past the end of the month, Choice B picks up that month’s contribution.</p>
+    <p class="hint">Not reduced: you still get up to 12 months of compensation on top of the extra months you save, but never past your scheme’s final payment. Reduced: the 12 months count from Court Sanction, so each extra month you save comes off the compensation. Contributions are taken at the end of each month. Choice B lets you keep saving after Court Sanction before you exercise. Each extra month adds one more contribution, but it can never go past your scheme’s final payment.</p>
   </section>
 
   <section class="block">
@@ -166,7 +177,7 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
     <h2>Full calculation</h2>
     <h3 class="sub">Choice A · exercise on Court Sanction</h3>
     <div class="table-wrap"><table id="tblA"></table></div>
-    <h3 class="sub">Choice B · exercise at end of 20 days</h3>
+    <h3 class="sub" id="tblB-title">Choice B · keep saving</h3>
     <div class="table-wrap"><table id="tblB"></table></div>
   </section>
 
@@ -418,45 +429,63 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
     });
   }
 
-  function choiceCard(title, hint, results) {
+  // scenarios: a list of { label, amount } — each one is shown as its own headline total.
+  function choiceCard(title, hint, results, scenarios) {
+    var headlines = scenarios.map(function (scenario) {
+      return '<div class="big">' + formatPounds(scenario.amount) + '</div>' +
+        '<span class="hint">' + scenario.label + '</span>';
+    }).join('');
+
     return '<h3>' + title + '</h3>' +
-      '<div class="big">' + formatPounds(totalOf(results, 'totalPaid')) + '</div>' +
-      '<span class="hint">Total paid to you</span>' +
+      headlines +
       '<dl>' +
         '<dt>Amount saved</dt><dd>' + formatPounds(totalOf(results, 'amountSaved')) + '</dd>' +
         '<dt>Cash for shares</dt><dd>' + formatPounds(totalOf(results, 'cashForShares')) + '</dd>' +
         '<dt>Cost of shares</dt><dd>−' + formatPounds(totalOf(results, 'costOfShares')) + '</dd>' +
         '<dt>Profit on shares</dt><dd>' + formatPounds(totalOf(results, 'profitOnShares')) + '</dd>' +
-        '<dt>Compensation</dt><dd>' + formatPounds(totalOf(results, 'compensation')) + '</dd>' +
-        '<dt class="total">Total profit</dt><dd class="total">' + formatPounds(totalOf(results, 'totalProfit')) + '</dd>' +
-        '<dt class="total">Total paid to you</dt><dd class="total">' + formatPounds(totalOf(results, 'totalPaid')) + '</dd>' +
+        '<dt>Savings returned</dt><dd>' + formatPounds(totalOf(results, 'savingsReturned')) + '</dd>' +
       '</dl>' +
       '<span class="hint">' + hint + '</span>';
   }
 
+  function describeDifference(amount) {
+    if (amount > 0.005) return formatPounds(amount) + ' more';
+    if (amount < -0.005) return formatPounds(-amount) + ' less';
+    return 'the same';
+  }
+
   function update() {
     var sanctionMonth = element('smonth').value;
-    var noExtraContribution = element('when-after').checked;
+    var extraMonthsForChoiceB = Number(element('extra-months').value) || 0;
+    var compensationReducedByExtraMonths = element('compensation-reduced').checked;
     var choiceA = [];
     var choiceB = [];
+    var choiceBReduced = [];
     var schemesAtOrAboveOffer = 0;
 
     schemes.forEach(function (scheme, index) {
       var paymentsAtSanction = paymentsByCourtSanction(scheme.startMonth, sanctionMonth);
       var paymentsRemaining = schemeLengthMonths - paymentsAtSanction;
       var compensationMonthsA = Math.min(maxCompensationMonths, paymentsRemaining);
-      var extraPayment = noExtraContribution ? 0 : 1;
-      var paymentsForChoiceB = Math.min(schemeLengthMonths, paymentsAtSanction + extraPayment);
+      var paymentsForChoiceB = Math.min(schemeLengthMonths, paymentsAtSanction + extraMonthsForChoiceB);
+      var paymentsRemainingAfterChoiceB = schemeLengthMonths - paymentsForChoiceB;
 
-      // With under 12 months left, the extra Choice B payment reduces compensation.
-      var compensationMonthsB = paymentsRemaining < maxCompensationMonths
-        ? Math.max(0, schemeLengthMonths - paymentsForChoiceB)
-        : compensationMonthsA;
+      var extraPaymentsMade = paymentsForChoiceB - paymentsAtSanction;
+
+      // Not reduced: compensation still covers up to 12 months, but never past the scheme's
+      // final payment. Extra months only reduce it once they eat into the months left before maturity.
+      var compensationMonthsB = Math.min(compensationMonthsA, paymentsRemainingAfterChoiceB);
+
+      // Reduced: the 12 months are counted from Court Sanction, so every extra month saved
+      // under Choice B comes off the compensation months.
+      var compensationMonthsBReduced = Math.max(0, compensationMonthsA - extraPaymentsMade);
 
       var resultA = calculateScheme(scheme, paymentsAtSanction, compensationMonthsA);
       var resultB = calculateScheme(scheme, paymentsForChoiceB, compensationMonthsB);
+      var resultBReduced = calculateScheme(scheme, paymentsForChoiceB, compensationMonthsBReduced);
       choiceA.push(resultA);
       choiceB.push(resultB);
+      choiceBReduced.push(resultBReduced);
 
       if (scheme.optionPricePence >= offerPricePence) schemesAtOrAboveOffer += 1;
 
@@ -472,28 +501,43 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
       }
     });
 
+    // The toggle picks which compensation rule Choice B uses everywhere on the page.
+    var choiceBSelected = compensationReducedByExtraMonths ? choiceBReduced : choiceB;
+    var compensationRuleText = compensationReducedByExtraMonths
+      ? 'compensation reduced by extra months'
+      : 'compensation not reduced by extra months';
+
     buildTable('tblA', choiceA);
-    buildTable('tblB', choiceB);
+    buildTable('tblB', choiceBSelected);
+    element('tblB-title').textContent = 'Choice B · keep saving · ' + compensationRuleText;
 
     element('cardA').innerHTML = choiceCard(
       'Choice A · Court Sanction',
       'Elect by 5pm, 15 Nov 2026. Paid in the next payroll after the Effective Date.',
-      choiceA
+      choiceA,
+      [
+        { label: 'Total paid to you (scheme + compensation)', amount: totalOf(choiceA, 'totalPaid') }
+      ]
     );
     element('cardB').innerHTML = choiceCard(
-      'Choice B · end of 20 days',
+      'Choice B · keep saving',
       'You exercise in the window. Paid in the next payroll after you exercise. If you miss the deadline the options lapse and you only get your amount saved back.',
-      choiceB
+      choiceBSelected,
+      [
+        { label: 'Total paid to you (scheme + compensation), ' + compensationRuleText, amount: totalOf(choiceBSelected, 'totalPaid') }
+      ]
     );
 
-    var profitDifference = totalOf(choiceB, 'totalProfit') - totalOf(choiceA, 'totalProfit');
+    var monthsText = extraMonthsForChoiceB === 1 ? '1 extra month' : extraMonthsForChoiceB + ' extra months';
     var comparison;
-    if (noExtraContribution) {
-      comparison = 'With an Effective Date early in the month, the 20-day window closes before the end-of-month contribution, so Choice B picks up no extra contribution. Both choices give the same profit, and Choice A pays sooner.';
-    } else if (profitDifference > 0.005) {
-      comparison = 'Choice B adds ' + formatPounds(profitDifference) + ', from one extra contribution on SAYE schemes with 12 or more months left at Court Sanction. That is paid later, and you have to exercise yourself before the window closes.';
+    if (extraMonthsForChoiceB === 0) {
+      comparison = 'With no extra months saved, Choice B pays the same as Choice A, and Choice A pays sooner.';
     } else {
-      comparison = 'The extra contribution under Choice B comes off your compensation, because your SAYE schemes have less than 12 months left at Court Sanction. Both choices give the same profit, and Choice A pays sooner.';
+      // Compare profit, not total paid, because extra months under Choice B are your own money going in.
+      var profitDifference = totalOf(choiceBSelected, 'totalProfit') - totalOf(choiceA, 'totalProfit');
+      comparison = 'Saving for ' + monthsText + ' under Choice B, with ' + compensationRuleText + ', gives ' +
+        describeDifference(profitDifference) + ' profit compared with Choice A. ' +
+        'Choice B is paid later, and you have to exercise yourself before the deadline.';
     }
     if (schemesAtOrAboveOffer) {
       comparison += ' At least one SAYE scheme has an option price at or above £7.15, so it has no gain.';
