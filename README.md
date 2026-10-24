@@ -11,7 +11,7 @@ Static marketing and support pages for JetWages (GitHub Pages–style layout).
 - **`instructions.html`** / **`instructions.css`** — Setup guide with sticky header, cards, and theme toggle; tabbed Quick Setup / Preparation / How to Use. Screenshots under **`graphics/Instructions/`**.
 - **`screenshots/MainPage/`** — Landing gallery images (welcome, calendar, stats, pie).
 - **`privacy-policy.html`**, **`terms.html`**, **`licenses.html`** — Supporting pages with their own CSS (`privacy-policy.css` is shared by privacy and terms; **`licenses.css`**) using the same design tokens.
-- **`shares.html`** — Standalone Sharesave takeover calculator. A JetWages banner at the top and bottom links to [jetwages.com](https://www.jetwages.com/), with **Click to join** opening the same signup form as the landing page. Enter a monthly SAYE amount for SAYE24, SAYE25 and SAYE26, pick an expected Effective Date month, and compare Choice A (exercise on Court Sanction) with Choice B (exercise about 20 days later). Amounts stay in `localStorage` under `saye-calc-v3`. Figures are before tax and assume every contribution was paid.
+- **`shares.html`** — Standalone share-scheme takeover calculator. A JetWages banner at the top and bottom links to [jetwages.com](https://www.jetwages.com/), with **Click to join** opening the same signup form as the landing page. Enter a monthly SAYE amount for SAYE24, SAYE25 and SAYE26, pick an expected Effective Date month, and enter a BAYE / Performance share count. SAYE is the Court Sanction exercise (the former Choice A). BAYE / Performance is the share count × £7.15. The full calculation is one table: each SAYE scheme, then a BAYE / Performance column, then a total that includes that payout. Amounts stay in `localStorage` under `saye-calc-v3` (older saves were a list of monthly amounts; a new save also keeps the share count). Figures are before tax and assume every SAYE contribution was paid.
 - **`privacy-policy.md`** — Markdown source of the privacy & data policy (keep in step with the HTML).
 
 ## Archive (kept in git, not published)
@@ -39,7 +39,11 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 
 ## Latest change
 
-- **Sharesave calculator** (`shares.html`): the script uses ordinary names (`monthlySavings`, `paymentsAtSanction`, `compensationMonths`). The sums are unchanged. Each banner still has **Click to join**.
+- **Share scheme calculator** (`shares.html`): the full calculation is one table. BAYE / Performance is a column next to the SAYE schemes, and the total includes shares × £7.15. Rows that only apply to SAYE (payments and compensation months) are left blank for that column.
+
+- **Share scheme calculator** (`shares.html`): the extra-months question and the Choice B compensation rule are gone. Enter a BAYE / Performance share count instead. The two results are **SAYE** (exercise on Court Sanction, the former Choice A) and **BAYE / Performance** (shares × £7.15). Monthly SAYE amounts already saved under `saye-calc-v3` still load.
+
+- **Sharesave calculator** (`shares.html`): the script uses ordinary names (`monthlySavings`, `paymentsAtSanction`, `compensationMonths`). The SAYE sums are unchanged. Each banner still has **Click to join**.
 
 - **Airline checker:** The landing page asks for an airline, and for a base when that airline differs by country. It says whether support works, partly works, or is not available yet. An unsupported name opens the request form with the airline filled in. The list is in `constants.js`.
 

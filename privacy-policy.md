@@ -45,7 +45,7 @@ Crew profile (home base, FA/CM) and match fields (airline, base, position, date,
 
 ### Friends (friends.jetwages.com)
 
-Redacted days off and flying/ADTY start–finish times, encrypted on the device before upload. Routes, pay, sales, notes, and extras are not included. The server stores ciphertext and cannot read the clocks. Nicknames stay on the phone. Pairing is not limited to your airline. Scanning a QR uses the camera; you can type a short code instead.
+Redacted days off and flying/ADTY start–finish times, encrypted on the device before upload. Routes, pay, sales, notes, and extras are not included. The server stores ciphertext and cannot read the clocks. Nicknames stay on the phone. Pairing is not limited to your airline. Scanning a QR uses the camera; you can type a short code instead. You can also search by staff number and airline. That request stays until the other person declines or you cancel. The name you send so they can recognise you is encrypted on your phone. The server stores only that ciphertext and deletes it when the request ends. It cannot read the name.
 
 ### Cloud backup (backup.jetwages.com)
 
@@ -84,7 +84,7 @@ Cloudflare (TLS / Access; PDF.js CDN on Android). Flightradar24 (only if you tap
 
 ## 11. How long we keep data
 
-PDFs are not kept after parsing. Actual-arrival cache on `flights.jetwages.com` is short-lived (minutes). The tax rate service keeps no personal data. Layout descriptions are kept until they are no longer needed to add an airline, or until you ask us to delete them. Pay data stays on the device. Account records stay until you ask for deletion. Encrypted cloud-backup blobs stay until you delete them in the app or ask us to remove the account. Swap posts expire with the duty date. Friends invites expire. Form answers are kept only as long as needed, or until you ask us to delete them.
+PDFs are not kept after parsing. Actual-arrival cache on `flights.jetwages.com` is short-lived (minutes). The tax rate service keeps no personal data. Layout descriptions are kept until they are no longer needed to add an airline, or until you ask us to delete them. Pay data stays on the device. Account records stay until you ask for deletion. Encrypted cloud-backup blobs stay until you delete them in the app or ask us to remove the account. Swap posts expire with the duty date. Friends QR codes expire. A staff-number friend request stays until it is declined, cancelled, or accepted, and the encrypted name is deleted with it. Form answers are kept only as long as needed, or until you ask us to delete them.
 
 ## 12. Email
 

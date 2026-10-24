@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="Estimate what easyJet SAYE options could pay if the takeover completes.">
-<title>Sharesave Takeover Calculator</title>
+<meta name="description" content="Estimate what easyJet SAYE options and BAYE or Performance shares could pay if the takeover completes.">
+<title>Share scheme takeover calculator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -67,15 +67,11 @@ h2{font-size:1.05rem}
 .block{display:flex; flex-direction:column; gap:12px}
 .row{display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px}
 label{display:flex; flex-direction:column; gap:4px; font-size:.85rem; color:var(--muted)}
-fieldset{border:0; margin:0; padding:0; display:flex; flex-direction:column; gap:6px}
-legend{font-size:.85rem; color:var(--muted); padding:0}
-.radio{flex-direction:row; align-items:center; gap:8px; color:var(--text); font-size:.95rem; cursor:pointer}
 input,select{
   font:inherit; color:var(--text); background:var(--panel);
   border:1px solid var(--line); border-radius:8px; padding:8px 10px; width:100%;
 }
 input{font-variant-numeric:tabular-nums}
-.radio input{width:auto; accent-color:var(--brand)}
 :focus-visible{outline:2px solid var(--brand); outline-offset:2px}
 .hint{font-size:.85rem}
 .scheme{
@@ -121,8 +117,8 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
 </div>
 <main class="wrap">
   <header class="block">
-    <h1>Sharesave Takeover Calculator</h1>
-    <p class="lede">Estimate what your SAYE options could pay out.</p>
+    <h1>Share scheme takeover calculator</h1>
+    <p class="lede">Estimate what your SAYE options and your BAYE or Performance shares could pay out.</p>
     <p class="note">Independent tool, not provided by easyJet, Bidco or Equiniti. Figures are estimates, before tax and National Insurance, and assume every monthly contribution has been paid. Frozen payments make these figures too high. Check your own details on the ESP Portal, and call Equiniti on <a href="tel:+443713842796">+44 (0) 371 384 2796</a> before relying on them.</p>
   </header>
 
@@ -138,24 +134,11 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
           <option value="2027-04">April 2027</option>
         </select>
       </label>
-      <label for="extra-months">Extra months you wish to save under Choice B
-        <select id="extra-months">
-          <option value="0">0 months</option>
-          <option value="1" selected>1 month</option>
-          <option value="2">2 months</option>
-          <option value="3">3 months</option>
-          <option value="4">4 months</option>
-          <option value="5">5 months</option>
-          <option value="6">6 months</option>
-        </select>
+      <label for="baye-shares">BAYE / Performance shares
+        <input id="baye-shares" type="number" min="0" step="1" inputmode="numeric" value="0">
       </label>
-      <fieldset>
-        <legend>Compensation under Choice B</legend>
-        <label class="radio" for="compensation-not-reduced"><input id="compensation-not-reduced" type="radio" name="compensation-rule" value="not-reduced" checked> Not reduced by extra months</label>
-        <label class="radio" for="compensation-reduced"><input id="compensation-reduced" type="radio" name="compensation-rule" value="reduced"> Reduced by extra months</label>
-      </fieldset>
     </div>
-    <p class="hint">Not reduced: you still get up to 12 months of compensation on top of the extra months you save, but never past your scheme’s final payment. Reduced: the 12 months count from Court Sanction, so each extra month you save comes off the compensation. Contributions are taken at the end of each month. Choice B lets you keep saving after Court Sanction before you exercise. Each extra month adds one more contribution, but it can never go past your scheme’s final payment.</p>
+    <p class="hint">SAYE payments are counted up to the Effective Date. Contributions are taken at the end of each month. For BAYE and Performance schemes, enter the total number of shares you hold. Those shares are paid at £7.15 each.</p>
   </section>
 
   <section class="block">
@@ -175,10 +158,7 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
 
   <section class="block">
     <h2>Full calculation</h2>
-    <h3 class="sub">Choice A · exercise on Court Sanction</h3>
     <div class="table-wrap"><table id="tblA"></table></div>
-    <h3 class="sub" id="tblB-title">Choice B · keep saving</h3>
-    <div class="table-wrap"><table id="tblB"></table></div>
   </section>
 
   <details>
@@ -201,7 +181,8 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
       <span>6. Compensation: only 5 payments are left, so <code>£100 × 5 = £500</code> more. Shares with the full £3,600: <code>£3,600 ÷ £3.61 = 997</code>. Extra shares: <code>997 − 858 = 139</code>. Compensation: <code>139 × (£7.15 − £3.61) = £492.06</code></span>
       <span><strong>Total paid to you: £6,134.70 + £2.62 + £492.06 = £6,629.38</strong></span>
     </div>
-    <p class="hint" style="margin-top:12px">Any amount saved that is not used to buy shares comes back to you. Choice A must be elected on the ESP Portal by 5pm on 15 November 2026. If you do nothing, the options lapse.</p>
+    <p class="hint" style="margin-top:12px">BAYE and Performance shares are separate from SAYE. Multiply the number of shares by £7.15. There is no option price to take off and no compensation on these.</p>
+    <p class="hint" style="margin-top:12px">Any amount saved that is not used to buy SAYE shares comes back to you. SAYE must be elected on the ESP Portal by 5pm on 15 November 2026. If you do nothing, the options lapse.</p>
   </details>
 </main>
 <div class="banner">
@@ -218,6 +199,7 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
   var offerPricePence = 715;
   var schemeLengthMonths = 36;
   var maxCompensationMonths = 12;
+  var bayeShares = 0;
   var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   // Prices stay in pence so the share count does not pick up rounding error.
@@ -230,7 +212,7 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
   var tableRows = [
     { label: 'Payments made', field: 'paymentsMade', money: false },
     { label: 'Amount saved', field: 'amountSaved', money: true, includeInTotal: true },
-    { label: 'Shares bought (amount saved ÷ option price)', field: 'sharesBought', money: false, includeInTotal: true },
+    { label: 'Shares', field: 'sharesBought', money: false, includeInTotal: true },
     { label: 'Cash for shares (shares × £7.15)', field: 'cashForShares', money: true, includeInTotal: true },
     { label: 'Cost of shares (shares × option price)', field: 'costOfShares', money: true, includeInTotal: true },
     { label: 'Profit on shares (cash − cost)', field: 'profitOnShares', money: true, includeInTotal: true },
@@ -243,26 +225,42 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
     { label: 'Total paid to you (scheme + compensation)', field: 'totalPaid', money: true, includeInTotal: true, emphasise: true }
   ];
 
+  function applyMonthlyAmounts(amounts) {
+    if (!Array.isArray(amounts)) return;
+    amounts.forEach(function (amount, index) {
+      if (schemes[index] && typeof amount === 'number') {
+        schemes[index].monthlySavings = amount;
+      }
+    });
+  }
+
   function loadSavedAmounts() {
     try {
-      var savedAmounts = JSON.parse(localStorage.getItem(storageKey) || 'null');
-      if (!Array.isArray(savedAmounts)) return;
-      savedAmounts.forEach(function (amount, index) {
-        if (schemes[index] && typeof amount === 'number') {
-          schemes[index].monthlySavings = amount;
-        }
-      });
+      var saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+      // Older saves were just the three monthly amounts.
+      if (Array.isArray(saved)) {
+        applyMonthlyAmounts(saved);
+        return;
+      }
+      if (!saved || typeof saved !== 'object') return;
+      applyMonthlyAmounts(saved.monthly);
+      if (typeof saved.bayeShares === 'number' && saved.bayeShares >= 0) {
+        bayeShares = Math.floor(saved.bayeShares);
+      }
     } catch (error) {
       // Leave the defaults in place if storage cannot be read.
     }
   }
 
   function saveAmounts() {
-    var amounts = schemes.map(function (scheme) {
-      return scheme.monthlySavings;
-    });
+    var saved = {
+      monthly: schemes.map(function (scheme) {
+        return scheme.monthlySavings;
+      }),
+      bayeShares: bayeShares
+    };
     try {
-      localStorage.setItem(storageKey, JSON.stringify(amounts));
+      localStorage.setItem(storageKey, JSON.stringify(saved));
     } catch (error) {
       // The page still calculates if storage is blocked.
     }
@@ -363,16 +361,32 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
     return money ? formatPounds(value) : formatCount(value);
   }
 
-  function buildTable(tableId, results) {
-    var table = element(tableId);
+  function bayePayout(shareCount) {
+    return shareCount * offerPricePence / 100;
+  }
+
+  // null means this row does not apply to BAYE (no monthly payments or compensation months).
+  function bayeFieldValue(field, shareCount) {
+    var paid = bayePayout(shareCount);
+    if (field === 'sharesBought') return shareCount;
+    if (field === 'cashForShares' || field === 'profitOnShares' || field === 'totalProfit' || field === 'totalPaid') {
+      return paid;
+    }
+    if (field === 'paymentsMade' || field === 'compensationMonths') return null;
+    return 0;
+  }
+
+  function buildTable(results, shareCount) {
+    var table = element('tblA');
     var visibleIndexes = [];
+    var showBaye = shareCount > 0;
 
     results.forEach(function (result, index) {
       if (schemes[index].monthlySavings > 0) visibleIndexes.push(index);
     });
 
-    if (!visibleIndexes.length) {
-      table.innerHTML = '<tr><td>Enter an amount saved each month for at least one SAYE scheme.</td></tr>';
+    if (!visibleIndexes.length && !showBaye) {
+      table.innerHTML = '<tr><td>Enter an amount saved each month for at least one SAYE scheme, or a number of BAYE or Performance shares.</td></tr>';
       return;
     }
 
@@ -382,13 +396,15 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
       var priceLabel = (scheme.optionPricePence / 100).toFixed(2);
       header += '<th>' + scheme.name + '<br>£' + priceLabel + '</th>';
     });
+    if (showBaye) header += '<th>BAYE / Performance<br>× £7.15</th>';
     header += '<th>Total</th></tr>';
 
     var body = '';
     tableRows.forEach(function (row) {
+      var bayeValue = showBaye ? bayeFieldValue(row.field, shareCount) : null;
       var anyValue = visibleIndexes.some(function (index) {
         return Math.abs(results[index][row.field]) > 0.0001;
-      });
+      }) || (bayeValue !== null && Math.abs(bayeValue) > 0.0001);
       if (!anyValue) return;
 
       var rowTotal = 0;
@@ -398,6 +414,14 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
         rowTotal += value;
         cells += '<td>' + formatCell(value, row.money) + '</td>';
       });
+      if (showBaye) {
+        if (bayeValue === null) {
+          cells += '<td>—</td>';
+        } else {
+          rowTotal += bayeValue;
+          cells += '<td>' + formatCell(bayeValue, row.money) + '</td>';
+        }
+      }
 
       var totalText = row.includeInTotal ? formatCell(rowTotal, row.money) : '—';
       var rowClass = row.emphasise ? ' class="sum"' : '';
@@ -448,52 +472,40 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
       '<span class="hint">' + hint + '</span>';
   }
 
-  function describeDifference(amount) {
-    if (amount > 0.005) return formatPounds(amount) + ' more';
-    if (amount < -0.005) return formatPounds(-amount) + ' less';
-    return 'the same';
+  function bayeCard(shareCount) {
+    var paid = bayePayout(shareCount);
+    return '<h3>BAYE / Performance</h3>' +
+      '<div class="big">' + formatPounds(paid) + '</div>' +
+      '<span class="hint">Paid to you (shares × £7.15)</span>' +
+      '<dl>' +
+        '<dt>Shares</dt><dd>' + formatCount(shareCount) + '</dd>' +
+        '<dt>Offer price</dt><dd>£7.15</dd>' +
+        '<dt class="total">Paid to you</dt><dd class="total">' + formatPounds(paid) + '</dd>' +
+      '</dl>' +
+      '<span class="hint">Each share in a BAYE or Performance scheme is paid at the £7.15 offer price.</span>';
   }
 
   function update() {
     var sanctionMonth = element('smonth').value;
-    var extraMonthsForChoiceB = Number(element('extra-months').value) || 0;
-    var compensationReducedByExtraMonths = element('compensation-reduced').checked;
-    var choiceA = [];
-    var choiceB = [];
-    var choiceBReduced = [];
+    var sayeResults = [];
     var schemesAtOrAboveOffer = 0;
+    var anySayeSavings = false;
 
     schemes.forEach(function (scheme, index) {
       var paymentsAtSanction = paymentsByCourtSanction(scheme.startMonth, sanctionMonth);
       var paymentsRemaining = schemeLengthMonths - paymentsAtSanction;
-      var compensationMonthsA = Math.min(maxCompensationMonths, paymentsRemaining);
-      var paymentsForChoiceB = Math.min(schemeLengthMonths, paymentsAtSanction + extraMonthsForChoiceB);
-      var paymentsRemainingAfterChoiceB = schemeLengthMonths - paymentsForChoiceB;
+      var compensationMonths = Math.min(maxCompensationMonths, paymentsRemaining);
+      var result = calculateScheme(scheme, paymentsAtSanction, compensationMonths);
+      sayeResults.push(result);
 
-      var extraPaymentsMade = paymentsForChoiceB - paymentsAtSanction;
-
-      // Not reduced: compensation still covers up to 12 months, but never past the scheme's
-      // final payment. Extra months only reduce it once they eat into the months left before maturity.
-      var compensationMonthsB = Math.min(compensationMonthsA, paymentsRemainingAfterChoiceB);
-
-      // Reduced: the 12 months are counted from Court Sanction, so every extra month saved
-      // under Choice B comes off the compensation months.
-      var compensationMonthsBReduced = Math.max(0, compensationMonthsA - extraPaymentsMade);
-
-      var resultA = calculateScheme(scheme, paymentsAtSanction, compensationMonthsA);
-      var resultB = calculateScheme(scheme, paymentsForChoiceB, compensationMonthsB);
-      var resultBReduced = calculateScheme(scheme, paymentsForChoiceB, compensationMonthsBReduced);
-      choiceA.push(resultA);
-      choiceB.push(resultB);
-      choiceBReduced.push(resultBReduced);
-
+      if (scheme.monthlySavings > 0) anySayeSavings = true;
       if (scheme.optionPricePence >= offerPricePence) schemesAtOrAboveOffer += 1;
 
       var savedNote = element('s' + index + 'saved');
       if (!savedNote) return;
       if (scheme.monthlySavings > 0) {
         savedNote.textContent =
-          'Amount saved by Court Sanction: ' + formatPounds(resultA.amountSaved) +
+          'Amount saved by Court Sanction: ' + formatPounds(result.amountSaved) +
           ' (' + paymentsAtSanction + ' of ' + schemeLengthMonths + ' payments). Full 3-year total would be ' +
           formatPounds(schemeLengthMonths * scheme.monthlySavings) + '.';
       } else {
@@ -501,44 +513,27 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
       }
     });
 
-    // The toggle picks which compensation rule Choice B uses everywhere on the page.
-    var choiceBSelected = compensationReducedByExtraMonths ? choiceBReduced : choiceB;
-    var compensationRuleText = compensationReducedByExtraMonths
-      ? 'compensation reduced by extra months'
-      : 'compensation not reduced by extra months';
+    var sayePaid = totalOf(sayeResults, 'totalPaid');
+    var bayePaid = bayePayout(bayeShares);
 
-    buildTable('tblA', choiceA);
-    buildTable('tblB', choiceBSelected);
-    element('tblB-title').textContent = 'Choice B · keep saving · ' + compensationRuleText;
+    buildTable(sayeResults, bayeShares);
 
     element('cardA').innerHTML = choiceCard(
-      'Choice A · Court Sanction',
-      'Elect by 5pm, 15 Nov 2026. Paid in the next payroll after the Effective Date.',
-      choiceA,
+      'SAYE',
+      'Exercise on Court Sanction. Elect by 5pm, 15 Nov 2026. Paid in the next payroll after the Effective Date.',
+      sayeResults,
       [
-        { label: 'Total paid to you (scheme + compensation)', amount: totalOf(choiceA, 'totalPaid') }
+        { label: 'Total paid to you (scheme + compensation)', amount: sayePaid }
       ]
     );
-    element('cardB').innerHTML = choiceCard(
-      'Choice B · keep saving',
-      'You exercise in the window. Paid in the next payroll after you exercise. If you miss the deadline the options lapse and you only get your amount saved back.',
-      choiceBSelected,
-      [
-        { label: 'Total paid to you (scheme + compensation), ' + compensationRuleText, amount: totalOf(choiceBSelected, 'totalPaid') }
-      ]
-    );
+    element('cardB').innerHTML = bayeCard(bayeShares);
 
-    var monthsText = extraMonthsForChoiceB === 1 ? '1 extra month' : extraMonthsForChoiceB + ' extra months';
-    var comparison;
-    if (extraMonthsForChoiceB === 0) {
-      comparison = 'With no extra months saved, Choice B pays the same as Choice A, and Choice A pays sooner.';
-    } else {
-      // Compare profit, not total paid, because extra months under Choice B are your own money going in.
-      var profitDifference = totalOf(choiceBSelected, 'totalProfit') - totalOf(choiceA, 'totalProfit');
-      comparison = 'Saving for ' + monthsText + ' under Choice B, with ' + compensationRuleText + ', gives ' +
-        describeDifference(profitDifference) + ' profit compared with Choice A. ' +
-        'Choice B is paid later, and you have to exercise yourself before the deadline.';
-    }
+    var comparison = anySayeSavings
+      ? 'SAYE pays ' + formatPounds(sayePaid) + '.'
+      : 'Enter a monthly amount for at least one SAYE scheme.';
+    comparison += bayeShares > 0
+      ? ' BAYE and Performance shares pay ' + formatCount(bayeShares) + ' × £7.15 = ' + formatPounds(bayePaid) + '.'
+      : ' Enter a number of BAYE or Performance shares to see that payout.';
     if (schemesAtOrAboveOffer) {
       comparison += ' At least one SAYE scheme has an option price at or above £7.15, so it has no gain.';
     }
@@ -547,7 +542,10 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
 
   document.addEventListener('input', function (event) {
     var field = event.target;
-    if (field.dataset && field.dataset.field) {
+    if (field.id === 'baye-shares') {
+      bayeShares = Math.max(0, Math.floor(Number(field.value) || 0));
+      saveAmounts();
+    } else if (field.dataset && field.dataset.field) {
       var index = Number(field.dataset.index);
       var entered = parseFloat(field.value);
       schemes[index][field.dataset.field] = Math.max(0, entered || 0);
@@ -556,9 +554,16 @@ code{font-family:ui-monospace, "SFMono-Regular", Menlo, monospace; font-size:.9e
     update();
   });
 
-  document.addEventListener('change', update);
+  document.addEventListener('change', function (event) {
+    var field = event.target;
+    if (field && field.id === 'baye-shares') {
+      field.value = String(bayeShares);
+    }
+    update();
+  });
 
   loadSavedAmounts();
+  element('baye-shares').value = String(bayeShares);
   renderSchemes();
   update();
 })();
