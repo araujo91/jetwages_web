@@ -16,7 +16,7 @@
       </button>
     </div>
     <h1>Privacy &amp; Data Policy – JetWages</h1>
-    <p><em>Last updated: 29 September 2026</em></p>
+    <p><em>Last updated: 25 October 2026</em></p>
     <p>JetWages is an independent app run from the United Kingdom. This page explains what happens to your data. We follow UK and EU privacy laws (UK GDPR / EU GDPR).</p>
     <p><strong>Creating a JetWages account means you accept this policy and the <a href="terms.html">Terms of Use</a>.</strong> Registering with a staff number and password, or signing in afterwards, is your agreement to the current versions of both documents. You can still use the on-device pay tracker without an account.</p>
 
@@ -36,7 +36,7 @@
     </ul>
 
     <h2>4. What the app stores on your device</h2>
-    <p>The app keeps roster, pay history, country/currency/airline settings, sales reminders, calendar-sync choices, and (if you sign in) a session token plus Friends encryption keys and nicknames. A tax code, student loan plan, and National Insurance category used for the after-tax estimate stay on the device. A plain backup file leaves them out. An encrypted backup file or online backup includes them inside the locked copy. Uninstalling removes this from the device. It does not automatically delete a JetWages account — email us if you want that removed.</p>
+    <p>The app keeps roster, pay history, country/currency/airline settings, sales reminders, calendar-sync choices, and (if you sign in) a session token plus Friends encryption keys and nicknames. A tax code, student loan plan, and National Insurance category used for the after-tax estimate stay on the device. A plain backup file leaves the tax details out. An encrypted backup file or online backup includes them inside the locked copy. Friend nicknames are in every backup. Uninstalling removes this from the device. It does not automatically delete a JetWages account — email us if you want that removed.</p>
 
     <h2>5. Optional JetWages account (Swap, Friends, and cloud backup)</h2>
     <p>Pay tracking works without signing in. Swap, Friends, and optional cloud backup share <strong>one</strong> JetWages account. Creating that account, or signing in, means you accept this policy and the Terms of Use.</p>
@@ -49,9 +49,9 @@
     <h3>Swap board (swap.jetwages.com)</h3>
     <p>Crew profile (home base, FA/CM) and match fields (airline, base, position, date, status). Duty details and messages are encrypted at rest. After an accept, the other staff number is shown. Past-day offers are deleted automatically. Swap is not a copy of your pay.</p>
     <h3>Friends (friends.jetwages.com)</h3>
-    <p>Redacted days off and flying/ADTY start–finish times, encrypted on the device before upload. Routes, pay, sales, notes, and extras are not included. The server stores ciphertext and cannot read the clocks. Nicknames stay on the phone. Pairing is not limited to your airline. Scanning a QR uses the camera; you can type a short code instead. You can also search by staff number and airline. That request stays until the other person declines or you cancel. The name you send so they can recognise you is encrypted on your phone. The server stores only that ciphertext and deletes it when the request ends. It cannot read the name.</p>
+    <p>Redacted days off and flying/ADTY start–finish times, encrypted on the device before upload. Routes, pay, sales, notes, and extras are not included. The server stores ciphertext and cannot read the clocks. Nicknames are not sent to this service. Pairing is not limited to your airline. Scanning a QR uses the camera; you can type a short code instead. You can also search by staff number and airline. That request stays until the other person declines or you cancel. The name you send so they can recognise you is encrypted on your phone. The server stores only that ciphertext and deletes it when the request ends. It cannot read the name.</p>
     <h3>Cloud backup (backup.jetwages.com)</h3>
-    <p>If you turn on cloud backup, the app uploads an <strong>encrypted snapshot</strong> of your on-device data (roster, pay history, settings, and tax details such as your tax code, student loan, and National Insurance category). The sign-in token stays on the phone. Encryption happens on the phone. You can turn on fingerprint or Face ID in Settings so opening the app confirms it is you. If online backup is also on, that check lets this visit update the backup. We store only ciphertext, key-wrapping metadata, and account linkage (who uploaded, when, size). We cannot read the backup. Forgotten passphrase plus lost recovery words plus no local file means the copy cannot be recovered. We will not email the words. You can delete the cloud copy from Settings.</p>
+    <p>If you turn on cloud backup, the app uploads an <strong>encrypted snapshot</strong> of your on-device data (roster, pay history, settings, friend nicknames, and tax details such as your tax code, student loan, and National Insurance category). The sign-in token stays on the phone. Encryption happens on the phone. You can turn on fingerprint or Face ID in Settings so opening the app confirms it is you. If online backup is also on, that check lets this visit update the backup. We store only ciphertext, key-wrapping metadata, and account linkage (who uploaded, when, size). We cannot read the backup, including the nicknames inside it. Forgotten passphrase plus lost recovery words plus no local file means the copy cannot be recovered. We will not email the words. You can delete the cloud copy from Settings.</p>
 
     <h2>6. PDF processing</h2>
     <ul>
@@ -70,7 +70,7 @@
     <p>Calendar (read-only, for sync), location (timezone for sales reminders only), local notifications, camera (Friends QR scan only), and fingerprint or Face ID (only if you turn that on in Settings, to confirm it is you when you open the app). All optional.</p>
 
     <h2>8. Backup and export</h2>
-    <p>JSON backup from Settings can be a <strong>plain file</strong> (readable by anyone who has it) or an <strong>encrypted</strong> envelope, both shared via the system share sheet. A plain file leaves out the sign-in token, the Friends private key, and the tax code and student loan plan. An encrypted envelope includes the tax details and the Friends key, and still leaves out the sign-in token. Optional cloud backup (section 5) stores the encrypted envelope on <code>backup.jetwages.com</code>. JetWages cannot decrypt encrypted files or cloud copies. Import accepts both formats.</p>
+    <p>JSON backup from Settings can be a <strong>plain file</strong> (readable by anyone who has it) or an <strong>encrypted</strong> envelope, both shared via the system share sheet. Both include friend nicknames. A plain file leaves out the sign-in token, the Friends private key, and the tax code and student loan plan. An encrypted envelope includes the tax details and the Friends key, and still leaves out the sign-in token. Optional cloud backup (section 5) stores the encrypted envelope on <code>backup.jetwages.com</code>. JetWages cannot decrypt encrypted files or cloud copies. Import accepts both formats.</p>
 
     <h2>9. Subscriptions</h2>
     <p>Optional subscriptions go through Apple, Google, and RevenueCat. Roster, pay, and salary are not sent to RevenueCat. Card details are not stored by JetWages. See <a href="https://www.revenuecat.com/privacy">RevenueCat’s privacy policy</a>.</p>
