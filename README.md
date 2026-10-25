@@ -11,6 +11,7 @@ Static marketing and support pages for JetWages (GitHub Pages–style layout).
 - **`instructions.html`** / **`instructions.css`** — Setup guide with sticky header, cards, and theme toggle; tabbed Quick Setup / Preparation / How to Use. Screenshots under **`graphics/Instructions/`**.
 - **`screenshots/MainPage/`** — Landing gallery images (welcome, calendar, stats, pie).
 - **`privacy-policy.html`**, **`terms.html`**, **`licenses.html`** — Supporting pages with their own CSS (`privacy-policy.css` is shared by privacy and terms; **`licenses.css`**) using the same design tokens.
+- **`incognito.html`** — Payslip cleaner for the airline form. The PDF stays in the browser. Typed personal values are replaced with placeholders, then the cleaned file can be checked at `https://incognito.jetwages.com` (that check is not stored). Attach the download, not the original. Link: [jetwages.com/incognito.html](https://www.jetwages.com/incognito.html).
 - **`shares.html`** — Standalone share-scheme takeover calculator. A JetWages banner at the top and bottom links to [jetwages.com](https://www.jetwages.com/), with **Click to join** opening the same signup form as the landing page. Enter a monthly SAYE amount for SAYE24, SAYE25 and SAYE26, pick an expected Effective Date month, and enter a BAYE / Performance share count. SAYE is the Court Sanction exercise (the former Choice A). The estimated outcome for SAYE lists amount saved, cash for shares, cost of shares, profit on shares, savings returned, and compensation. BAYE / Performance is the share count × £7.15 and has no compensation line. The full calculation is one table: each SAYE scheme, then a BAYE / Performance column, then a total that includes that payout. Amounts stay in `localStorage` under `saye-calc-v3` (older saves were a list of monthly amounts; a new save also keeps the share count). Figures are before tax and assume every SAYE contribution was paid.
 - **`privacy-policy.md`** — Markdown source of the privacy & data policy (keep in step with the HTML).
 
@@ -38,6 +39,8 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 | `--on-primary` | Text on brand (or accent) fills — navy in light, `#0d2130` in dark |
 
 ## Latest change
+
+- **Payslip cleaner** (`incognito.html`): a page for the airline form. Personal lines are replaced in the browser. The cleaned PDF can be sent to `incognito.jetwages.com` for a leftover National Insurance number, email, or sort code. That check is not stored. The original file is not uploaded.
 
 - **Share scheme calculator** (`shares.html`): the SAYE estimated outcome lists a **Compensation** line with the amount paid for the extra shares. BAYE / Performance stays shares × £7.15, with no compensation.
 

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Replace personal lines on a payslip in your browser, then download a cleaned PDF for the JetWages airline form.">
+<title>Clean a payslip – JetWages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" integrity="sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" integrity="sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI" crossorigin="anonymous"></script>
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f5f7fb; --panel:#fff; --text:#0e2a47; --muted:#5b6b7a;
+  --line:#d0d7e0; --brand:#1f8df2; --soft:#eef2f7; --danger:#9b2c2c;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0d2130; --panel:#123146; --text:#e9eef6; --muted:#aebccb;
+    --line:#1e3d54; --brand:#7cc6ff; --soft:#0a1e2c; --danger:#ffb4b4;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0d2130; --panel:#123146; --text:#e9eef6; --muted:#aebccb;
+  --line:#1e3d54; --brand:#7cc6ff; --soft:#0a1e2c; --danger:#ffb4b4;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.5 "DM Sans", system-ui, sans-serif;
+}
+h1,h2{font-family:"Space Grotesk","DM Sans",sans-serif; letter-spacing:-.02em; line-height:1.2; margin:0}
+p{margin:0}
+a{color:var(--brand)}
+.banner{
+  display:flex; align-items:center; gap:10px 14px; flex-wrap:wrap;
+  min-height:56px;
+  padding:12px max(16px, env(safe-area-inset-right)) 12px max(16px, env(safe-area-inset-left));
+  background:linear-gradient(135deg,#146050,#11344d);
+  color:#eef6f3;
+  font-family:"Space Grotesk","DM Sans",sans-serif;
+}
+.banner__brand{display:flex; align-items:center; gap:10px; color:#eef6f3; text-decoration:none; font-weight:700}
+.banner__brand:hover{color:#fff}
+.banner img{width:32px; height:32px; border-radius:8px; flex:none}
+.banner strong{font-size:1.05rem; font-weight:700}
+.banner__privacy{
+  margin-left:auto; color:#eef6f3; text-decoration:none;
+  font-family:"DM Sans",sans-serif; font-weight:600; font-size:.9rem;
+  border:1px solid rgba(238,246,243,.35); border-radius:999px; padding:7px 14px;
+}
+.banner__privacy:hover{background:rgba(255,255,255,.08); color:#fff}
+.wrap{
+  width:min(720px, 100% - 32px);
+  margin:0 auto;
+  padding:28px 0 48px;
+  display:flex; flex-direction:column; gap:22px;
+}
+.lede,.note{color:var(--muted)}
+.note{font-size:.92rem; max-width:66ch}
+h1{font-size:1.7rem}
+h2{font-size:1.05rem}
+.card{
+  background:var(--panel); border:1px solid var(--line); border-radius:12px;
+  padding:16px; display:flex; flex-direction:column; gap:14px;
+}
+.grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px}
+label{display:flex; flex-direction:column; gap:4px; font-size:.85rem; color:var(--muted)}
+input,textarea{
+  font:inherit; color:var(--text); background:var(--bg);
+  border:1px solid var(--line); border-radius:8px; padding:8px 10px; width:100%;
+}
+textarea{min-height:88px; resize:vertical}
+:focus-visible{outline:2px solid var(--brand); outline-offset:2px}
+.actions{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+button,.download{
+  font:inherit; font-weight:600; border-radius:999px; padding:8px 16px;
+  border:0; cursor:pointer; text-decoration:none; display:inline-block;
+}
+button{background:var(--brand); color:#08223e}
+button:disabled{opacity:.45; cursor:not-allowed}
+.download{background:#146050; color:#eef6f3}
+.download[hidden]{display:none}
+.hits{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px}
+.hits li{
+  display:grid; grid-template-columns:auto 1fr; gap:8px 10px; align-items:start;
+  padding:8px; border:1px solid var(--line); border-radius:8px; background:var(--soft);
+}
+.hits label{color:var(--text); font-size:.95rem}
+.kind{color:var(--muted); font-size:.8rem}
+.snippet{font-family:ui-monospace, monospace; font-size:.85rem; word-break:break-word}
+#status{min-height:1.5em}
+#status.error{color:var(--danger)}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" style="position:absolute;left:-999px">Skip to content</a>
+<header class="banner">
+  <a class="banner__brand" href="index.html">
+    <img src="graphics/icon.png" width="32" height="32" alt="">
+    <strong>JetWages</strong>
+  </a>
+  <a class="banner__privacy" href="privacy-policy.html">Privacy</a>
+</header>
+<main id="main" class="wrap">
+  <div>
+    <h1>Clean a payslip</h1>
+    <p class="lede" style="margin-top:8px">Use this before you attach a payslip to the airline form. The original stays in this browser. Attach the download, not the original.</p>
+  </div>
+  <p class="note">Type the values that are yours. The page finds them and, once you tick a line, replaces that value with a placeholder. Labels such as National Insurance stay, so the layout is still readable. A picture of a payslip, with no text layer, cannot be cleaned here.</p>
+  <p class="note">The values you type are not uploaded. After the file is rebuilt, this page can send that cleaned PDF to <code>incognito.jetwages.com</code> to look for a leftover National Insurance number, email, or sort code. That check is not kept. Pay figures can remain in the cleaned file.</p>
+
+  <section class="card" aria-labelledby="file-title">
+    <h2 id="file-title">1. Choose the payslip</h2>
+    <label>PDF
+      <input id="file" type="file" accept="application/pdf,.pdf">
+    </label>
+  </section>
+
+  <section id="details" class="card hidden" aria-labelledby="details-title">
+    <h2 id="details-title">2. Values to remove</h2>
+    <p class="note">Leave a box empty if it is not on this payslip. Each value needs at least two characters.</p>
+    <div class="grid">
+      <label>Full name
+        <input id="name" autocomplete="off" spellcheck="false">
+      </label>
+      <label>Staff number
+        <input id="staff" autocomplete="off" spellcheck="false">
+      </label>
+      <label>National Insurance number
+        <input id="ni" autocomplete="off" spellcheck="false">
+      </label>
+      <label>Sort code
+        <input id="sort" autocomplete="off" spellcheck="false" placeholder="12-34-56">
+      </label>
+      <label>Account number
+        <input id="account" autocomplete="off" spellcheck="false">
+      </label>
+      <label>Email
+        <input id="email" autocomplete="off" spellcheck="false">
+      </label>
+      <label>Date of birth
+        <input id="dob" autocomplete="off" spellcheck="false" placeholder="1 Jan 1990">
+      </label>
+    </div>
+    <label>Address
+      <textarea id="address" autocomplete="off" spellcheck="false" placeholder="One line as it appears on the payslip"></textarea>
+    </label>
+    <div class="actions">
+      <button type="button" id="find">Find these on the payslip</button>
+    </div>
+  </section>
+
+  <section id="review" class="card hidden" aria-labelledby="review-title">
+    <h2 id="review-title">3. Lines to replace</h2>
+    <p class="note">Nothing is replaced until you tick it. Lines you typed start ticked. Suggested National Insurance numbers, emails, and sort codes stay unticked until you confirm them.</p>
+    <ul id="hits" class="hits"></ul>
+    <div class="actions">
+      <button type="button" id="build">Build cleaned payslip</button>
+      <a id="download" class="download" hidden download="payslip-cleaned.pdf">Download cleaned payslip</a>
+    </div>
+    <p id="status" role="status"></p>
+  </section>
+</main>
+<script>
+(function () {
+  var CHECK_URL = 'https://incognito.jetwages.com/check';
+  var PLACEHOLDER = {
+    name: 'Alex Crew',
+    staff: '000000',
+    ni: 'QQ123456C',
+    sortCode: '00-00-00',
+    account: '00000000',
+    email: 'alex.crew@example.com',
+    dob: '1 Jan 1990'
+  };
+  var ADDRESS_LINES = ['1 Example Street', 'Testville', 'AA1 1AA'];
+  var KIND_LABEL = {
+    name: 'Name',
+    staff: 'Staff number',
+    ni: 'National Insurance number',
+    address: 'Address',
+    sortCode: 'Sort code',
+    account: 'Account number',
+    email: 'Email',
+    dob: 'Date of birth'
+  };
+  var NI = /\b[A-CEGHJ-PR-TW-Z]{2}\d{6}[A-D]\b/gi;
+  var EMAIL = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi;
+  var SORT = /\b\d{2}-\d{2}-\d{2}\b/g;
+
+  var pages = [];
+  var hits = [];
+  var downloadUrl = '';
+
+  var fileInput = document.getElementById('file');
+  var details = document.getElementById('details');
+  var review = document.getElementById('review');
+  var hitList = document.getElementById('hits');
+  var statusEl = document.getElementById('status');
+  var downloadLink = document.getElementById('download');
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  fileInput.addEventListener('change', function () {
+    var file = fileInput.files && fileInput.files[0];
+    pages = [];
+    hits = [];
+    hideDownload();
+    review.classList.add('hidden');
+    hitList.replaceChildren();
+    if (!file) {
+      details.classList.add('hidden');
+      setStatus('');
+      return;
+    }
+    setStatus('Reading the payslip on this device.');
+    readPayslip(file).catch(function () {
+      details.classList.add('hidden');
+      setStatus('This PDF is protected or could not be read.', true);
+    });
+  });
+
+  document.getElementById('find').addEventListener('click', findHits);
+  document.getElementById('build').addEventListener('click', function () {
+    buildCleaned().catch(function () {
+      hideDownload();
+      setStatus('The cleaned payslip could not be built.', true);
+    });
+  });
+
+  function setStatus(text, isError) {
+    statusEl.textContent = text || '';
+    statusEl.classList.toggle('error', !!isError);
+  }
+
+  function hideDownload() {
+    downloadLink.hidden = true;
+    downloadLink.removeAttribute('href');
+    if (downloadUrl) URL.revokeObjectURL(downloadUrl);
+    downloadUrl = '';
+  }
+
+  function showDownload(bytes) {
+    hideDownload();
+    downloadUrl = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+    downloadLink.href = downloadUrl;
+    downloadLink.hidden = false;
+  }
+
+  async function readPayslip(file) {
+    var bytes = new Uint8Array(await file.arrayBuffer());
+    var doc = await pdfjsLib.getDocument({ data: bytes.slice(0) }).promise;
+    var next = [];
+    for (var number = 1; number <= doc.numPages; number += 1) {
+      var page = await doc.getPage(number);
+      var view = page.view;
+      var content = await page.getTextContent();
+      next.push({
+        width: view[2] - view[0],
+        height: view[3] - view[1],
+        items: content.items.filter(function (item) { return item && item.str; }).map(function (item) {
+          var transform = item.transform;
+          var size = Math.hypot(transform[0], transform[1]) || Math.abs(transform[3]) || 10;
+          return { str: item.str, x: transform[4], y: transform[5], size: size };
+        })
+      });
+    }
+    await doc.destroy();
+    var hasText = next.some(function (page) {
+      return page.items.some(function (item) { return item.str.trim(); });
+    });
+    if (!hasText) {
+      details.classList.add('hidden');
+      setStatus('This payslip is a picture, so the personal lines cannot be found. A scan is not cleaned here.', true);
+      return;
+    }
+    pages = next;
+    details.classList.remove('hidden');
+    setStatus('The payslip stays on this device. Fill in the values that are yours.');
+  }
+
+  function fieldValue(id) {
+    return document.getElementById(id).value.trim();
+  }
+
+  function needlesFromForm() {
+    var needles = [];
+    function add(value, placeholder, kind) {
+      if (value.length < 2) return;
+      needles.push({ text: value, placeholder: placeholder, kind: kind });
+    }
+    add(fieldValue('name'), PLACEHOLDER.name, 'name');
+    add(fieldValue('staff'), PLACEHOLDER.staff, 'staff');
+    add(fieldValue('ni'), PLACEHOLDER.ni, 'ni');
+    add(fieldValue('sort'), PLACEHOLDER.sortCode, 'sortCode');
+    add(fieldValue('account'), PLACEHOLDER.account, 'account');
+    add(fieldValue('email'), PLACEHOLDER.email, 'email');
+    add(fieldValue('dob'), PLACEHOLDER.dob, 'dob');
+    fieldValue('address').split(/\r?\n/).forEach(function (line, index) {
+      var trimmed = line.trim();
+      if (trimmed.length < 2) return;
+      add(trimmed, ADDRESS_LINES[index] || 'Redacted', 'address');
+    });
+    return needles;
+  }
+
+  function itemRanges(items) {
+    var cursor = 0;
+    return items.map(function (item, index) {
+      var start = cursor;
+      var end = start + item.str.length;
+      cursor = end + (index < items.length - 1 ? 1 : 0);
+      return { index: index, start: start, end: end };
+    });
+  }
+
+  function joined(items) {
+    return items.map(function (item) { return item.str; }).join(' ');
+  }
+
+  function findSpans(haystack, needle) {
+    var hay = haystack.toLowerCase();
+    var look = needle.toLowerCase();
+    var spans = [];
+    var from = 0;
+    while (look && from <= hay.length) {
+      var at = hay.indexOf(look, from);
+      if (at < 0) break;
+      spans.push({ start: at, end: at + needle.length });
+      from = at + needle.length;
+    }
+    return spans;
+  }
+
+  function covered(existing, pageIndex, start, end) {
+    return existing.some(function (hit) {
+      return hit.pageIndex === pageIndex && start < hit.end && end > hit.start;
+    });
+  }
+
+  function findHits() {
+    hideDownload();
+    var needles = needlesFromForm();
+    var found = [];
+    var id = 0;
+    pages.forEach(function (page, pageIndex) {
+      var full = joined(page.items);
+      needles.forEach(function (needle) {
+        findSpans(full, needle.text).forEach(function (span) {
+          found.push({
+            id: id++,
+            pageIndex: pageIndex,
+            pageNumber: pageIndex + 1,
+            kind: needle.kind,
+            snippet: full.slice(span.start, span.end),
+            placeholder: needle.placeholder,
+            source: 'typed',
+            start: span.start,
+            end: span.end,
+            checked: true
+          });
+        });
+      });
+      suggest(full, pageIndex, found, function (hit) { hit.id = id++; found.push(hit); });
+    });
+    hits = found;
+    renderHits();
+    review.classList.remove('hidden');
+    if (!found.length) {
+      setStatus('None of those values are on the payslip. You can still build a text copy, then run the leftover check.');
+      return;
+    }
+    setStatus('Tick the lines to replace, then build the cleaned payslip.');
+  }
+
+  function suggest(full, pageIndex, existing, push) {
+    var rules = [
+      { pattern: NI, kind: 'ni', placeholder: PLACEHOLDER.ni, skip: PLACEHOLDER.ni.toLowerCase() },
+      { pattern: EMAIL, kind: 'email', placeholder: PLACEHOLDER.email, skip: PLACEHOLDER.email.toLowerCase() },
+      { pattern: SORT, kind: 'sortCode', placeholder: PLACEHOLDER.sortCode, skip: PLACEHOLDER.sortCode }
+    ];
+    rules.forEach(function (rule) {
+      rule.pattern.lastIndex = 0;
+      var match;
+      while ((match = rule.pattern.exec(full))) {
+        var value = match[0];
+        if (value.toLowerCase() === rule.skip) continue;
+        var start = match.index;
+        var end = start + value.length;
+        if (covered(existing, pageIndex, start, end)) continue;
+        push({
+          pageIndex: pageIndex,
+          pageNumber: pageIndex + 1,
+          kind: rule.kind,
+          snippet: value,
+          placeholder: rule.placeholder,
+          source: 'suggested',
+          start: start,
+          end: end,
+          checked: false
+        });
+        if (value.length === 0) break;
+      }
+    });
+  }
+
+  function renderHits() {
+    hitList.replaceChildren();
+    if (!hits.length) {
+      var empty = document.createElement('li');
+      empty.textContent = 'No matching lines.';
+      hitList.appendChild(empty);
+      return;
+    }
+    hits.forEach(function (hit) {
+      var item = document.createElement('li');
+      var box = document.createElement('input');
+      box.type = 'checkbox';
+      box.checked = hit.checked;
+      box.id = 'hit-' + hit.id;
+      box.addEventListener('change', function () {
+        hit.checked = box.checked;
+        hideDownload();
+        setStatus('Tick the lines to replace, then build the cleaned payslip.');
+      });
+      var label = document.createElement('label');
+      label.htmlFor = box.id;
+      var kind = document.createElement('span');
+      kind.className = 'kind';
+      kind.textContent = 'Page ' + hit.pageNumber + ' · ' + (KIND_LABEL[hit.kind] || hit.kind) + (hit.source === 'suggested' ? ' · suggested' : '');
+      var snippet = document.createElement('span');
+      snippet.className = 'snippet';
+      snippet.textContent = hit.snippet;
+      label.append(kind, document.createElement('br'), snippet);
+      item.append(box, label);
+      hitList.appendChild(item);
+    });
+  }
+
+  function rewrite(str, edits) {
+    var sorted = edits.slice().sort(function (a, b) { return a.start - b.start || a.end - b.end; });
+    var out = '';
+    var index = 0;
+    sorted.forEach(function (edit) {
+      if (edit.start < index) return;
+      out += str.slice(index, edit.start) + edit.text;
+      index = Math.max(index, edit.end);
+    });
+    return out + str.slice(index);
+  }
+
+  function applyHits(items, pageHits) {
+    var ranges = itemRanges(items);
+    var edits = items.map(function () { return []; });
+    pageHits.forEach(function (hit) {
+      var overlapping = ranges.filter(function (range) {
+        return hit.start < range.end && hit.end > range.start;
+      });
+      overlapping.forEach(function (range, position) {
+        var localStart = Math.max(0, hit.start - range.start);
+        var localEnd = Math.min(items[range.index].str.length, hit.end - range.start);
+        edits[range.index].push({
+          start: localStart,
+          end: localEnd,
+          text: position === 0 ? hit.placeholder : ''
+        });
+      });
+    });
+    return items.map(function (item, index) {
+      return {
+        str: rewrite(item.str, edits[index]),
+        x: item.x,
+        y: item.y,
+        size: item.size
+      };
+    });
+  }
+
+  function drawable(text) {
+    var out = '';
+    for (var i = 0; i < text.length; i += 1) {
+      var code = text.charCodeAt(i);
+      if (code === 9 || code === 10 || code === 13) continue;
+      out += code >= 32 && code <= 255 ? text.charAt(i) : '?';
+    }
+    return out;
+  }
+
+  async function buildCleaned() {
+    hideDownload();
+    if (!pages.length) {
+      setStatus('Choose a payslip first.', true);
+      return;
+    }
+    setStatus('Building the cleaned payslip on this device.');
+    var selected = hits.filter(function (hit) { return hit.checked; });
+    var doc = await PDFLib.PDFDocument.create();
+    var font = await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+    for (var p = 0; p < pages.length; p += 1) {
+      var source = pages[p];
+      var pageHits = selected.filter(function (hit) { return hit.pageIndex === p; });
+      var items = applyHits(source.items, pageHits);
+      var out = doc.addPage([Math.max(source.width, 1), Math.max(source.height, 1)]);
+      items.forEach(function (item) {
+        var text = drawable(item.str);
+        if (!text.trim()) return;
+        try {
+          out.drawText(text, {
+            x: item.x,
+            y: item.y,
+            size: Math.max(item.size, 1),
+            font: font,
+            color: PDFLib.rgb(0, 0, 0)
+          });
+        } catch (_err) {
+          /* A character this font cannot draw is left out of the cleaned file. */
+        }
+      });
+    }
+    var bytes = await doc.save();
+    var extracted = await extractText(bytes);
+    var problems = stillPresent(extracted);
+    if (problems.length) {
+      setStatus('The cleaned file still contains ' + problems.join(', ') + '. Tick that line and build again.', true);
+      return;
+    }
+    setStatus('Checking the cleaned file for a leftover National Insurance number, email, or sort code.');
+    var verdict = await leftoverCheck(bytes);
+    if (verdict.blocked) {
+      setStatus(verdict.message, true);
+      return;
+    }
+    showDownload(bytes);
+    setStatus(verdict.message);
+  }
+
+  async function extractText(bytes) {
+    var doc = await pdfjsLib.getDocument({ data: bytes.slice(0) }).promise;
+    var parts = [];
+    for (var number = 1; number <= doc.numPages; number += 1) {
+      var page = await doc.getPage(number);
+      var content = await page.getTextContent();
+      parts.push(content.items.map(function (item) { return (item && item.str) || ''; }).join(' '));
+    }
+    await doc.destroy();
+    return parts.join('\n');
+  }
+
+  function stillPresent(extracted) {
+    var hay = stripPlaceholders(extracted).toLowerCase();
+    var problems = [];
+    function add(kind, value) {
+      if (!value || hay.indexOf(value.toLowerCase()) === -1) return;
+      var label = KIND_LABEL[kind] || kind;
+      if (problems.indexOf(label) === -1) problems.push(label);
+    }
+    needlesFromForm().forEach(function (needle) { add(needle.kind, needle.text); });
+    hits.forEach(function (hit) {
+      if (hit.checked && hit.source === 'suggested') add(hit.kind, hit.snippet);
+    });
+    return problems;
+  }
+
+  function stripPlaceholders(text) {
+    var values = [
+      PLACEHOLDER.name,
+      PLACEHOLDER.staff,
+      PLACEHOLDER.ni,
+      PLACEHOLDER.sortCode,
+      PLACEHOLDER.account,
+      PLACEHOLDER.email,
+      PLACEHOLDER.dob,
+      'Redacted'
+    ].concat(ADDRESS_LINES);
+    return values.reduce(function (out, value) { return out.split(value).join(' '); }, text);
+  }
+
+  async function leftoverCheck(bytes) {
+    try {
+      var body = new FormData();
+      body.append('file', new Blob([bytes], { type: 'application/pdf' }), 'payslip-cleaned.pdf');
+      var response = await fetch(CHECK_URL, { method: 'POST', body: body });
+      if (!response.ok) {
+        return {
+          blocked: false,
+          message: 'The leftover check did not run. The cleaned file passed the check on this device. Download it and attach that file to the form.'
+        };
+      }
+      var result = await response.json();
+      if (result.reason === 'no-text') {
+        return {
+          blocked: true,
+          message: 'The check could not read any text in the cleaned file. Build it again.'
+        };
+      }
+      if (result.hits && result.hits.length) {
+        var lines = result.hits.map(function (hit) {
+          return 'Page ' + hit.page + ' still has a ' + (KIND_LABEL[hit.kind] || 'personal line').toLowerCase() + '.';
+        });
+        return { blocked: true, message: lines.join(' ') + ' Tick that line and build again.' };
+      }
+      return {
+        blocked: false,
+        message: 'The cleaned payslip is ready. Download it and attach that file to the form, not the original.'
+      };
+    } catch (_err) {
+      return {
+        blocked: false,
+        message: 'The leftover check could not be reached. The cleaned file passed the check on this device. Download it and attach that file to the form.'
+      };
+    }
+  }
+})();
+</script>
+</body>
+</html>

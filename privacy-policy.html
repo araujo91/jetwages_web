@@ -21,7 +21,7 @@
     <p><strong>Creating a JetWages account means you accept this policy and the <a href="terms.html">Terms of Use</a>.</strong> Registering with a staff number and password, or signing in afterwards, is your agreement to the current versions of both documents. You can still use the on-device pay tracker without an account.</p>
 
     <h2>1. Overview</h2>
-    <p>Your roster, pay history, sales, and settings stay on your phone or tablet. Pay tracking does not need an account. Data only leaves your device in the cases described below — for example optional PDF parsing, optional actual-arrival lookup for Jet2 FDSA, a download of public UK tax rate tables, an optional JetWages account for Swap, Friends, and encrypted cloud backup, store subscriptions, or forms you choose to send.</p>
+    <p>Your roster, pay history, sales, and settings stay on your phone or tablet. Pay tracking does not need an account. Data only leaves your device in the cases described below — for example optional PDF parsing, optional actual-arrival lookup for Jet2 FDSA, a download of public UK tax rate tables, an optional JetWages account for Swap, Friends, and encrypted cloud backup, store subscriptions, forms you choose to send, or the optional payslip cleaner on the website.</p>
 
     <h2>2. Who is responsible</h2>
     <p><strong>Email:</strong> <a data-const="email" href="mailto:data@jetwages.com">data@jetwages.com</a><br>
@@ -33,6 +33,7 @@
       <li>There is <strong>no plaintext cloud database of your pay</strong>. An optional JetWages account is for Swap, Friends, and (if you turn it on) encrypted cloud backup — JetWages cannot read that backup.</li>
       <li>If PDF parsing needs our server, we only send the <strong>PDF file</strong>. Files travel over HTTPS and are <strong>deleted as soon as parsing finishes</strong>.</li>
       <li>Other airline setup can optionally upload a <strong>layout description</strong>: which words sat next to the pay figures you confirmed, and which existing roster reader you kept (eCrew or the crew schedule report), plus how many duties each reader found. That upload does not include the amounts, the payslip, your name, or the duties. Reading the PDF on iPhone still uses the short-lived parse upload above.</li>
+      <li>The payslip cleaner at <a href="incognito.html">jetwages.com/incognito.html</a> runs in your browser. The name, address, staff number, and other values you type stay on that device. After the page rebuilds the PDF, it can send that <strong>cleaned</strong> file to <code>incognito.jetwages.com</code> to look for a leftover National Insurance number, email, or sort code. The check is not kept. The original payslip is not uploaded. Pay figures can remain in the cleaned file.</li>
     </ul>
 
     <h2>4. What the app stores on your device</h2>
@@ -76,10 +77,10 @@
     <p>Optional subscriptions go through Apple, Google, and RevenueCat. Roster, pay, and salary are not sent to RevenueCat. Card details are not stored by JetWages. See <a href="https://www.revenuecat.com/privacy">RevenueCat’s privacy policy</a>.</p>
 
     <h2>10. Other services</h2>
-    <p>Cloudflare (TLS / Access; PDF.js CDN on Android). Flightradar24 (only if you tap Update actual arrival; via <code>flights.jetwages.com</code>). Public tax rate tables from <code>tax.jetwages.com</code> (no personal details). An optional Other-airline layout upload, described in section 3, stores that description only. Optional Google Forms / Sheets for feedback — not linked to in-app data. No advertising or behaviour tracking.</p>
+    <p>Cloudflare (TLS / Access; PDF.js CDN on Android and on the payslip cleaner page). Flightradar24 (only if you tap Update actual arrival; via <code>flights.jetwages.com</code>). Public tax rate tables from <code>tax.jetwages.com</code> (no personal details). An optional Other-airline layout upload, described in section 3, stores that description only. The payslip cleaner, also in section 3, loads PDF.js and pdf-lib from a CDN. The payslip is not sent to that CDN. Optional Google Forms / Sheets for feedback — not linked to in-app data. No advertising or behaviour tracking.</p>
 
     <h2>11. How long we keep data</h2>
-    <p>PDFs are not kept after parsing. Actual-arrival cache on <code>flights.jetwages.com</code> is short-lived (minutes). The tax rate service keeps no personal data. Layout descriptions are kept until they are no longer needed to add an airline, or until you ask us to delete them. Pay data stays on the device. Account records stay until you ask for deletion. Encrypted cloud-backup blobs stay until you delete them in the app or ask us to remove the account. Swap posts expire with the duty date. Friends QR codes expire. A staff-number friend request stays until it is declined, cancelled, or accepted, and the encrypted name is deleted with it. Form answers are kept only as long as needed, or until you ask us to delete them.</p>
+    <p>PDFs are not kept after parsing. A cleaned payslip sent for the leftover check on <code>incognito.jetwages.com</code> is not kept. Actual-arrival cache on <code>flights.jetwages.com</code> is short-lived (minutes). The tax rate service keeps no personal data. The incognito check keeps no personal data. Layout descriptions are kept until they are no longer needed to add an airline, or until you ask us to delete them. Pay data stays on the device. Account records stay until you ask for deletion. Encrypted cloud-backup blobs stay until you delete them in the app or ask us to remove the account. Swap posts expire with the duty date. Friends QR codes expire. A staff-number friend request stays until it is declined, cancelled, or accepted, and the encrypted name is deleted with it. Form answers are kept only as long as needed, or until you ask us to delete them.</p>
 
     <h2>12. Email</h2>
     <p>Voluntary contact email (updates, feedback) is used only for JetWages and only with consent where a form asks. Airline work email for account verification is not added to a marketing list.</p>
@@ -90,7 +91,7 @@
     <h2>14. Legal basis</h2>
     <ul>
       <li><strong>Contract:</strong> account, Swap, Friends, and optional cloud backup.</li>
-      <li><strong>Consent:</strong> PDF uploads, optional actual-arrival lookup, the optional layout upload, forms, email, Friends pairing, Swap posts, optional permissions.</li>
+      <li><strong>Consent:</strong> PDF uploads, the optional cleaned-payslip check, optional actual-arrival lookup, the optional layout upload, forms, email, Friends pairing, Swap posts, optional permissions.</li>
       <li><strong>Legitimate interests:</strong> securing servers, preventing abuse, support.</li>
     </ul>
 

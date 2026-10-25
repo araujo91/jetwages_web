@@ -11,7 +11,7 @@ The published page is [privacy-policy.html](privacy-policy.html).
 
 ## 1. Overview
 
-Your roster, pay history, sales, and settings stay on your phone or tablet. Pay tracking does not need an account. Data only leaves your device in the cases described below — for example optional PDF parsing, optional actual-arrival lookup for Jet2 FDSA, a download of public UK tax rate tables, an optional JetWages account for Swap, Friends, and encrypted cloud backup, store subscriptions, or forms you choose to send.
+Your roster, pay history, sales, and settings stay on your phone or tablet. Pay tracking does not need an account. Data only leaves your device in the cases described below — for example optional PDF parsing, optional actual-arrival lookup for Jet2 FDSA, a download of public UK tax rate tables, an optional JetWages account for Swap, Friends, and encrypted cloud backup, store subscriptions, forms you choose to send, or the optional payslip cleaner on the website.
 
 ## 2. Who is responsible
 
@@ -24,6 +24,7 @@ Your roster, pay history, sales, and settings stay on your phone or tablet. Pay 
 - There is **no plaintext cloud database of your pay**. An optional JetWages account is for Swap, Friends, and (if you turn it on) encrypted cloud backup — JetWages cannot read that backup.
 - If PDF parsing needs our server, we only send the **PDF file**. Files travel over HTTPS and are **deleted as soon as parsing finishes**.
 - Other airline setup can optionally upload a **layout description**: which words sat next to the pay figures you confirmed, and which existing roster reader you kept (eCrew or the crew schedule report), plus how many duties each reader found. That upload does not include the amounts, the payslip, your name, or the duties. Reading the PDF on iPhone still uses the short-lived parse upload above.
+- The payslip cleaner at [jetwages.com/incognito.html](https://www.jetwages.com/incognito.html) runs in your browser. The name, address, staff number, and other values you type stay on that device. After the page rebuilds the PDF, it can send that **cleaned** file to `incognito.jetwages.com` to look for a leftover National Insurance number, email, or sort code. The check is not kept. The original payslip is not uploaded. Pay figures can remain in the cleaned file.
 
 ## 4. What the app stores on your device
 
@@ -80,11 +81,11 @@ Optional subscriptions go through Apple, Google, and RevenueCat. Roster, pay, an
 
 ## 10. Other services
 
-Cloudflare (TLS / Access; PDF.js CDN on Android). Flightradar24 (only if you tap Update actual arrival; via `flights.jetwages.com`). Public tax rate tables from `tax.jetwages.com` (no personal details). An optional Other-airline layout upload, described in section 3, stores that description only. Optional Google Forms / Sheets for feedback — not linked to in-app data. No advertising or behaviour tracking.
+Cloudflare (TLS / Access; PDF.js CDN on Android and on the payslip cleaner page). Flightradar24 (only if you tap Update actual arrival; via `flights.jetwages.com`). Public tax rate tables from `tax.jetwages.com` (no personal details). An optional Other-airline layout upload, described in section 3, stores that description only. The payslip cleaner, also in section 3, loads PDF.js and pdf-lib from a CDN. The payslip is not sent to that CDN. Optional Google Forms / Sheets for feedback — not linked to in-app data. No advertising or behaviour tracking.
 
 ## 11. How long we keep data
 
-PDFs are not kept after parsing. Actual-arrival cache on `flights.jetwages.com` is short-lived (minutes). The tax rate service keeps no personal data. Layout descriptions are kept until they are no longer needed to add an airline, or until you ask us to delete them. Pay data stays on the device. Account records stay until you ask for deletion. Encrypted cloud-backup blobs stay until you delete them in the app or ask us to remove the account. Swap posts expire with the duty date. Friends QR codes expire. A staff-number friend request stays until it is declined, cancelled, or accepted, and the encrypted name is deleted with it. Form answers are kept only as long as needed, or until you ask us to delete them.
+PDFs are not kept after parsing. A cleaned payslip sent for the leftover check on `incognito.jetwages.com` is not kept. Actual-arrival cache on `flights.jetwages.com` is short-lived (minutes). The tax rate service keeps no personal data. The incognito check keeps no personal data. Layout descriptions are kept until they are no longer needed to add an airline, or until you ask us to delete them. Pay data stays on the device. Account records stay until you ask for deletion. Encrypted cloud-backup blobs stay until you delete them in the app or ask us to remove the account. Swap posts expire with the duty date. Friends QR codes expire. A staff-number friend request stays until it is declined, cancelled, or accepted, and the encrypted name is deleted with it. Form answers are kept only as long as needed, or until you ask us to delete them.
 
 ## 12. Email
 
@@ -97,7 +98,7 @@ Local-only setup notes (backup vs manual, file counts, duration) are **not sent 
 ## 14. Legal basis
 
 - **Contract:** account, Swap, Friends, and optional cloud backup.
-- **Consent:** PDF uploads, optional actual-arrival lookup, the optional layout upload, forms, email, Friends pairing, Swap posts, optional permissions.
+- **Consent:** PDF uploads, the optional cleaned-payslip check, optional actual-arrival lookup, the optional layout upload, forms, email, Friends pairing, Swap posts, optional permissions.
 - **Legitimate interests:** securing servers, preventing abuse, support.
 
 ## 15. Security
