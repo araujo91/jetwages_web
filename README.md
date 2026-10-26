@@ -6,6 +6,7 @@ Static marketing and support pages for JetWages (GitHub Pages–style layout).
 
 - **`index.html`** — Live marketing landing: hero, how it works, features, screenshots, privacy, FAQ, and signup CTAs. Uses real app screenshots from **`screenshots/MainPage/`** and **`graphics/Instructions/`**, plus app terminology (Pie View, Basic / Sector / Commission / Extras / Deductions).
 - **`index.css`** — Stylesheet for the live landing page (extracted from the page; not inlined). Shares the site design tokens (light/dark).
+- **`fonts.css`** and **`fonts/`** — Self-hosted DM Sans and Space Grotesk (SIL Open Font License). The landing page, payslip cleaner, and share calculator load these instead of the Google Fonts stylesheet.
 - **`constants-init.js` / `constants.js`** — Site URLs, `data-const` link resolution, and the landing-page airline checker. Support levels live in `constants.js` (`airlineGroups`, `airlineCountrySupport`).
 - **`theme.js`** — Colour theme helper for pages that use the shared `.theme-toggle` control. The live landing embeds its own Auto → Light → Dark toggle in-page.
 - **`instructions.html`** / **`instructions.css`** — Setup guide with sticky header, cards, and theme toggle; tabbed Quick Setup / Preparation / How to Use. Screenshots under **`graphics/Instructions/`**.
@@ -39,6 +40,8 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 | `--on-primary` | Text on brand (or accent) fills — navy in light, `#0d2130` in dark |
 
 ## Latest change
+
+- **Site headers and fonts:** published pages send a referrer policy and a content-security policy in the document. DM Sans and Space Grotesk are files in `fonts/`. GitHub Pages cannot set `Strict-Transport-Security` or `X-Frame-Options`; those still have to be added on the Cloudflare zone for `www.jetwages.com`, with `frame-ancestors 'none'` on the content-security policy.
 
 - **Payslip cleaner** (`incognito.html`): if the leftover check cannot be reached, or the server does not answer OK, the cleaned file is not offered for download.
 
