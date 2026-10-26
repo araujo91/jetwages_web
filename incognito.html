@@ -9,7 +9,28 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" integrity="sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e" crossorigin="anonymous"></script>
+<script type="module">
+const PDFJS_URL = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+const PDFJS_SRI = "sha384-+0ti2moQlmLN7WZHE2RHIf5lV8hHxhxEalN0il3YZceG26fUPyOkR0hp9daxk1i7";
+const WORKER_URL = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+const WORKER_SRI = "sha384-ToeVvShCxKc6CEvhHeMt0Q8A06pSPDbAlngO9nokrDmh914gk/pYd0N7D0a4Lz2o";
+
+async function checkedBlob(url, integrity) {
+  const response = await fetch(url, { integrity: integrity });
+  if (!response.ok) throw new Error("Could not load PDF.js");
+  return URL.createObjectURL(new Blob([await response.arrayBuffer()], { type: "text/javascript" }));
+}
+
+try {
+  const pdfUrl = await checkedBlob(PDFJS_URL, PDFJS_SRI);
+  const workerUrl = await checkedBlob(WORKER_URL, WORKER_SRI);
+  const pdfjsLib = await import(pdfUrl);
+  pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
+  window.pdfjsLib = pdfjsLib;
+} catch (err) {
+  window.pdfjsLibError = true;
+}
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" integrity="sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI" crossorigin="anonymous"></script>
 <style>
 :root{
@@ -206,8 +227,6 @@ button:disabled{opacity:.45; cursor:not-allowed}
   var statusEl = document.getElementById('status');
   var downloadLink = document.getElementById('download');
 
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
   fileInput.addEventListener('change', function () {
     var file = fileInput.files && fileInput.files[0];
     pages = [];
@@ -218,6 +237,11 @@ button:disabled{opacity:.45; cursor:not-allowed}
     if (!file) {
       details.classList.add('hidden');
       setStatus('');
+      return;
+    }
+    if (!window.pdfjsLib) {
+      details.classList.add('hidden');
+      setStatus(window.pdfjsLibError ? 'The PDF reader could not be loaded.' : 'The PDF reader is still loading. Choose the file again.', true);
       return;
     }
     setStatus('Reading the payslip on this device.');
@@ -256,7 +280,7 @@ button:disabled{opacity:.45; cursor:not-allowed}
 
   async function readPayslip(file) {
     var bytes = new Uint8Array(await file.arrayBuffer());
-    var doc = await pdfjsLib.getDocument({ data: bytes.slice(0) }).promise;
+    var doc = await pdfjsLib.getDocument({ data: bytes.slice(0), isEvalSupported: false }).promise;
     var next = [];
     for (var number = 1; number <= doc.numPages; number += 1) {
       var page = await doc.getPage(number);
@@ -542,7 +566,7 @@ button:disabled{opacity:.45; cursor:not-allowed}
   }
 
   async function extractText(bytes) {
-    var doc = await pdfjsLib.getDocument({ data: bytes.slice(0) }).promise;
+    var doc = await pdfjsLib.getDocument({ data: bytes.slice(0), isEvalSupported: false }).promise;
     var parts = [];
     for (var number = 1; number <= doc.numPages; number += 1) {
       var page = await doc.getPage(number);

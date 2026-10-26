@@ -40,6 +40,8 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 
 ## Latest change
 
+- **Payslip cleaner** (`incognito.html`): PDF.js is 4.10.38, loaded and checked by hash before a payslip is read. Font programs are not compiled with `eval`. The licence list records the same version.
+
 - **Payslip cleaner** (`incognito.html`): a page for the airline form. Personal lines are replaced in the browser. The cleaned PDF can be sent to `incognito.jetwages.com` for a leftover National Insurance number, email, or sort code. That check is not stored. The original file is not uploaded.
 
 - **Share scheme calculator** (`shares.html`): the SAYE estimated outcome lists a **Compensation** line with the amount paid for the extra shares. BAYE / Performance stays shares × £7.15, with no compensation.
