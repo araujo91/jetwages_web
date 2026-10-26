@@ -135,7 +135,7 @@ button:disabled{opacity:.45; cursor:not-allowed}
     <p class="lede" style="margin-top:8px">Use this before you attach a payslip to the airline form. The original stays in this browser. Attach the download, not the original.</p>
   </div>
   <p class="note">Type the values that are yours. The page finds them and, once you tick a line, replaces that value with a placeholder. Labels such as National Insurance stay, so the layout is still readable. A picture of a payslip, with no text layer, cannot be cleaned here.</p>
-  <p class="note">The values you type are not uploaded. After the file is rebuilt, this page can send that cleaned PDF to <code>incognito.jetwages.com</code> to look for a leftover National Insurance number, email, or sort code. That check is not kept. Pay figures can remain in the cleaned file.</p>
+  <p class="note">The values you type are not uploaded. After the file is rebuilt, this page sends that cleaned PDF to <code>incognito.jetwages.com</code> to look for a leftover National Insurance number, email, or sort code. That check is not kept. If the check cannot be reached, the download stays off. Pay figures can remain in the cleaned file.</p>
 
   <section class="card" aria-labelledby="file-title">
     <h2 id="file-title">1. Choose the payslip</h2>
@@ -613,8 +613,8 @@ button:disabled{opacity:.45; cursor:not-allowed}
       var response = await fetch(CHECK_URL, { method: 'POST', body: body });
       if (!response.ok) {
         return {
-          blocked: false,
-          message: 'The leftover check did not run. The cleaned file passed the check on this device. Download it and attach that file to the form.'
+          blocked: true,
+          message: 'The leftover check did not run, so this file cannot be downloaded yet. Try again when the check is reachable.'
         };
       }
       var result = await response.json();
@@ -636,8 +636,8 @@ button:disabled{opacity:.45; cursor:not-allowed}
       };
     } catch (_err) {
       return {
-        blocked: false,
-        message: 'The leftover check could not be reached. The cleaned file passed the check on this device. Download it and attach that file to the form.'
+        blocked: true,
+        message: 'The leftover check could not be reached, so this file cannot be downloaded yet. Try again when the check is reachable.'
       };
     }
   }
