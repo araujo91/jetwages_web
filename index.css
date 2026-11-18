@@ -318,11 +318,19 @@ footer{background:var(--panel); border-top:1px solid var(--border-muted); paddin
   .stage .phone--main,.stage .phone--float{width:min(280px,68%); margin:0; position:static; transform:none}
   .stage .phone--float{order:-1}
 }
+@media (max-width:720px){
+  .brand{font-size:.95rem}
+  .tgl{font-size:.75rem; padding:.35rem .55rem}
+  .nav__act .btn--sm{font-size:.8rem}
+}
 @media (max-width:560px){
   .strip{grid-template-columns:1fr}
   .gallery{grid-template-columns:1fr; max-width:320px; margin-inline:auto}
   .fgrid{grid-template-columns:1fr}
   .hero__cta .btn{flex:1 1 100%}
+  .brand{font-size:.9rem}
+  .tgl{font-size:.72rem}
+  .nav__act .btn--sm{font-size:.75rem}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important; transition:none !important}

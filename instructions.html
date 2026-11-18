@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
-  <meta name="description" content="Set up JetWages and learn how to upload schedules, payslips, and track cabin crew pay." />
+  <meta name="description" content="Set up JetWages and learn how to track pay, roster, sales, Friends, Swap, and backups." />
   <meta name="referrer" content="no-referrer">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://incognito.jetwages.com https://cdnjs.cloudflare.com; worker-src blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
   <title>Instructions – JetWages</title>
@@ -36,384 +36,591 @@
 
   <main id="main" class="container" tabindex="-1">
     <section class="page-hero" aria-labelledby="page-title">
-      <h1 id="page-title">Setup &amp; Instructions</h1>
-      <p class="lead">Welcome to JetWages — your tool to track and understand complex cabin crew wages. Follow these steps to set up the app and monitor your pay accurately.</p>
+      <h1 id="page-title" tabindex="-1">Setup &amp; Instructions</h1>
+      <p class="lead">Welcome to JetWages — your tool to track and understand complex cabin crew wages. Set the app up once, then use the sections below for roster, pay, and the rest of the tools.</p>
     </section>
 
-    <div class="tab-buttons" role="tablist" aria-label="Instruction sections">
-      <button type="button" class="tab-btn active" data-target="quick-setup" role="tab" aria-selected="true" id="tab-quick">Quick Setup</button>
-      <button type="button" class="tab-btn" data-target="setup-section" role="tab" aria-selected="false" id="tab-setup">Preparation</button>
-      <button type="button" class="tab-btn" data-target="use-section" role="tab" aria-selected="false" id="tab-use">How to Use</button>
-    </div>
-
-    <!-- QUICK SETUP -->
-    <div id="quick-setup" role="tabpanel" aria-labelledby="tab-quick">
-      <section class="card section">
-        <h2>Quick Setup</h2>
-
-        <div class="step">
-          <div class="step-media"><img src="graphics/Instructions/Setup/01Welcome.png" alt="Welcome screen with Get Started and Upload Backup"></div>
-          <div class="step-text">
-            <h3>1. Welcome</h3>
-            <ul>
-              <li>Tap <strong>Get Started</strong> to begin setup.</li>
-              <li><em>Optional:</em> Tap <strong>Upload Backup</strong> if you are restoring previous data.</li>
-            </ul>
-          </div>
+    <nav class="tab-buttons" aria-label="On this page">
+      <details class="tab-details">
+        <summary class="tab-menu"><span class="tab-menu__label">On this page</span></summary>
+        <div class="tab-buttons__list" id="section-menu">
+          <a class="tab-btn" href="#start">Start</a>
+          <a class="tab-btn" href="#pay">Pay</a>
+          <a class="tab-btn" href="#roster">Roster</a>
+          <a class="tab-btn" href="#day">A day</a>
+          <a class="tab-btn" href="#month">The month</a>
+          <a class="tab-btn" href="#crew">Other crew</a>
+          <a class="tab-btn" href="#keep">Look after it</a>
         </div>
+      </details>
+    </nav>
 
-        <div class="step">
-          <div class="step-media"><img src="graphics/Instructions/Setup/02Airline.png" alt="Airline selection screen"></div>
-          <div class="step-text">
-            <h3>2. Airline</h3>
-            <p>JetWages uses your airline to apply the correct pay rules.</p>
-            <ul>
-              <li>Tap <strong>Select your airline</strong> and choose your airline.</li>
-              <li>Use <strong>Back</strong> if you need to return to the welcome screen.</li>
-            </ul>
-          </div>
+    <section class="card section" id="start">
+      <h2>Start</h2>
+      <p>Sign in or register, then choose your country, then enter pay by hand or from a payslip. After a verified sign-in you can recover an online backup, recover an offline backup, or start fresh.</p>
+
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/Welcome.png" alt="Welcome to JetWages, with Sign in / Register"></div>
+        <div class="step-text">
+          <h3>1. Sign in or register</h3>
+          <p>The first screen asks you to sign in or register. Pay setup continues after that account is verified.</p>
+          <ul>
+            <li>Tap <strong>Sign in / Register</strong>.</li>
+            <li>Create the account or sign in with the staff number and password.</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="step">
-          <div class="step-media"><img src="graphics/Instructions/Setup/03Country.png" alt="Country selection screen"></div>
-          <div class="step-text">
-            <h3>3. Country</h3>
-            <p>Your country controls currency display and how payslips are read.</p>
-            <p>The app theme will automatically adjust to match your airline's colour scheme. Can be changed later in settings.</p>
-            <ul>
-              <li>Tap <strong>Select your country</strong> and pick the country you operate from.</li>
-            </ul>
-          </div>
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/SetupThisPhone.png" alt="Set up this phone, with recover from online backup, recover from offline backup, and fresh setup"></div>
+        <div class="step-text">
+          <h3>2. Recover or start fresh</h3>
+          <p>A verified sign-in opens three choices. A line separates them. Leaving the app before setup is finished shows this screen again.</p>
+          <ul>
+            <li><strong>Recover from online backup</strong> — restore the encrypted backup. The button shows when that copy was saved.</li>
+            <li><strong>Recover from offline backup</strong> — pick a copy you saved earlier.</li>
+            <li><strong>Fresh setup</strong> — continue with country and pay. You can go back to these choices.</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="step">
-          <div class="step-media"><img src="graphics/Instructions/Setup/04ManualAuto.png" alt="Manual Entry or Upload Payslips choice"></div>
-          <div class="step-text">
-            <h3>4. Setup method</h3>
-            <p>Choose how to enter salary details:</p>
-            <ul>
-              <li><strong>Manual Entry</strong> — if you already know basic pay, nominal pay, and deductions.</li>
-              <li><strong>Upload Payslips</strong> — let the app extract figures from PDF payslips (steps below follow this path).</li>
-            </ul>
-          </div>
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/Setup/03Country.png" alt="Country selection screen"></div>
+        <div class="step-text">
+          <h3>3. Country</h3>
+          <p>Your country controls currency display and how payslips are read.</p>
+          <p>Colours are chosen in Settings → Appearance. They do not change by themselves during setup.</p>
+          <ul>
+            <li>Tap <strong>Select your country</strong> and pick the country you operate from.</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="step">
-          <div class="step-media"><img src="graphics/Instructions/Setup/05UploadSlip.png" alt="Upload Your Payslip screen"></div>
-          <div class="step-text">
-            <h3>5. Upload your payslip</h3>
-            <ul>
-              <li>Tap <strong>Select PDF File</strong>.</li>
-              <li>Choose a monthly payslip PDF from your device.</li>
-              <li>Wait while the app extracts salary information.</li>
-            </ul>
-          </div>
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/Setup/04ManualAuto.png" alt="Manual Entry or Upload Payslips choice"></div>
+        <div class="step-text">
+          <h3>4. Setup method</h3>
+          <p>Choose how to enter salary details:</p>
+          <ul>
+            <li><strong>Manual Entry</strong> — if you already know basic pay, nominal pay, and deductions.</li>
+            <li><strong>Upload Payslips</strong> — let the app extract figures from PDF payslips (the steps below follow this path).</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="step">
-          <div class="step-media"><img src="graphics/Instructions/Setup/06ReviewSalary.png" alt="Review Core Salary Information form"></div>
-          <div class="step-text">
-            <h3>6. Review core salary</h3>
-            <p>Confirm the values extracted from your payslip (or edit them):</p>
-            <ul>
-              <li><strong>Monthly Basic Pay</strong></li>
-              <li><strong>Language Pay</strong> (optional)</li>
-              <li><strong>Pension Contribution (%)</strong> (optional)</li>
-              <li>Tap <strong>Next: Review Benefits</strong>, then keep only pre-tax benefits that apply to you.</li>
-            </ul>
-            <p><em>Note:</em> Pre-tax benefits are the ones that show on the <strong>left</strong> hand side of the payslip.</p>
-          </div>
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/Setup/05UploadSlip.png" alt="Upload Your Payslip screen"></div>
+        <div class="step-text">
+          <h3>5. Upload your payslip</h3>
+          <ul>
+            <li>Tap <strong>Select PDF File</strong>.</li>
+            <li>Choose a monthly payslip PDF from your device.</li>
+            <li>Wait while the app extracts salary information.</li>
+          </ul>
+          <p>On iOS, PDFs are processed on JetWages’ secure server, then deleted. On Android, a text PDF stays on the phone; an image-only PDF uses that same server.</p>
         </div>
+      </div>
 
-        <div class="step">
-          <div class="step-media"><img src="graphics/Instructions/Setup/07UploadSupp.png" alt="Upload Supplementary Payslip screen"></div>
-          <div class="step-text">
-            <h3>7. Upload a supplementary payslip</h3>
-            <p>The app analyses the first valid flight entry chronologically to calculate your nominal pay rate.</p>
-            <ul>
-              <li>Tap <strong>Select Supplementary PDF</strong>.</li>
-              <li>Pick a supplementary payslip that includes flight pay data.</li>
-            </ul>
-          </div>
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/Setup/06ReviewSalary.png" alt="Review Core Salary Information form"></div>
+        <div class="step-text">
+          <h3>6. Review core salary</h3>
+          <p>Confirm the values extracted from your payslip (or edit them):</p>
+          <ul>
+            <li><strong>Monthly Basic Pay</strong></li>
+            <li><strong>Language Pay</strong> (optional)</li>
+            <li><strong>Pension Contribution (%)</strong> (optional)</li>
+            <li>Tap <strong>Next: Review Benefits</strong>, then keep only pre-tax benefits that apply to you.</li>
+          </ul>
+          <p><em>Note:</em> Pre-tax benefits are the ones that show on the <strong>left</strong> hand side of the payslip.</p>
         </div>
+      </div>
 
-        <div class="step">
-          <div class="step-media"><img src="graphics/Instructions/Setup/08ReviewNominal.png" alt="Confirm Nominal Pay screen"></div>
-          <div class="step-text">
-            <h3>8. Confirm nominal pay</h3>
-            <ul>
-              <li>Review the calculated <strong>Nominal Pay</strong> value.</li>
-              <li>Edit it if needed.</li>
-              <li>Tap <strong>Next: Leave estimate</strong>.</li>
-            </ul>
-          </div>
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/Setup/07UploadSupp.png" alt="Upload Supplementary Payslip screen"></div>
+        <div class="step-text">
+          <h3>7. Upload a supplementary payslip</h3>
+          <p>The app uses the first valid flight, in date order, to work out your nominal pay.</p>
+          <ul>
+            <li>Tap <strong>Select Supplementary PDF</strong>.</li>
+            <li>Pick a supplementary payslip that includes flight pay data.</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="step">
-          <div class="step-media"><img src="graphics/Instructions/Setup/09Leave.png" alt="Leave Value Estimation options"></div>
-          <div class="step-text">
-            <h3>9. Leave Value Estimation (LVE)</h3>
-            <p>Choose how JetWages should estimate variable pay during leave:</p>
-            <ul>
-              <li><strong>Simple Estimate</strong> — enter a monthly figure (for example £75). This improves as you use the app.</li>
-              <li><strong>Historical Data</strong> — upload past schedules and supplementary payslips for a more precise figure (next step).</li>
-            </ul>
-          </div>
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/Setup/08ReviewNominal.png" alt="Confirm Nominal Pay screen"></div>
+        <div class="step-text">
+          <h3>8. Confirm nominal pay</h3>
+          <ul>
+            <li>Review the calculated <strong>Nominal Pay</strong> value.</li>
+            <li>Edit it if needed.</li>
+            <li>Tap <strong>Next: Leave estimate</strong>.</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="step">
-          <div class="step-media"><img src="graphics/Instructions/Setup/10LeaveHistorical.png" alt="Upload Files screen for historical schedules and payslips"></div>
-          <div class="step-text">
-            <h3>10. Historical files (optional path)</h3>
-            <p>If you chose <strong>Historical Data</strong>, upload files here:</p>
-            <ul>
-              <li>Schedules must be <strong>vertical HTML</strong> exports from eCrew.</li>
-              <li>Supplementary payslips must be <strong>PDF</strong>.</li>
-              <li>Tap <strong>Pick Files</strong>, select schedules and payslips together, then <strong>Save</strong>.</li>
-              <li>On iOS, PDFs are processed on JetWages’ secure server.</li>
-            </ul>
-          </div>
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/Setup/09Leave.png" alt="Leave estimate options"></div>
+        <div class="step-text">
+          <h3>9. Leave estimate</h3>
+          <p>Choose how JetWages should estimate variable pay during leave:</p>
+          <ul>
+            <li><strong>Simple Estimate</strong> — enter a monthly figure (for example £75). This improves as you use the app.</li>
+            <li><strong>Historical Data</strong> — upload past schedules and supplementary payslips for a more precise figure (next step).</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="step">
-          <div class="step-media"><img src="graphics/Instructions/Setup/11ExtrasPerFilght.png" alt="Extras per flight Yes or No prompt"></div>
-          <div class="step-text">
-            <h3>11. Extras per flight</h3>
-            <p>Some roles earn an extra payment per flight (for example Upranker or Trainer).</p>
-            <ul>
-              <li>Tap <strong>Yes</strong> if this applies, then add the extra type and amount when prompted.</li>
-              <li>Tap <strong>No</strong> if it does not.</li>
-            </ul>
-          </div>
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/Setup/10LeaveHistorical.png" alt="Upload Files screen for historical schedules and payslips"></div>
+        <div class="step-text">
+          <h3>10. Historical files (optional path)</h3>
+          <p>If you chose <strong>Historical Data</strong>, upload files here:</p>
+          <ul>
+            <li>Schedules must be a <strong>Personal Crew Schedule Report</strong> saved as HTML, in the horizontal table layout. Other HTML pages will not parse.</li>
+            <li>Supplementary payslips must be <strong>PDF</strong>.</li>
+            <li>Tap <strong>Pick Files</strong>, select schedules and payslips together, then <strong>Save</strong>.</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="step">
-          <div class="step-media"><img src="graphics/Instructions/Setup/13SetupComplete.png" alt="Setup Complete confirmation over the home calendar"></div>
-          <div class="step-text">
-            <h3>12. Setup complete</h3>
-            <ul>
-              <li>You’ll see a <strong>Setup Complete</strong> confirmation over the home calendar.</li>
-              <li>Tap <strong>OK</strong> to start using JetWages.</li>
-            </ul>
-            <p><em>Note:</em> If a PDF step fails, use <strong>Manual Entry</strong> (or enter values by hand when offered) and continue.</p>
-          </div>
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/Setup/11ExtrasPerFilght.png" alt="Extras per flight Yes or No prompt"></div>
+        <div class="step-text">
+          <h3>11. Extras per flight</h3>
+          <p>Some roles earn an extra payment per flight (for example Upranker or Trainer).</p>
+          <ul>
+            <li>Tap <strong>Yes</strong> if this applies, then add the extra type and amount when prompted.</li>
+            <li>Tap <strong>No</strong> if it does not.</li>
+          </ul>
         </div>
+      </div>
 
-        <p class="ready-note"><strong>You’re ready to go.</strong> Use the How to Use tab to import your roster and edit duties.</p>
-      </section>
-    </div>
-
-    <!-- PREPARATION -->
-    <div id="setup-section" class="hidden" role="tabpanel" aria-labelledby="tab-setup">
-      <section class="card section">
-        <h2>1. What to prepare</h2>
-        <p>This tab is mainly for anyone using <strong>Historical Data</strong> during Leave Value Estimation (and for gathering eCrew HTML files before you import them). Most people can go straight to <strong>Quick Setup</strong>.</p>
-        <p>If you want the most accurate leave estimate, gather:</p>
-        <ul>
-          <li>Your <strong>monthly roster files</strong> from eCrew (HTML, vertical view)</li>
-          <li>Your <strong>monthly payslip</strong> PDF (for salary setup)</li>
-          <li>Your <strong>supplementary payslips</strong> PDF (for nominal pay and leave accuracy)</li>
-        </ul>
-      </section>
-
-      <section class="card section">
-        <h2>2. Download your eCrew roster (HTML)</h2>
-        <ol>
-          <li>Log in to eCrew</li>
-          <li>Open your schedule</li>
-          <li>Switch to <strong>Vertical View</strong> in <strong>My Preferences</strong></li>
-          <li>Use the export icon and choose <strong>HTML</strong> format</li>
-        </ol>
-
-        <div class="flex-row">
-          <img src="graphics/ecrewSettings.jpg" alt="eCrew Orientation Settings" class="popup-target">
-          <div class="flex-text">
-            <h3>Orientation settings</h3>
-            <p>Set <strong>Orientation</strong> to <em></strong>Vertical</em> under Schedule Print Options.<br>
-            <strong class="warn">Important:</strong> Each line should represent a single day, so double-check your export!</p>
-          </div>
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/Setup/13SetupComplete.png" alt="Setup Complete confirmation over the home calendar"></div>
+        <div class="step-text">
+          <h3>12. Setup complete</h3>
+          <ul>
+            <li>You’ll see a <strong>Setup Complete</strong> confirmation over the home calendar.</li>
+            <li>Tap <strong>OK</strong> to start using JetWages.</li>
+          </ul>
+          <p><em>Note:</em> If a PDF step fails, use <strong>Manual Entry</strong> (or enter values by hand when offered) and continue.</p>
         </div>
+      </div>
+    </section>
 
-        <div class="flex-row">
-          <img src="graphics/ecrewPrint.jpg" alt="eCrew Export Menu" class="popup-target">
-          <div class="flex-text">
-            <h3>Export your roster</h3>
-            <p>Use the export icon and choose <strong>HTML</strong>. Save the file for import in JetWages (Menu → Upload Calendar, or during historical leave setup).</p>
-          </div>
+    <section class="card section" id="pay">
+      <h2>Pay</h2>
+      <p>The setup screens above store the figures the month is built from. You can change them later.</p>
+      <ul>
+        <li><strong>Monthly basic pay</strong>, optional language pay, and pension.</li>
+        <li><strong>Pre-tax benefits</strong> — the ones on the left of the payslip.</li>
+        <li><strong>Nominal pay</strong> — taken from the first valid flight on a supplementary PDF, in date order. Edit it if the extract is wrong.</li>
+        <li><strong>Leave estimate</strong> — a simple monthly figure, or a figure from past schedules and supplementary PDFs.</li>
+      </ul>
+      <p>Later changes live in Settings → Pay, including extras per flight. Take-home in Pie View uses Settings → Tax: tax code, student loan, National Insurance category, and whether pension is deducted before tax.</p>
+
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/PaySettings.png" alt="Pay settings in monthly view, with basic pay, sector rates, language pay, pension, benefits, and Edit Pay Information"></div>
+        <div class="step-text">
+          <h3>Settings → Pay</h3>
+          <p>Open Settings, then Pay. <strong>Monthly View</strong> and <strong>Yearly View</strong> show the same rates: basic pay, sector or flight rates, language pay, pension, and pre-tax and after-tax benefits.</p>
+          <p>Tap <strong>Edit Pay Information</strong> to change them. Leave estimate is listed under the rates.</p>
         </div>
-      </section>
+      </div>
 
-      <section class="card section">
-        <h2>3. File tips</h2>
-        <ul>
-          <li>Select <strong>all related HTML schedules and PDF Supplementary Payslips in one go</strong> when uploading historical files — this reduces missing data.</li>
-          <li>After setup, you can also sync duties from your <strong>device calendar</strong> (see How to Use).</li>
-          <li>On iOS, PDF processing for uploads may use JetWages’ secure server; other data stays on your device.</li>
-        </ul>
-        <p class="ready-note">When your files are ready, follow <strong>Quick Setup</strong> in the app.</p>
-      </section>
-    </div>
-
-    <!-- HOW TO USE -->
-    <div id="use-section" class="hidden" role="tabpanel" aria-labelledby="tab-use">
-      <section class="card section">
-        <h2>Home calendar</h2>
-
-        <div class="flex-row">
-          <img src="graphics/Instructions/calendarSync/01HomeScreenBlank.png" alt="Empty home calendar for July 2026">
-          <div class="flex-text">
-            <h3>Your month at a glance</h3>
-            <p>After setup you land on the home calendar. Use the orange arrows to change month, open <strong>Menu</strong> for tools and settings, and tap <strong>Pie View</strong> for a pay breakdown.</p>
-          </div>
+      <div class="step">
+        <div class="step-media"><img src="graphics/Instructions/TaxSettings.png" alt="Tax settings with tax code, student loan plans, National Insurance category, and pension deducted before tax"></div>
+        <div class="step-text">
+          <h3>Settings → Tax</h3>
+          <p>Tax code, student loan plan, National Insurance category, and whether pension is deducted before tax are in Settings → Tax. Pie View uses them for the UK take-home estimate. Income tax and National Insurance are worked out on the phone.</p>
         </div>
+      </div>
+    </section>
 
-        <div class="flex-row">
-          <img src="graphics/Instructions/darkmode.png" alt="Home calendar in dark mode with a day selected showing Edit, Sales, and Extras">
-          <div class="flex-text">
-            <h3>Select a day</h3>
-            <p>Tap a date to open the day actions:</p>
-            <ul>
-              <li><strong>Edit</strong> — change duties and flights</li>
-              <li><strong>Sales</strong> — record onboard sales</li>
-              <li><strong>Extras</strong> — add delay pay, night stop, uprank, and similar payments</li>
-            </ul>
-            <p>You can switch light/dark theme from the moon control during setup, or via settings once you are on the home screen.</p>
-          </div>
+    <section class="card section" id="roster">
+      <h2>Roster</h2>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/calendarSync/01HomeScreenBlank.png" alt="Empty home calendar">
+        <div class="flex-text">
+          <h3>Your month at a glance</h3>
+          <p>After setup you land on the home calendar. This is your calendar, where you see an overview of your month. Use the arrows to change month, and open <strong>Menu</strong> for tools and settings.</p>
         </div>
-      </section>
+      </div>
 
-      <section class="card section">
-        <h2>Import your roster</h2>
-
-        <div class="flex-row">
-          <img src="graphics/Instructions/calendarSync/02CalendarUpload.png" alt="Upload Calendar dialog with HTML, PDF, and Calendar options">
-          <div class="flex-text">
-            <h3>Upload Calendar</h3>
-            <p>From Menu, open <strong>Upload Calendar</strong> and choose a source:</p>
-            <ul>
-              <li><strong>HTML</strong> — eCrew vertical HTML export</li>
-              <li><strong>PDF</strong> — roster PDF where supported</li>
-              <li><strong>Calendar</strong> — sync with your device calendar <em>(reccomended)</em></li>
-            </ul>
-          </div>
+      <div class="flex-row">
+        <img src="graphics/Instructions/calendarSync/02CalendarUpload.png" alt="Upload Calendar dialog with HTML, PDF, and Calendar options">
+        <div class="flex-text">
+          <h3>Upload Calendar</h3>
+          <p>From Menu, open <strong>Upload Calendar</strong>. Pick Calendar to keep your schedule in sync, or HTML / PDF to import a Personal Crew Schedule Report. Calendar sync is the most reliable option.</p>
+          <ul>
+            <li><strong>Calendar</strong> — sync with your device calendar (recommended)</li>
+            <li><strong>HTML</strong> — Personal Crew Schedule Report, horizontal table layout</li>
+            <li><strong>PDF</strong> — Personal Crew Schedule Report PDF. Scanned or image-only files can be slower or incomplete.</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="flex-row">
-          <img src="graphics/Instructions/calendarSync/03GivePermissions.png" alt="Connect your calendar permission dialog">
-          <div class="flex-text">
-            <h3>Calendar permissions</h3>
-            <p>If you choose device calendar sync, JetWages asks to connect. It reads roster events forward through the end of this month (or next month when today is the 15th or later), then you choose how far back the first import should go.</p>
-            <ul>
-              <li>Tap <strong>Allow calendar access</strong> to continue.</li>
-            </ul>
-          </div>
+      <div class="flex-row">
+        <div class="shot-needed">Screenshot needed: Schedule report — horizontal HTML export</div>
+        <div class="flex-text">
+          <h3>HTML schedules</h3>
+          <p>Use a Personal Crew Schedule Report saved as HTML, in the horizontal table layout. Other HTML pages will not parse. Calendar sync is better if you can use it.</p>
         </div>
+      </div>
 
-        <div class="flex-row">
-          <img src="graphics/Instructions/calendarSync/04CalendarPopulated.png" alt="Home calendar populated with duty icons">
-          <div class="flex-text">
-            <h3>Populated calendar</h3>
-            <p>Duties appear as icons on each day (for example flights, standby, days off, or leave). Tap any day to review or edit details.</p>
-          </div>
+      <div class="flex-row">
+        <img src="graphics/Instructions/calendarSync/03GivePermissions.png" alt="Connect your calendar permission dialog">
+        <div class="flex-text">
+          <h3>Calendar permissions</h3>
+          <p>If you choose device calendar sync, JetWages asks to connect. It reads roster events forward through the rolling window, then you choose how far back the first import should go.</p>
+          <ul>
+            <li>Tap <strong>Allow calendar access</strong> to continue.</li>
+          </ul>
         </div>
-      </section>
+      </div>
 
-      <section class="card section">
-        <h2>Edit a day</h2>
-
-        <div class="flex-row">
-          <img src="graphics/Instructions/EditDay/01EditDayBlank.png" alt="Empty EditDay screen with Add Duty and Save">
-          <div class="flex-text">
-            <h3>EditDay</h3>
-            <p>From a selected day, tap <strong>Edit</strong>. Use <strong>+ Add Duty</strong> to build the day, then <strong>Save</strong>.</p>
-            <p>Turn on <strong>No sync</strong> so calendar sync will not overwrite that day (it turns on automatically when you edit).</p>
-            <p>No Sync is usefull if ecrew is not updating your roster for that day.</p>
-          </div>
+      <div class="flex-row">
+        <img src="graphics/Instructions/calendarSync/04CalendarPopulated.png" alt="Home calendar populated with duty icons">
+        <div class="flex-text">
+          <h3>Populated calendar</h3>
+          <p>Duties appear as icons on each day (for example flights, standby, days off, or leave). Tap any day to review or edit details.</p>
         </div>
+      </div>
 
-        <div class="flex-row">
-          <img src="graphics/Instructions/EditDay/02SelectDutyType.png" alt="Select a Duty list with Flight, ADTY, LVE, Standby, Days Off, Training, Other">
-          <div class="flex-text">
-            <h3>Select a duty type</h3>
-            <p>Choose the duty that matches the day:</p>
-            <ul>
-              <li>Flight, ADTY, LVE, Standby, Days Off, Training, or Other Duties</li>
-            </ul>
-          </div>
+      <div class="flex-row">
+        <div class="shot-needed">Screenshot needed: Home — pull to refresh</div>
+        <div class="flex-text">
+          <h3>Pull to refresh</h3>
+          <p>Calendar sync runs when you open the app. Pull down on Home to sync again. It does not sync every time you switch back to the app.</p>
         </div>
+      </div>
 
-        <div class="flex-row">
-          <img src="graphics/Instructions/EditDay/03fligthExample.png" alt="Flight sectors with airport codes and flight times">
-          <div class="flex-text">
-            <h3>Flight sectors</h3>
-            <p>For flight duties, add each sector with origin and destination airport codes. Optionally enable <strong>Flight number and times</strong> to enter STD/STA per sector.</p>
-            <p><em>Note:</em> STD/STA are not mandatory.</p>
-          </div>
+      <div class="flex-row">
+        <div class="shot-needed">Screenshot needed: Overlap — keep this duty</div>
+        <div class="flex-text">
+          <h3>Overlapping duties</h3>
+          <p>If two different duties overlap, the app asks which one to keep. Tap a duty card to keep it, or open Edit day. The same destination chain with later times is kept automatically.</p>
+          <p>Turn on <strong>No sync</strong> on a day and calendar sync will not overwrite it. It turns on automatically when you edit.</p>
         </div>
+      </div>
+    </section>
 
-        <div class="flex-row">
-          <img src="graphics/Instructions/EditDay/04flightExample.png" alt="Debrief time section with timezone and +1 controls">
-          <div class="flex-text">
-            <h3>Times and debrief</h3>
-            <p>Set timezone (UTC or local) and debrief time. Use <strong>+1</strong> if duty finishes the next day.</p>
-          </div>
+    <section class="card section" id="day">
+      <h2>A day</h2>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/darkmode.png" alt="Home calendar in dark mode with a day selected showing Edit, Sales, and Extras">
+        <div class="flex-text">
+          <h3>Select a day</h3>
+          <p>Tap a date to open the day actions. Need to make changes? That is what Edit is for. Want to add figures? Use Sales. Something different, such as a delay or day-off payment? Use Extras.</p>
+          <ul>
+            <li><strong>Edit</strong> — flights, duties, times, and leave</li>
+            <li><strong>Sales</strong> — onboard sales for the day</li>
+            <li><strong>Extras</strong> — delay pay, night stop, uprank, and similar payments</li>
+          </ul>
+          <p>Opening Edit, Sales, or Extras shows a short tour of that screen.</p>
         </div>
+      </div>
 
-        <div class="flex-row">
-          <img src="graphics/Instructions/EditDay/05adty.png" alt="ADTY Times dialog with start and finish fields">
-          <div class="flex-text">
-            <h3>ADTY times</h3>
-            <p>For ADTY, register start (report) and finish (release). If a sector starts during ADTY, payable standby ends at that STD. Use <strong>Finish next day</strong> when needed.</p>
-          </div>
+      <div class="flex-row">
+        <img src="graphics/Instructions/HomeDayList.png" alt="Home in day-by-day view, listing each day's duty, variable pay, and how many friends are free">
+        <div class="flex-text">
+          <h3>Month or day by day</h3>
+          <p>Tap the <strong>JetWages</strong> title on Home to switch between the monthly calendar and the day-by-day list. The same choice is in Settings → Appearance.</p>
+          <p>On the list, a day off can show how many friends are also free.</p>
         </div>
-      </section>
+      </div>
 
-      <section class="card section">
-        <h2>Sales &amp; extras</h2>
-
-        <div class="flex-row">
-          <img src="graphics/Instructions/Sales.png" alt="Add Sales dialog with total sales and crew count">
-          <div class="flex-text">
-            <h3>Add sales</h3>
-            <p>Enter total sales and crew count. Use <strong>+ Add another sales figure</strong> if an aircraft swap changed crew count during the day — each figure is paid on its own crew count and commissions are added together.</p>
-          </div>
+      <div class="flex-row">
+        <img src="graphics/Instructions/EditDay/01EditDayBlank.png" alt="Empty Edit Day screen with Add Duty and Save">
+        <div class="flex-text">
+          <h3>Edit Day</h3>
+          <p>This is where you fix a single day — flights, duties, times, and leave. Changes here update pay for that date.</p>
+          <p>Tap <strong>Add Duty</strong> to see what you can add, then <strong>Save</strong> when you are finished. Your changes are stored for this date.</p>
+          <p>When <strong>No sync</strong> is on, calendar sync will not overwrite the day. It turns on automatically when you edit.</p>
         </div>
+      </div>
 
-        <div class="flex-row">
-          <img src="graphics/Instructions/extras1.png" alt="Add Extras modal on the Add tab">
-          <div class="flex-text">
-            <h3>Add extras</h3>
-            <p>On the <strong>Add</strong> tab, enter one-off extras such as delayed flight pay, DDO/WFDO, or night stop. Add a short comment, then <strong>Save</strong>.</p>
-          </div>
+      <div class="flex-row">
+        <img src="graphics/Instructions/EditDay/02SelectDutyType.png" alt="Select a Duty list with Flight, ADTY, leave, Standby, Days Off, Training, and Other">
+        <div class="flex-text">
+          <h3>Select a duty</h3>
+          <p>Flight, ADTY, leave, standby, training, and days off are all listed here.</p>
         </div>
+      </div>
 
-        <div class="flex-row">
-          <img src="graphics/Instructions/extras2.png" alt="Add Extras modal on Per Flight tab with Uprank for some flights">
-          <div class="flex-text">
-            <h3>Per-flight extras</h3>
-            <p>On the <strong>Per Flight</strong> tab, add roles such as Uprank. Choose whether it applies to all flights that day or only some, then save. Favourites keep frequently used extras handy.</p>
-          </div>
+      <div class="flex-row">
+        <img src="graphics/Instructions/EditDay/06LeaveDays.png" alt="Leave Value dialog asking how many days, showing start and finish dates and an editable daily rate">
+        <div class="flex-text">
+          <h3>Leave or a day off across several days</h3>
+          <p>Leave asks how many days. The dialog shows the start and finish dates, and a daily rate you can edit. <strong>Add</strong> writes that leave on every day in the range, and No sync is turned on for those days. A day off across several days works the same way.</p>
         </div>
-      </section>
+      </div>
 
-      <section class="card section">
-        <h2>Pie View</h2>
-        <div class="flex-row">
-          <img src="graphics/Instructions/PieView.png" alt="PieView pay breakdown for July 2026">
-          <div class="flex-text">
-            <h3>Monthly breakdown</h3>
-            <p>Open <strong>Pie View</strong> from the home screen to see Basic, Sector, Commission, and Extras as a share of the month. Adjust the date range with the From/To controls if needed.</p>
-          </div>
+      <div class="flex-row">
+        <img src="graphics/Instructions/EditDay/03fligthExample.png" alt="Flight sectors with airport codes and flight times">
+        <div class="flex-text">
+          <h3>Flight sectors</h3>
+          <p>Enter airport codes or search by city. Use + to add another sector on the same day.</p>
+          <p>Turn on <strong>Flight number and times</strong> when you need STD, STA, and sector pay for each sector. STD and STA are not mandatory.</p>
         </div>
+      </div>
 
-        <p class="ready-note"><strong>You’re ready to go.</strong> Enjoy tracking your wages with JetWages.</p>
-      </section>
-    </div>
+      <div class="flex-row">
+        <img src="graphics/Instructions/EditDay/04flightExample.png" alt="Debrief time section with timezone and +1 controls">
+        <div class="flex-text">
+          <h3>Debrief time</h3>
+          <p>After flying, set debrief time here. It is used for sales reminders. Set the timezone (UTC or local). Use <strong>+1</strong> if duty finishes the next day.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/EditDay/05adty.png" alt="ADTY Times dialog with start and finish fields">
+        <div class="flex-text">
+          <h3>ADTY times</h3>
+          <p>For ADTY, register start (report) and finish (release). If a sector starts during ADTY, payable standby ends at that STD. Use <strong>Finish next day</strong> when needed.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/Sales.png" alt="Add Sales dialog with total sales, crew count, and Comp">
+        <div class="flex-text">
+          <h3>Add sales</h3>
+          <p>This is your total onboard sales for the day. Commission is calculated from this figure. The crew count is how many crew share that sales figure.</p>
+          <p>Turn on <strong>Comp</strong> for complementary sales. Those figures are tracked separately from paid onboard sales.</p>
+          <p>Use the plus if an aircraft swap changed the crew count. Each figure is paid on its own crew count and the commissions are added together.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/extras1.png" alt="Add Extras modal on the Add tab">
+        <div class="flex-text">
+          <h3>Add extras</h3>
+          <p>Enter the extra amount and a short comment, such as a delay or day-off payment. After you save, you can add it to Favourites so you can reuse it next time.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/extras2.png" alt="Add Extras modal on the Per Flight tab">
+        <div class="flex-text">
+          <h3>Per-flight extras</h3>
+          <p>You can also add per-flight extras such as uprank or instructing. Turn them on in Settings → Pay → Extras Per Flight. Choose whether the extra applies to all flights that day or only some, then save.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section" id="month">
+      <h2>The month</h2>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/PieViewMonth.png" alt="Pie View for November 2026 before tax, with Basic, Sector, Commission, Extras, and Deductions">
+        <div class="flex-text">
+          <h3>Pie View</h3>
+          <p>Pie View shows a monthly pie of your earnings: Basic, Sector, Commission, Extras, and Deductions. Open it from Home.</p>
+          <p>This is the month’s pay. Swipe the chart left or right for the previous or next month. With a year range, that swipe moves a year.</p>
+          <p>On a month, the From and To controls set the commission window. The total under the chart starts on <strong>Before tax</strong>.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/PieViewRange.png" alt="Pie View Range menu with Monthly selected, plus Calendar year and Financial year">
+        <div class="flex-text">
+          <h3>Range</h3>
+          <p>Range switches Monthly, a calendar year, or a UK financial year (April to March, United Kingdom only). A year adds up each month. Leaving Pie View returns to monthly.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/PieViewYear.png" alt="Pie View for the 2026 calendar year before tax, January to December">
+        <div class="flex-text">
+          <h3>A calendar year</h3>
+          <p>A calendar year runs from January to December. The arrows move a whole year. The total under the chart is still before tax, and the summary still swipes to after tax.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/PieViewAfterTax.png" alt="Pie View swiped to after tax, showing take-home, income tax, National Insurance, and night stops">
+        <div class="flex-text">
+          <h3>Before tax and take-home</h3>
+          <p>Swipe the summary under the chart. Before tax is the earnings breakdown. After tax is the UK take-home estimate: income tax, National Insurance, student loan, and after-tax benefits, with night stops added. The pie follows the swipe. Tax code, student loan, NI category, and pension are in Settings → Tax.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/PieViewYearAfterTax.png" alt="2026 calendar year after tax, with take-home, income tax, National Insurance, after-tax benefits, and night stops">
+        <div class="flex-text">
+          <h3>A year, after tax</h3>
+          <p>The same swipe works on a year. After tax is the take-home for those months, including income tax, National Insurance, after-tax benefits, and night stops.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/StatsOverview.png" alt="Stats Overview for this month, with highest and lowest variable and commission days, and a month-by-month chart">
+        <div class="flex-text">
+          <h3>Stats</h3>
+          <p>Open <strong>Stats</strong> from the menu. Overview, Compare, and Routes sit across the top. Choose This Month, This Year, or All Time.</p>
+          <p>Overview shows the highest and lowest variable days, the highest and lowest commission days, and a month-by-month chart. The chart can switch between total variable, commission, and sector pay.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/SalesComparison.png" alt="Sales Comparison for May 2026, with your commission, the supplementary commission, and the difference">
+        <div class="flex-text">
+          <h3>Sales Comparison</h3>
+          <p>Sales Comparison checks a supplementary payslip against your sales figures so you can spot any underpayments. Open it from the menu, then tap <strong>Pick Supplementary PDF</strong>.</p>
+          <p>Each day lists your commission, the commission on the supplementary payslip, and the difference. The total is at the bottom.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section" id="crew">
+      <h2>Other crew</h2>
+      <p>One sign-in covers Swap, Friends, and the online copy. Routes, pay, and sales stay on this phone.</p>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/FriendsQr.png" alt="Friends pairing QR and code, with Refresh my QR, Share code, and Scan QR">
+        <div class="flex-text">
+          <h3>Show your QR</h3>
+          <p>Pair with other crew to see who is off the same day, who starts a flying or ADTY duty around the same time, and who finishes as you start or starts as you finish.</p>
+          <p>Friends shows your pairing code as a QR and as text. <strong>Share code</strong> sends it. <strong>Refresh my QR</strong> replaces it. The code stays until you refresh it, someone uses it, or 14 days pass. It still works if you generate it offline. Each phone uploads when it has a signal, and the other phone picks that up the next time it refreshes.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <div class="shot-needed">Screenshot needed: Friends — add a friend</div>
+        <div class="flex-text">
+          <h3>Add a friend</h3>
+          <p>Scan their QR, or type the 8-character code under it. You can also search by staff number. They accept before you are linked.</p>
+          <p>Give them a nickname. It is kept in your backup and is not sent to them. Remove stops sharing. You can have up to 30 friends.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/HomeDayOff.png" alt="Home with 19 November selected on a day off. Green corners mark days a friend is also free, and the details say swipe for friends">
+        <div class="flex-text">
+          <h3>On Home</h3>
+          <p>A green corner on a day off means a friend is also free.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/HomeFriendOff.png" alt="The same 19 November day swiped to Friends, showing a friend who is off">
+        <div class="flex-text">
+          <h3>Duty and Friends</h3>
+          <p>Select a day and swipe the details. The bottom half swipes between the duty and Friends. Friends lists who is off, who starts around the same time, or who finishes as you start.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/swap/01Month.png" alt="Swap board month, with green days for posted duties and a blue line on working days">
+        <div class="flex-text">
+          <h3>Swap board</h3>
+          <p>Open <strong>Swap</strong> from the menu. It is a crew-to-crew board, not your official swap process. Sign in with the same account, then set home base and role if you have not already.</p>
+          <p>The month shows how many duties are posted. Green is the count: 1–2, 3–5, or 6+. A blue line is a working day on your roster. Yellow means an offer needs you. Times follow Local (l) or Zulu (z) from Settings → Country and clocks.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/swap/02SelectedDay.png" alt="A selected Swap board day with Post my day and Offer a day">
+        <div class="flex-text">
+          <h3>A day on the board</h3>
+          <p>Tap a day to see duties other crew have posted, and the duty you are rostered. <strong>Post my day</strong> puts your duty on the board. <strong>Offer a day</strong> offers your duty in exchange for a posted one.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/swap/03Offer.png" alt="Offer confirmation comparing your duty with the posted duty, including rest before and after">
+        <div class="flex-text">
+          <h3>Offer a day</h3>
+          <p>Before the offer is sent, the app shows your duty and the posted duty, and the rest before and after each way. Minimum rest is 12 hours, or the length of the duty if that runs longer. Tap <strong>Yes</strong> to send the offer.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/swap/04YourPost.png" alt="Your posted Swap board duty, with Edit notes and Remove post">
+        <div class="flex-text">
+          <h3>Your post</h3>
+          <p>After you post, the day shows your duty and any note. <strong>Edit notes</strong> changes the note. <strong>Remove post</strong> takes the duty off the board.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/swap/05OfferReceived.png" alt="An incoming Swap board offer with Accept and Reject">
+        <div class="flex-text">
+          <h3>An offer that needs you</h3>
+          <p>An incoming offer is marked <strong>Needs you</strong>. It shows the duty they offered, the rest, and the duty they want from you. Tap <strong>Accept</strong> or <strong>Reject</strong>.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/swap/06Pending.png" alt="An accepted swap offer marked Pending, with Airline confirmed">
+        <div class="flex-text">
+          <h3>After you accept</h3>
+          <p>Agree the change with your airline outside the app. The offer stays <strong>Pending</strong> until both of you tap <strong>Airline confirmed</strong>. When both have confirmed, the offer is finished and leaves the board.</p>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/DistanceCalculator.png" alt="Distance Calculator for CDG to VCE, showing 451.04 nautical miles, a medium flight, and the route map">
+        <div class="flex-text">
+          <h3>Distance Calculator</h3>
+          <p>Distance Calculator checks distances between airports. Open it from the menu. Type a name or a three-letter code for each airport, then tap <strong>Calculate</strong>.</p>
+          <p>The result is the distance in nautical miles and a flight type. An offline route map can be turned on in Settings → Appearance. It does not need a network connection.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section" id="keep">
+      <h2>Look after it</h2>
+      <p>Settings is where you change how the app works. Pay stays on the phone. A locked copy and the online copy cannot be read by JetWages.</p>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/SettingsList.png" alt="Settings list: Online account, Pay, Tax, Country and clocks, Subscription, Roster and calendar, Fingerprint or Face ID, Appearance, Notifications, and Backup">
+        <div class="flex-text">
+          <h3>Settings</h3>
+          <p>Open Settings from the menu. The pages, in order, are:</p>
+          <ul>
+            <li><strong>Online account</strong> — the sign-in used for Swap, Friends, and backup</li>
+            <li><strong>Pay</strong> — rates, payslip, extras per flight</li>
+            <li><strong>Tax</strong> — tax code, student loan, National Insurance</li>
+            <li><strong>Country and clocks</strong> — operating country, Local (l) or Zulu (z)</li>
+            <li><strong>Subscription</strong> — trial, restore, manage</li>
+            <li><strong>Roster and calendar</strong> — export and device sync</li>
+            <li><strong>Fingerprint or Face ID</strong> — recommended, because pay stays on this phone</li>
+            <li><strong>Appearance</strong> — colours, Home as a month or day by day, and the Swap board layout</li>
+            <li><strong>Notifications</strong> — sales reminders</li>
+            <li><strong>Backup</strong> — a copy on this phone or online</li>
+            <li><strong>Service status</strong> — sign-in, Swap, Friends, backup, and the other online services</li>
+            <li><strong>Help and about</strong> — feedback, What’s new, and replay the tutorial</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <img src="graphics/Instructions/Backup.png" alt="Backup screen with save a copy, save a locked copy, restore from a file, and turn on online backup">
+        <div class="flex-text">
+          <h3>Backup</h3>
+          <ul>
+            <li><strong>Save a copy</strong> — a file you can keep or email. Anyone who opens it can see your roster, pay, and friend nicknames.</li>
+            <li><strong>Save a locked copy</strong> — the same file, locked with a password, plus 12 recovery words. Keep the words.</li>
+            <li><strong>Restore from a file</strong> — bring a saved copy back. Days where you have already entered sales stay as they are.</li>
+            <li><strong>Turn on online backup</strong> — an optional locked copy kept online. JetWages cannot open it.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="ready-note"><strong>You’re ready to go.</strong> Replay the tour any time from the help icon, or from Settings → Help and about → Show app tutorial.</p>
+    </section>
 
     <section class="back-row" aria-label="Return">
       <a class="btn btn-grad" href="index.html">Return to home</a>
     </section>
   </main>
+
+  <a class="to-top" href="#page-title" hidden>Back to top</a>
 
   <footer>
     <div class="container">
@@ -421,13 +628,78 @@
     </div>
   </footer>
 
-  <!-- Image lightbox -->
   <div class="popup-overlay" id="popup" aria-hidden="true"><img src="" alt="" id="popup-img"></div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Lightbox
+    const headerEl = document.querySelector('header');
+    const tabs = document.querySelector('.tab-buttons');
+    const sectionMenu = tabs.querySelector('.tab-details');
+    const sectionLabel = tabs.querySelector('.tab-menu__label');
+    const sectionLinks = Array.from(tabs.querySelectorAll('.tab-btn'));
+    const sections = sectionLinks
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+    const placeTabs = () => {
+      const headerHeight = headerEl.offsetHeight;
+      tabs.style.top = headerHeight + 'px';
+      document.documentElement.style.setProperty(
+        '--jump-offset',
+        (headerHeight + tabs.offsetHeight + 12) + 'px'
+      );
+    };
+    const syncSectionLabel = () => {
+      const line = headerEl.offsetHeight + tabs.offsetHeight + 8;
+      let current = null;
+      sections.forEach((section) => {
+        if (section.getBoundingClientRect().top <= line) current = section;
+      });
+      sectionLinks.forEach((link) => link.removeAttribute('aria-current'));
+      if (!current) {
+        sectionLabel.textContent = 'On this page';
+        return;
+      }
+      const link = tabs.querySelector('a[href="#' + current.id + '"]');
+      if (!link) return;
+      sectionLabel.textContent = link.textContent.trim();
+      link.setAttribute('aria-current', 'true');
+    };
+    placeTabs();
+    syncSectionLabel();
+    window.addEventListener('resize', () => {
+      placeTabs();
+      if (window.matchMedia('(min-width: 721px)').matches) sectionMenu.open = false;
+    });
+    const markStuck = () => {
+      const stuck = tabs.getBoundingClientRect().top <= headerEl.offsetHeight + 1;
+      tabs.classList.toggle('is-stuck', stuck);
+    };
+    const toTop = document.querySelector('.to-top');
+    const showToTop = () => {
+      toTop.hidden = window.scrollY < 480;
+    };
+    markStuck();
+    showToTop();
+    document.addEventListener('scroll', () => {
+      markStuck();
+      showToTop();
+      syncSectionLabel();
+    }, { passive: true });
+    tabs.addEventListener('click', (event) => {
+      if (event.target.closest('.tab-btn')) sectionMenu.open = false;
+      requestAnimationFrame(() => {
+        markStuck();
+        syncSectionLabel();
+      });
+    });
+    document.addEventListener('click', (event) => {
+      if (!tabs.contains(event.target)) sectionMenu.open = false;
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') sectionMenu.open = false;
+    });
+
     const popup = document.getElementById('popup');
     const popupImg = document.getElementById('popup-img');
     document.querySelectorAll('img.popup-target').forEach(img => {
@@ -443,28 +715,6 @@
       popup.setAttribute('aria-hidden', 'true');
       popupImg.src = '';
     });
-
-    // Tabs
-    const buttons = document.querySelectorAll('.tab-btn');
-    const panels = ['quick-setup', 'setup-section', 'use-section'].map(id => document.getElementById(id));
-
-    function activate(targetId) {
-      panels.forEach(p => p.classList.add('hidden'));
-      const target = document.getElementById(targetId);
-      if (target) target.classList.remove('hidden');
-
-      buttons.forEach(btn => {
-        const isActive = btn.dataset.target === targetId;
-        btn.classList.toggle('active', isActive);
-        btn.setAttribute('aria-selected', String(isActive));
-      });
-    }
-
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => activate(btn.dataset.target));
-    });
-
-    activate('quick-setup');
   </script>
 </body>
 </html>

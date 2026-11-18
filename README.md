@@ -9,7 +9,7 @@ Static marketing and support pages for JetWages (GitHub Pages–style layout).
 - **`fonts.css`** and **`fonts/`** — Self-hosted DM Sans and Space Grotesk (SIL Open Font License). The landing page, payslip cleaner, and share calculator load these instead of the Google Fonts stylesheet.
 - **`constants-init.js` / `constants.js`** — Site URLs, `data-const` link resolution, and the landing-page airline checker. Support levels live in `constants.js` (`airlineGroups`, `airlineCountrySupport`).
 - **`theme.js`** — Colour theme helper for pages that use the shared `.theme-toggle` control. The live landing embeds its own Auto → Light → Dark toggle in-page.
-- **`instructions.html`** / **`instructions.css`** — Setup guide with sticky header, cards, and theme toggle; tabbed Quick Setup / Preparation / How to Use. Screenshots under **`graphics/Instructions/`**.
+- **`instructions.html`** / **`instructions.css`** — One-page feature guide (Start, Pay, Roster, A day, The month, Other crew, Look after it). On a wide screen the section buttons stay in a row under the header. On a phone they collapse into an “On this page” menu. Shots live under **`graphics/Instructions/`**: welcome and phone setup, Home, Friends QR, pay and tax settings, leave across several days, Pie View, Stats, Sales Comparison, Distance Calculator, the Settings list, backup, and the Swap board steps in **`graphics/Instructions/swap/`**. Sections that still need a shot keep a named placeholder.
 - **`screenshots/MainPage/`** — Landing gallery images (welcome, calendar, stats, pie).
 - **`privacy-policy.html`**, **`terms.html`**, **`licenses.html`** — Supporting pages with their own CSS (`privacy-policy.css` is shared by privacy and terms; **`licenses.css`**) using the same design tokens.
 - **`incognito.html`** — Payslip cleaner for the airline form. The PDF stays in the browser. Typed personal values are replaced with placeholders, then the cleaned file is checked at `https://incognito.jetwages.com` (that check is not stored). If that check cannot be reached, the download stays off. Link: [jetwages.com/incognito.html](https://www.jetwages.com/incognito.html).
@@ -40,6 +40,18 @@ All page stylesheets (`index.css`, `instructions.css`, `licenses.css`, `privacy-
 | `--on-primary` | Text on brand (or accent) fills — navy in light, `#0d2130` in dark |
 
 ## Latest change
+
+- **Phone layout:** on a narrow screen the top bar uses slightly smaller type, on the landing page and on the instructions page. The instructions section buttons collapse into an “On this page” menu so the guide stays on screen. Choosing a section still jumps to Start, Pay, Roster, A day, The month, Other crew, or Look after it, and the closed menu names the section in view.
+
+- **Instructions:** the Fingerprint or Face ID block is removed. The section buttons are one size and stay under the header while the page scrolls, so a tap still jumps to Start, Pay, Roster, A day, The month, Other crew, or Look after it.
+
+- **Instructions:** welcome, set up this phone, Pay, Tax, leave across several days, and Backup now use screenshots. The worked-off patterns section is gone from the page, including the Settings list line.
+
+- **Instructions:** the second screenshot set is on the page. Range, a calendar year before and after tax, Stats, Sales Comparison, the Friends QR, Distance Calculator, and the Settings list replace those placeholders. The November month pie replaces the October before-tax shot, and the Home day-off pair replaces the earlier Friends corner and swipe. Sign-in, pay and tax settings, roster patterns, fingerprint, and backup still need a shot.
+
+- **Instructions:** Home, Pie View, and Swap board screenshots from the new set are on the instructions page. Day-by-day Home, the Friends corner and swipe, before-tax and after-tax Pie View, and the Swap steps (month, post or offer, rest check, your post, accept or reject, airline confirmed) replace the matching placeholders. The older Pie View shot stays in `graphics/Instructions/` and is no longer used on the page.
+
+- **November pages on the secured site:** the one-page instructions, the 15 November privacy policy, the 17 November terms (a subscription lasts 1 month or 1 year, renews unless cancelled at least 24 hours before the period ends, and a store refund can be requested within 14 days), and the matching landing links now sit on the pages that already host the fonts and send the content-security policy. The payslip cleaner stays on PDF.js 4.10.38, and the cleaned download stays off when the leftover check cannot be reached.
 
 - **Site headers and fonts:** published pages send a referrer policy and a content-security policy in the document. DM Sans and Space Grotesk are files in `fonts/`. GitHub Pages cannot set `Strict-Transport-Security` or `X-Frame-Options`; those still have to be added on the Cloudflare zone for `www.jetwages.com`, with `frame-ancestors 'none'` on the content-security policy.
 
